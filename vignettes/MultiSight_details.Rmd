@@ -81,7 +81,8 @@ script functions.
 
 ## App structure 
 
-**MultiSight** enables you to get better biological insights for each omic dataset 
+**MultiSight** enables you to get better biological insights for each omic 
+dataset 
 helping by __four analytic modules__ which content:
 
 - __Data input__ & __results__;
@@ -143,8 +144,8 @@ You have to provide two types of data: **numeric matrices** and
 
 ## Organism
 
-**multiSight** will download organism database automatically according to your Home 
-choice. **19 organism** databases are available (see *Home tab*).
+**multiSight** will download organism database automatically according to your 
+Home choice. **19 organism** databases are available (see *Home tab*).
 *multiSight* could be used without enrichment analysis and thus without a 
 database matching with your data.
 
@@ -174,7 +175,7 @@ questions: **Biosigner** & **Diablo**.
 
 ### Biosigner
 
-[**Biosigner**](https://www.bioconductor.org/packages/release/bioc/html/biosigner.html)
+[**Biosigner**](bioconductor.org/packages/release/bioc/html/biosigner.html)
 is a R package available in *Bioconductor* project.
 
 _In a single-omic_ manner **Biosigner** computes **SVM** and **Random Forest** 
@@ -217,7 +218,7 @@ print(biosignerPerf) #confusion matrices and performance metrics
 
 In a _multi-omic_ manner **Diablo** method selects relevant features to explain
 biological outcome of interest. This is implemented in 
-[**mixOmics**](https://www.bioconductor.org/packages/release/bioc/html/mixOmics.html)
+[**mixOmics**](bioconductor.org/packages/release/bioc/html/mixOmics.html)
 R package available in *Bioconductor* project.
 
 *sPLS-DA method* builds a new space for each omic data set by linear 
@@ -312,9 +313,9 @@ according to organism annotations, see table below:
 | org.Mmu.eg.db     | mcc  | x        | x                       |
 | org.Xl.eg.db      | xla  | x        | x                       |
 
-**Note for enrichment**: only convertible feature names to genes could be enriched 
-according to information in organism's database (e.g. *Gene SYMBOL to entrez
-ids*; see table below).
+**Note for enrichment**: only convertible feature names to genes could be 
+enriched according to information in organism's database (e.g. *Gene SYMBOL 
+to entrez ids*; see table below).
 
 You can know _what feature input types are supported_ with this two lines of 
 codes if your organism is supported by multiSight.
@@ -327,8 +328,8 @@ columns(org.Mm.eg.db)
 
 ## **Single-Omic** DESeq2 differential expression analysis
 
-- To compute **differential expression tables by DESeq2** analysis for *several omic
-data sets*.
+- To compute **differential expression tables by DESeq2** analysis for *several
+omicdata sets*.
 - To **enrich selected features** according to *padjust threshold.*
 
 ### Example
@@ -446,8 +447,8 @@ enrichment results.
 | R-MMU-8953854 | Metabolism of RNA                                                         | 0.533         | 0.002         | 0.024    | 0.021            | 100043813/100044627/100502825/...  | 1/60      | 1     |
 
 Each value is similar to a *enrichRes* object obtained by *clusterProfiler*, in
-fact Stouffer's results are transformed as *enrichRes** objects and could be used 
-for usual *enrichRes* analysis and visualization functions.
+fact Stouffer's results are transformed as *enrichRes** objects and could be 
+used for usual *enrichRes* analysis and visualization functions.
 
 Note in our *cytoscape-like case* that *geneID* column refers to all genes in 
 pathways or ontology named in database annotations. In usual *enrichRes* this 
@@ -464,7 +465,8 @@ Each pathway is a node and a bond is built between them if there have
 common genes (see *Jaccard similarity coefficient - JC's similarity* method).
 
 Here, enrichment map functions from *enrichPlot* package are adapted to draw 
-similar map to **cytoscape** add-on (*EnrichmentMap*)[https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0013984]: 
+similar map to **cytoscape** add-on 
+(*EnrichmentMap*)[doi.org/10.1371/journal.pone.0013984]: 
 all genes in each pathways are used to compute similarity.
 
 ![Enrichment Map from Stouffer p-values pooling method](EnrichmentMapForInstance.png)

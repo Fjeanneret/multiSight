@@ -24,11 +24,11 @@ get_golem_config <- function(
 )
 {
     config::get(
-      value = value, 
-      config = config, 
-      # Modify this if your config file is somewhere else:
-      file = app_sys("golem-config.yml"), 
-      use_parent = use_parent
+        value = value, 
+        config = config, 
+        # Modify this if your config file is somewhere else:
+        file = app_sys("golem-config.yml"), 
+        use_parent = use_parent
     )
 }
 

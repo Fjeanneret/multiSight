@@ -69,7 +69,7 @@ assumptions easier and data-driven.
 
 # App
 
-**MOANI** enables you to get better biological insights for each omic dataset 
+**multiSight** enables you to get better biological insights for each omic dataset 
 helping by __four analytic modules__ which content:
 
 - __Data input__ & __results__;

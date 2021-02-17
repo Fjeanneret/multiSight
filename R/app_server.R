@@ -7,11 +7,11 @@
 #' @noRd
 app_server <- function(input, output, session ) {
     myDataProcess <- R6Class("MyDataProcess", list(
-      organismDb = NULL,
-      data = list(),
-      classification = list(),
-      enrichment = list(),
-      networkInference = list()
+        organismDb = NULL,
+        data = list(),
+        classification = list(),
+        enrichment = list(),
+        networkInference = list()
     ))
     obj <- NULL
     obj <<- myDataProcess$new()

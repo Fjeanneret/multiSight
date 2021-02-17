@@ -1,4 +1,4 @@
 library(testthat)
-# library(MOANI)
+# library(multiSight)
 
-# test_check("MOANI")
+# test_check("multiSight")
