@@ -1,0 +1,69 @@
+Package: multiSight
+Title: Multi-'Omic' Analysis and Network Inference
+Version: 0.99.0
+Authors@R: c(person(given = 'Florian', 
+                    family = 'Jeanneret', 
+                    email = 'florian.jeanneret@cea.fr', 
+                    role = c('cre', 'aut'), 
+                    comment = c(ORCID = "0000-0002-9301-4019")),
+             person(given = 'Stephane',
+                    family = 'Gazut',
+                    email = 'stephane.gazut@cea.fr',
+                    role = 'aut'))
+Description: **'MultiSight'** is a R package providing an user-friendly graphical interface to analyze your 'omic' data sets in a __'multi-omic'__ manner based Stouffer's p-value pooling and multi-block statistical methods.
+    For each 'omic' data set you furnish, it provides _**classification models**_ with *feature selection* you can use as 'biosignature':
+    - To forecast phenotypes (e.g. to diagnostic tasks, histological 'subtyping')
+    - To design _**Pathways**_ and _**gene ontology**_ **'enrichments'** (Over Representation Analysis)
+    - To build _**Network inference**_ linked to _**'PubMed'**_ querying to make assumptions easier and data-driven.
+biocViews: Software, RNASeq, miRNA, Network, NetworkInference, DifferentialExpression
+License: MIT + file LICENSE
+Imports: 
+    config,
+    golem,
+    shiny,
+    DT,
+    htmltools,
+    shinydashboard,
+    R6,
+    biosigner,
+    caret,
+    mixOmics,
+    ppcor,
+    corrplot,
+    clusterProfiler,
+    rWikiPathways,
+    stringr,
+    anyLib,
+    ReactomePA,
+    dplyr,
+    igraph,
+    infotheo,
+    metap,
+    tidyr,
+    easyPubMed,
+    ggsci,
+    ggplot2,
+    networkD3,
+    htmlwidgets,
+    DESeq2,
+    enrichplot,
+    stats,
+    utils,
+    grDevices,
+    purrr,
+    rmarkdown,
+    org.Mm.eg.db
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Suggests: 
+    rlang,
+    markdown,
+    attempt,
+    processx,
+    testthat,
+    knitr,
+    BiocStyle
+VignetteBuilder: knitr
+Depends: 
+    R (>= 4.0)

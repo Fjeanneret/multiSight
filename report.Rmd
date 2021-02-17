@@ -1,0 +1,436 @@
+---
+title: "MONIA Analysis report"
+always_allow_html: yes
+params: null
+---
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(DT)
+library(dplyr)
+library(kableExtra)
+library(knitr)
+library(networkD3)
+library(htmlwidgets)
+```
+
+<style>
+h1, h2, h3, h4 {
+  color:#17247a;
+}
+</style>
+
+## Model performances
+
+```{r diabloFeat, results = 'asis', fig.align='center', fig.pos='htb!', echo=FALSE, message=FALSE, warning=FALSE}
+
+featDiablo <- getClassif(obj, method= "diablo", result = "featDetails")
+if (length(featDiablo) > 0 )
+{ 
+
+    cat("### Diablo model \n")
+    
+    cat("Diablo **sPLS-DA** method selects a relevant features subset to 
+        classification performance and correlation values. These features
+        could be used in functional enrichment analysis to further analysis 
+        provide by *MONIA*. \n")
+    cat("\n#### Features selected for each omic dataset \n ")
+    
+    i = 1
+    while (i <= length(featDiablo))
+    {
+        df <- featDiablo[[i]][[1]]$data
+        caption <- paste0("Omic", i, ": Features selected by Diablo - sPLS-DA 
+                          method")
+        tbl <- kbl(df, digits = 4, format = "simple", caption = caption)
+        print(tbl)
+        
+        i = i + 1
+    }
+    cat("\n#### sPLS-DA performances \n ")
+}else
+{
+    cat("### Diablo model not computed \n")
+}
+```
+
+```{r diabloPerf, echo=FALSE, message=FALSE, warning=FALSE}
+perfDiablo <- getClassif(obj, method = "diablo", result = "performance")
+if (length(perfDiablo) > 0 )
+{
+  print(perfDiablo)
+}
+```
+
+
+```{r biosignerFeat, results = 'asis', fig.align='center', fig.pos='htb!', echo=FALSE, message=FALSE, warning=FALSE}
+
+# featBiosigner <- obj$classification$biosignerResult$featDetails
+featBiosigner <- getClassif(obj, method= "biosigner", result = "featDetails")
+
+if (length(featBiosigner) > 0 )
+{ 
+
+    cat("### Biosigner model \n")
+    
+    cat("Biosigner method selects a small statistical significative features
+    subset to classification performance. 
+\n")
+    cat("#### Features selected for each omic dataset \n ")
+  
+    i <- 1
+    while (i <= length(featBiosigner))
+    {
+        df <- featBiosigner[[i]][[1]]$data
+        caption <- paste0("Omic", i, ": Features selected by Biosigner 
+        (SVM & RF) method")
+        tbl <- kbl(df, digits = 4, format = "simple", caption = caption)
+        print(tbl)
+        
+        i <- i + 1
+    }
+    cat("\n#### Biosigner performances \n ")
+}else
+{
+    cat("### Biosigner model not computed \n")
+}
+```
+
+```{r echo=FALSE, message=TRUE, warning=TRUE}
+# perfBiosigner <- obj$classification$biosignerResult$performance
+perfBiosigner <- getClassif(method = "biosigner", result = "performance")
+
+if (length(perfBiosigner) > 0 )
+{
+    print(perfBiosigner)
+}
+
+```
+
+
+## Enrichment analysis
+
+Functional enrichment analysis have been computed with Diablo subsets of 
+features. You could retrieve "*single-omic*" results and *"multi-omic"* below.
+A Stouffer's p-value is a p-values pooling result weighted or not by number of
+features used to identify at least one biological elements for each omic data.  
+
+```{r results='asis', echo=FALSE, message=TRUE, warning=TRUE}
+# dataNames <- names(obj$enrichment$diablo$featureConverted)
+convFeat <- getEnrichment(obj, sourceFeat = "diablo", 
+                          infoType = "featureConverted")
+dataNames <- names(convFeat)
+
+enrichResPathways <- getEnrichment(obj, sourceFeat = "diablo", 
+                          infoType = "pathways")
+enrichResGO <- getEnrichment(obj, sourceFeat = "diablo", 
+                          infoType = "go")
+# enrichResPathways <- obj$enrichment$diablo$pathways
+# enrichResGO <- obj$enrichment$diablo$go
+```
+
+### Pathways
+
+```{r enrichmentResultPathways, results = 'asis', fig.align='center', fig.pos='htb!', echo=FALSE, message=FALSE, warning=FALSE}
+if (length(enrichResPathways) > 0)
+{
+    i <- 1
+    while(i <= length(enrichResPathways))
+    {
+        db <- enrichResPathways[[i]]$result
+        j <- 1
+        cat(paste0("\n <br><div style = 'display: inline-block;
+        vertical-align:middle; width: 100%; text-align: center;'><h4>",  
+        names(enrichResPathways)[i], "</h4></div> \n"))
+                  
+                   # "</h1> \n"))
+        # cat("\n \\subsection{", names(enrichResPathways)[i], "} \n")
+        while (j <= length(db))
+        {
+            cat("\n \\subsubsection{Enrichment results for Omic", j, "} \n")
+            if (j <= length(dataNames)) # Single omic enrichment table
+            {
+                ## load a small part of table
+                t <- db[[j]][seq(1, 10),  seq(1, 7)]
+                t$ID <- addEnrichIDUrl(t$ID, names(enrichResPathways)[i])
+                
+                table <- t %>% 
+                  kbl(digits = 4, row.names = FALSE, format = "simple", 
+                    caption = paste0(names(enrichResPathways)[i], 
+                                     " - Enrichment result table for Omic", 
+                                     j))
+                
+                print(table)
+            }
+            else if (j == length(dataNames) + 1 ) ## Stouffer table
+            {
+                cat("\n \\subsubsection{Multi-Omic 
+                    enrichment analysis with Stouffer's p-value}\n")
+        
+                ## load a small part of table
+                # t <- db[[j]][c(seq(1, 6), seq(8, 10)), ]
+                t <- db[[j]][seq(1, 10), ] %>% select(everything(), -geneID)
+                t$ID <- addEnrichIDUrl(t$ID, names(enrichResPathways)[i]) 
+                
+                table <- t %>% 
+                    kbl(digits = 4, 
+                        row.names = FALSE, 
+                        format = "simple", 
+                        caption = paste0(names(enrichResPathways)[i], 
+                                         " - Multi-omic enrichment table"))
+                print(table)
+            }
+            else if (j == length(dataNames) + 2) ## enrichment Map
+            {
+              cat("\n \\subsubsection{Multi-Omic 
+                    enrichment map with Stouffer's p-value <= 0.1}\n")
+              print(db[[j]])
+            }
+            j = j + 1
+        }
+        i = i + 1
+    }
+}else{
+  cat("No pathways enrichment result \n")
+}
+```
+
+### Gene Ontology
+```{r enrichmentResultGO, results = 'asis', fig.align='center', fig.pos='htb!', echo=FALSE, message=FALSE, warning=FALSE}
+
+if (length(enrichResGO) > 0)
+{
+    i = 1
+    while(i <= length(enrichResGO))
+    {
+        db <- enrichResGO[[i]]
+        j = 1
+        cat(paste0("\n <br><div style = 'display: inline-block;
+        vertical-align:middle; width: 100%; text-align: center;'><h4>",  
+        names(enrichResGO)[i], "</h4></div> \n"))
+        # cat("\n \\subsection{", names(enrichResGO)[i], "}\n \\ ")
+        while (j <= length(db))
+        {
+            cat("\n \\subsubsection{Enrichment results for Omic", j, "}\n")
+            if (j <= length(dataNames)) # Single omic enrichment table
+            {
+                ## load a small part of table
+                t <- db[[j]][seq(1, 10), seq(1, 7)]
+                t$ID <- addEnrichIDUrl(t$ID, names(enrichResGO)[i]) 
+                
+                ## displays table
+                table <- t %>%
+                kbl(digits = 4, 
+                    row.names = FALSE, 
+                    format = "simple",
+                    caption = paste0(names(enrichResGO)[i], 
+                                     " - Enrichment result table for Omic", 
+                                     j))
+                print(table)
+            }
+            else if (j == length(dataNames) + 1 ) ## Stouffer table
+            {
+                cat("\n \\subsubsection{Multi-Omic 
+                    enrichment analysis with Stouffer's p-value}\n")
+        
+                ## load a small part of table
+                t <- db[[j]][seq(1, 10), ] %>% select(everything(), -geneID)
+                t$ID <- addEnrichIDUrl(t$ID, names(enrichResGO)[i]) 
+                
+                table <- t %>% kbl(digits = 4, 
+                        row.names = FALSE, 
+                        format = "simple", 
+                        caption = paste0(names(enrichResGO)[i],
+                                         " - Multi-omic enrichment table"))
+                print(table)
+            }
+            else if (j == length(dataNames) + 2) ## enrichment Map
+            {
+              cat("\n \\subsubsection{Multi-Omic 
+                    enrichment map with Stouffer's p-value <= 0.1}\n")
+              print(db[[j]])
+            }
+            j = j + 1
+        }
+        i = i + 1
+    }
+}else{
+  cat("No ontology enrichment result \n")
+}
+
+```
+
+## Multi-Omic Network inference
+
+Several network analysis methods are used by *MONIA*. You can retrieve 
+correlation, partial correlation and mutual information networks whose 
+relevancy to improve relevant relation identification between numerical values
+have been shown in [**Hawe, Johann S. and Theis, Fabian J. and Heinig, Matthias, 2019**](https://www.frontiersin.org/articles/10.3389/fgene.2019.00535/full).
+
+### Diablo features networks
+
+#### Correlation network
+```{r correlationNetworkDiablo, results = 'asis', fig.align='center', fig.pos='htb!', echo=FALSE, message=FALSE, warning=FALSE}
+
+if (length(getNetwork(obj, "diablo")) > 0)
+{
+    # corrNet <- obj$networkInference$diabloNetwork$graph$correlation
+    corrNet <- getNetwork(obj, "diablo", "correlation")
+    if (!is.null(corrNet))
+    {
+        onRender(corrNet,
+          "function(el,x)
+              { d3.selectAll('.node').on('mouseover', null); }")
+    }else
+    {
+        cat("<i>Network picture not loaded in app</i>")
+    }
+}else{
+    cat("<i>No diablo networks loaded or computed</i> \n")
+}
+```
+
+#### Partial correlation network
+```{r partialCorrNetworkInferenceDiablo, results = 'asis', fig.align='center', fig.pos='htb!', echo=FALSE, message=FALSE, warning=FALSE}
+if (length(getNetwork(obj, "diablo")) > 0)
+{
+    # pcorrNet <- obj$networkInference$diabloNetwork$graph$partialCorrelation
+    pcorrNet <- getNetwork(obj, "diablo", "partialCor")
+    if (!is.null(pcorrNet))
+    {
+        onRender(pcorrNet,
+            "function(el,x)
+                { d3.selectAll('.node').on('mouseover', null); }")
+    }else{
+        cat("<i>Network picture not loaded in app</i>")
+    }
+}else
+{
+    cat("<i>No diablo networks loaded or computed</i> \n")
+}
+```
+
+#### Mutual information network
+```{r mutualInfNetworkInferenceDiablo, results = 'asis', fig.align='center', fig.pos='htb!', echo=FALSE, message=FALSE, warning=FALSE}
+if (length(getNetwork(obj, "diablo")) > 0)
+{
+    # imNet <- obj$networkInference$diabloNetwork$graph$mutualInformation
+    imNet <- getNetwork(obj, "diablo", "mutualInf")
+    if (!is.null(imNet))
+    {
+        onRender(imNet,
+            "function(el,x)
+                { d3.selectAll('.node').on('mouseover', null); }")
+    }else{
+        cat("<i>Network picture not loaded in app</i>")
+    }
+}else{
+    cat("<i>No diablo networks loaded or computed</i> \n")
+}
+cat("\n <hr style='height: 50px; width: 100% ;
+    color: #f1f1f1; background-color: #f1f1f1;'> \n")
+
+```
+
+
+### Biosigner features networks
+
+#### Correlation network
+```{r correlationNetworkBiosigner, results = 'asis', fig.align='center', fig.pos='htb!', echo=FALSE, message=FALSE, warning=FALSE}
+
+if (length(getNetwork(obj, "biosigner")) > 0)
+{
+  # corrNet <- obj$networkInference$biosignerNetwork$graph$correlation
+  corrNet <- getNetwork(obj, "biosigner", "correlation")
+  if (!is.null(corrNet))
+  {
+    onRender(corrNet,
+        "function(el,x)
+            { d3.selectAll('.node').on('mouseover', null); }")
+  }else{
+      cat("<i>Network picture not loaded in app</i>")
+  }
+}else{
+  cat ("<i>No biosigner networks loaded or computed</i> \n")
+}
+```
+
+#### Partial correlation network
+```{r partialCorrNetworkInferenceBiosigner, results = 'asis', fig.align='center', fig.pos='htb!', echo=FALSE, message=FALSE, warning=FALSE}
+if (length(getNetwork(obj, "biosigner")) > 0)
+{
+  # pcorrNet <- obj$networkInference$biosignerNetwork$graph$partialCorrelation
+  pcorrNet <- getNetwork(obj, "biosigner", "partialCor")
+  if (!is.null(pcorrNet))
+  {
+      onRender(pcorrNet,
+      "function(el,x)
+          { d3.selectAll('.node').on('mouseover', null); }")
+  }else{
+      cat("<i>Network picture not loaded in app</i>")
+  }
+}else{
+    cat("<i>No biosigner networks loaded or computed</i> \n")
+}
+```
+
+#### Mutual information network
+```{r mutualInfNetworkInferenceBiosigner, results = 'asis', fig.align='center', fig.pos='htb!', echo=FALSE, message=FALSE, warning=FALSE}
+if (length(getNetwork(obj, "biosigner")) > 0)
+{
+    # miNet <- obj$networkInference$biosignerNetwork$graph$mutualInformation
+    miNet <- getNetwork(obj, "biosigner", "mutualInf")
+    if (!is.null(miNet))
+    {
+        onRender(miNet,
+        "function(el,x)
+            { d3.selectAll('.node').on('mouseover', null); }")
+    }else{
+        cat("<i>Network picture not loaded in app</i>")
+    }
+}else{
+    cat("<i>No biosigner networks loaded or computed</i> \n")
+}
+cat("\n <hr style='height: 50px; width: 100% ;
+    color: #f1f1f1; background-color: #f1f1f1;'> \n")
+
+```
+
+## Bibliographic assumptions
+```{r biblioDiablo, results = 'asis', fig.align='center', fig.pos='htb!', echo=FALSE, message=FALSE, warning=FALSE}
+if (length(obj$networkInference$diabloNetwork$biblio) > 0)
+{
+  cat("<h3>Diablo features | Bibliographic query: \n</h3>", 
+      getPubMed(obj, "diablo", "request")
+  )
+  titles_urls <- getPubMed(obj, "diablo", "all")
+  i <- 1
+  while (i <=  length(titles_urls$title))
+  {
+    title <- titles_urls$title[[i]]
+    url <- titles_urls$url[[i]]
+    cat("<li><a href = ", url, "> ", title, "</a></li>\n")
+    i <- i + 1
+  }
+}
+```
+
+```{r biblioBiosigner, results = 'asis', fig.align='center', fig.pos='htb!', echo=FALSE, message=FALSE, warning=FALSE}
+if (length(obj$networkInference$biosignerNetwork$biblio) > 0)
+{
+    cat("<h3>Biosigner features | Bibliographic query:</h3>", 
+        getPubMed(obj, "biosigner", "request"))
+    titles_urls <- getPubMed(obj, "biosigner", "all")
+    i <- 1
+    while (i <=  length(titles_urls$title))
+    {
+        title <- titles_urls$title[[i]]
+        url <- titles_urls$url[[i]]
+        cat("<li><a href = ", url, "> ", title, "</a></li>")
+        i <- i + 1
+    }
+}
+cat("\n <hr style='height: 50px; width: 100% ;
+    color: #f1f1f1; background-color: #f1f1f1;'> \n")
+
+```
+
+
