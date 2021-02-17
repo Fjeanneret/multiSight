@@ -7,18 +7,13 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 ![last
-<<<<<<< HEAD
-commit](https://img.shields.io/github/last-commit/fjeanneret/MultiSight.svg?style=for-the-badge)
-![license](https://img.shields.io/github/license/fjeanneret/MultiSight.svg?style=for-the-badge)
-=======
-commit](https://img.shields.io/github/last-commit/Fjeanneret/MultiSight.svg)
-![license](https://img.shields.io/github/license/Fjeanneret/MultiSight.svg)
->>>>>>> 2cc78fe328dc2280384cff34f0e6eb7fb13cfd42
+commit](https://img.shields.io/github/last-commit/fjeanneret/MultiSight.svg)
+![license](https://img.shields.io/github/license/fjeanneret/MultiSight.svg)
 <!-- badges: end -->
 
 # **multiSight**
 
-This vignette is built to be efficient as quickly as possible with
+This document is built to be efficient as quickly as possible with
 **multiSight**.
 
   - The goal of **multiSight** is to handle multi-omic data and network
@@ -33,14 +28,16 @@ You can install the released version of **multiSight** from
 [Bioconductor](https://www.bioconductor.org/) with:
 
 ``` r
-To install this package ensure you have BiocManager installed
+#To install this package ensure you have BiocManager installed
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
-The following initializes usage of Bioc devel
-BiocManager::install(version='devel')
-
+#The following initializes usage of Bioc devel
 BiocManager::install("multiSight")
+
+# To get up-to-date package
+install.packages("remotes")
+remotes::install_github("Fjeanneret/multiSight")
 ```
 
 # Why to use **multiSight** ?
@@ -71,6 +68,12 @@ dataset helping by **four analytic modules** which content:
   - **Classification** models building;
   - **Biological databases** querying;
   - **Network Inference** & **Pubmed** querying.
+
+> Run the application
+
+``` r
+# run_app()
+```
 
 | Home                                 | Classification                                | Biological Insights                          | Assumption                               |
 | ------------------------------------ | --------------------------------------------- | -------------------------------------------- | ---------------------------------------- |
