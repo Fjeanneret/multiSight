@@ -61,8 +61,8 @@ models*** with *feature selection* you can use as biosignature:
 
 # App
 
-**MOANI** enables you to get better biological insights for each omic
-dataset helping by **four analytic modules** which content:
+**multiSight** enables you to get better biological insights for each
+omic dataset helping by **four analytic modules** which content:
 
   - **Data input** & **results**;
   - **Classification** models building;
