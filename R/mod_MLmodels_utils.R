@@ -229,13 +229,51 @@ getSelectedFeatures <- function(splsdaModel)
 #' @description Builds ui outputs of detailed feature tables for selected 
 #' ones by machine learning models.
 #'
+#' @param listFeatTables datatable of selected features.
+#' 
+#' @importFrom DT datatable renderDT
+#' 
+#' @noRd 
+displayFeatDetails <- function(listFeatTables)
+{   
+    omicNames <- names(listFeatTables)
+    statusLabels <- c("primary", 
+                      "success", 
+                      "info", 
+                      "warning", 
+                      "danger")
+    
+    seqFeat <- seq(1, length(listFeatTables))
+    lapply(seqFeat, function(i){
+      table <- listFeatTables[[i]]
+      status <- sample(statusLabels, 1)
+      
+      ## UI output
+      box(width = 10, 
+          title = omicNames[i], 
+          status = status,
+          solidHeader = TRUE,
+          
+          renderDT({ table }, server = FALSE)
+        
+    )
+  })
+}
+
+#' Models util function
+#'
+#' @description Builds ui outputs of detailed feature tables for selected 
+#' ones by machine learning models.
+#'
 #' @param featuresList Selected features list, one vector by omic dataset.
 #' @param modelMethod Model used to save data.
 #' @param DESeqTables Deseq2 results table for an omic dataset.
-#' @param obj R6 object to wrap all data from different analysis.
+#' @param obj R6 object to wrap all data from different analysis
+#' 
+#' @importFrom DT renderDT datatable
 #' 
 #' @noRd 
-displayFeatDetails <- function(featuresList, 
+computeFeatDetails <- function(featuresList, 
                                modelMethod, 
                                DESeqTables = NULL,
                                obj)
@@ -244,38 +282,66 @@ displayFeatDetails <- function(featuresList,
     ## load data to compute feature information
     wholeOmicData <- obj$data$wholeData
     wholeY <- obj$data$wholeData$Y
-    ## box header color
-    statusLabels <- c("primary", 
-                      "success", 
-                      "info", 
-                      "warning", 
-                      "danger")
     
-    ## For each omic signature builds one table
+    ## For each omic signature build one table
+    # listFeatTables <- list()
     seqFeat <- seq(1, length(featuresList))
-    lapply(seqFeat, function(i){
-        status <- sample(statusLabels, 1)
-        omic <- omicNames[[i]]
-        table <- buildFeatTable(featuresList[[i]], 
-                                wholeOmicData[[i]], 
-                                wholeY, 
-                                DESeqTables[[omic]])
-      
+    listFeatTables <- lapply(seqFeat, function(i){
+      omic <- omicNames[[i]]
+      table <- buildFeatTable(featuresList[[i]], 
+                              wholeOmicData[[i]], 
+                              wholeY, 
+                              DESeqTables[[omic]])
       ## To save in obj
-      objName <- paste0(modelMethod, "Result")
       objOmicName <- omicNames[i]
-      obj$classification[[objName]]$featDetails[[objOmicName]] <- table
-      
-      ## UI output
-      box(width = 10, 
-          title = omicNames[i], 
-          status = status,
-          solidHeader = TRUE,
-          
-          DT::renderDataTable({ table })       
-      )
+      table
+      # listFeatTables[[objOmicName]] <- table
     })
+    names(listFeatTables) <- paste0("Omic", seqFeat)
+    return(listFeatTables)
 }
+# displayFeatDetails <- function(featuresList, 
+#                                modelMethod, 
+#                                DESeqTables = NULL,
+#                                obj)
+# {   
+#     
+#     omicNames <- names(featuresList)
+#     ## load data to compute feature information
+#     wholeOmicData <- obj$data$wholeData
+#     wholeY <- obj$data$wholeData$Y
+#     ## box header color
+#     statusLabels <- c("primary", 
+#                       "success", 
+#                       "info", 
+#                       "warning", 
+#                       "danger")
+#     
+#     ## For each omic signature build one table
+#     seqFeat <- seq(1, length(featuresList))
+#     lapply(seqFeat, function(i){
+#         status <- sample(statusLabels, 1)
+#         omic <- omicNames[[i]]
+#         table <- buildFeatTable(featuresList[[i]], 
+#                                 wholeOmicData[[i]], 
+#                                 wholeY, 
+#                                 DESeqTables[[omic]])
+#         # table <- listFeatTables[[i]]
+#       ## To save in obj
+#       objName <- paste0(modelMethod, "Result")
+#       objOmicName <- omicNames[i]
+#       obj$classification[[objName]]$featDetails[[objOmicName]] <- table
+#       
+#       ## UI output
+#       box(width = 10, 
+#           title = omicNames[i], 
+#           status = status,
+#           solidHeader = TRUE,
+#           
+#           DT::renderDataTable({ table }),
+#       )
+#     })
+# }
 
 #' Models util function
 #'
@@ -301,7 +367,7 @@ displayFeatDetails <- function(featuresList,
 #'   omic2$Y)
 #' diabloFeatTable
 #' 
-#' @importFrom DT datatable formatSignif
+#' @importFrom DT datatable formatSignif formatStyle
 #' 
 #' @return Returns table of features selected by classification model and
 #' relative values.
@@ -349,11 +415,12 @@ buildFeatTable <- function(featVec, omicBlock, Y, deTable = NULL)
     }
     
     ## Table 
-    featTable <- datatable(df,
+    featTable <- DT::datatable(df,
                            extensions = c('Responsive', 'Buttons'),
                            options = list(
+                              dom = 'Bfrtip',
                               rownames = FALSE,
-                              buttons = list(list(extend = 'colvis'))
+                              buttons = c('csv', 'excel', 'pdf')
                            )
     )
     colToFormat <- names(df)[-1]

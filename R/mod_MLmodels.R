@@ -7,8 +7,7 @@
 #' @noRd 
 #'
 #' @importFrom shiny NS tagList column sliderInput uiOutput
-#' textInput actionButton htmlOutput verbatimTextOutput
-#' @importFrom shiny tabPanel h4 
+#' textInput actionButton htmlOutput verbatimTextOutput tabPanel h4
 #' @importFrom shinydashboard box
 #' @importFrom DT dataTableOutput renderDataTable
 mod_MLmodels_ui <- function(id){
@@ -21,7 +20,7 @@ mod_MLmodels_ui <- function(id){
                 tabBox(width = 12,
                     tabPanel("Features", 
                         uiOutput(ns("WarnNotTwoClass")),
-                        uiOutput(ns("biosignerFeatDetails"))
+                        uiOutput(ns("biosignerFeatDetails")),
                     ),
                     tabPanel("Performances",
                         uiOutput(ns("WarnNotTwoClassP")),
@@ -39,6 +38,7 @@ mod_MLmodels_ui <- function(id){
                 tabBox(width = 12,
                     tabPanel("Features", 
                         uiOutput(ns("diabloFeatDetails"))
+                        
                     ),
                     tabPanel("Performances",
                         verbatimTextOutput(ns("diabloPerfsplda"))
@@ -51,6 +51,7 @@ mod_MLmodels_ui <- function(id){
 #' MLmodels Server Function
 #'
 #' @importFrom shiny observeEvent req renderUI renderPrint span
+#' @importFrom DT renderDT
 #'
 #' @noRd 
 mod_MLmodels_server <- function(input, output, session, startSignal, bioDB)
@@ -62,7 +63,6 @@ mod_MLmodels_server <- function(input, output, session, startSignal, bioDB)
       
       ## Split data sets in train and test sets
       dataSplitted <- splitDatatoTrainTest(obj$data$wholeData, freq = 0.8)
-      
       obj$data$dataTrain <- dataTrain <- dataSplitted$data.train
       obj$data$dataTest <- dataTest <- dataSplitted$data.test
       class <- obj$data$wholeData$Y
@@ -88,12 +88,22 @@ mod_MLmodels_server <- function(input, output, session, startSignal, bioDB)
           
           ## biosigner results
           biosignerSig <- biosignerModelRes$biosignature
-          biosignerFeatTables <- 
-            displayFeatDetails(featuresList = biosignerSig, 
+          # biosignerFeatTables <- 
+            # displayFeatDetails(featuresList = biosignerSig,
+          biosignerFeatTables <- computeFeatDetails(featuresList = biosignerSig,
                                 modelMethod = "biosigner", 
-                                obj = obj)
+                                obj = obj) 
+          seqFeat <- seq(1, length(biosignerFeatTables))
+          # lapply(seqFeat, function(i){
+              # download_server_id <- paste0("biosignerFeats-download_ui_", i)
+              # callModule(mod_download_server, 
+              #            download_server_id, 
+              #            listFeatTables[[i]]$x$data)
+          biosignerFeatTablesUI <- displayFeatDetails(biosignerFeatTables)
+          # })
+          obj$classification$biosignerResult$featDetails <- biosignerFeatTables
           ## Shiny outputs
-          output$biosignerFeatDetails <- renderUI({biosignerFeatTables})
+          output$biosignerFeatDetails <- renderUI({biosignerFeatTablesUI})
           output$biosignerPerfsvm <- renderPrint(biosignerPerf$svm)
           output$biosignerPerfrf <- renderPrint(biosignerPerf$rf)
       }
@@ -116,22 +126,25 @@ mod_MLmodels_server <- function(input, output, session, startSignal, bioDB)
       obj$classification$diabloResult <- diabloRes
       sPLSDAmodel <- diabloRes$model
       diabloSig <- diabloRes$biosignature
-      
+
       message("Diablo's sPLS-DA model assessing...")
-      diabloPerf <- assessPerformance_Diablo(sPLSDAmodel, 
+      diabloPerf <- assessPerformance_Diablo(sPLSDAmodel,
                                              dataTest)
       message("...Diablo's model assessing ended")
-      
+
       ## diablo results
       obj$classification$diabloResult$performance <- diabloPerf
       obj$classification$diabloResult$biosignature <- diabloSig
-      diabloFeatTables <- displayFeatDetails(featuresList = diabloSig, 
-                                             modelMethod = "diablo", 
+      diabloFeatTables <- computeFeatDetails(featuresList = diabloSig,
+                                             modelMethod = "diablo",
                                              obj = obj)
-      
+      obj$classification$diabloResult$featDetails <- diabloFeatTables
+      seqFeat <- seq(1, length(diabloFeatTables))
+      diabloFeatTablesUI <- displayFeatDetails(diabloFeatTables)
+
       ## Shiny outputs
       output$diabloPerfsplda<- renderPrint(diabloPerf)
-      output$diabloFeatDetails <- renderUI({diabloFeatTables})
+      output$diabloFeatDetails <- renderUI({diabloFeatTablesUI})
       })
     
     
@@ -150,11 +163,15 @@ mod_MLmodels_server <- function(input, output, session, startSignal, bioDB)
               biosignerSig <- obj$classification$biosignerResult$biosignature
               DESEQtables <- obj$enrichment$deseq$DEtable
               biosignerFeatTables <- 
-                displayFeatDetails(biosignerSig,
-                                   modelMethod ="biosigner",
-                                   DESeqTables = DESEQtables, 
-                                   obj = obj)       
-              output$biosignerFeatDetails <- renderUI({biosignerFeatTables})
+                  computeFeatDetails(biosignerSig,
+                                     modelMethod ="biosigner",
+                                     DESeqTables = DESEQtables, 
+                                     obj = obj)
+              obj$classification$biosignerResult$featDetails <- 
+                  biosignerFeatTables
+              seqFeat <- seq(1, length(biosignerFeatTables))
+              biosignerFeatTablesUI <- displayFeatDetails(biosignerFeatTables)
+              output$biosignerFeatDetails <- renderUI({biosignerFeatTablesUI})
           }
       })
       
@@ -163,11 +180,14 @@ mod_MLmodels_server <- function(input, output, session, startSignal, bioDB)
           message("[Classification tab] Diablo features tables updating...")
           diabloSig <- obj$classification$diabloResult$biosignature
           DESEQtables <- obj$enrichment$deseq$DEtable
-          diabloFeatTables <- displayFeatDetails(diabloSig, 
-                                                 "diablo",
-                                                 DESEQtables, 
+          diabloFeatTables <- computeFeatDetails(featuresList = diabloSig,
+                                                 modelMethod = "diablo",
+                                                 DESeqTables = DESEQtables,
                                                  obj = obj)
-          output$diabloFeatDetails <- renderUI({diabloFeatTables})
+          obj$classification$diabloResult$featDetails <- diabloFeatTables
+          seqFeat <- seq(1, length(diabloFeatTables))
+          diabloFeatTablesUI <- displayFeatDetails(diabloFeatTables)
+          output$diabloFeatDetails <- renderUI({diabloFeatTablesUI})
       })
 }
 

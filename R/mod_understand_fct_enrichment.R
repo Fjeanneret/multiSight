@@ -70,7 +70,7 @@ uiResultExport <- function(input, output, session,
                                         formatEnrichTable(
                                           result[[databases[i]]]$result[[j]], 
                                           databases[i])
-                                        })
+                                        }, server = FALSE)
                                 )
                             }else if (length(dataNames)>1) ## Multi-omic results
                             {
@@ -85,7 +85,7 @@ uiResultExport <- function(input, output, session,
                                           formatStoufferTable(
                                           result[[databases[i]]]$result$multi,
                                           databases[i], 
-                                          length(dataNames))
+                                          length(dataNames)), server = FALSE,
                                       )
                                   )
                                 }else if (j == length(dataNames)+2) #EnrichMap
@@ -661,8 +661,10 @@ formatEnrichTable <- function(enrichTable, db = NULL)
                           )),
                             dom = 'Bfrtip',
                             ## To choose which column to display or not
-                            buttons = list(list(extend = 'colvis', 
-                                                columns = seq(3, 10)))
+                            # buttons = list(list(extend = 'colvis', 
+                                                # columns = seq(3, 10))),
+                          
+                          buttons = c('csv', 'excel', 'pdf')
                         ))
     
     ## adds color background for p.adjust values <= 0.01 and 0.05
@@ -688,7 +690,7 @@ formatEnrichTable <- function(enrichTable, db = NULL)
 #'
 #' @noRd 
 #'
-#' @importFrom DT formatStyle styleInterval formatSignif
+#' @importFrom DT datatable formatStyle styleInterval formatSignif
 #' @importFrom dplyr mutate 
 formatStoufferTable <- function(stoufferTable, db = NULL, dataNbr)
 {
@@ -703,6 +705,7 @@ formatStoufferTable <- function(stoufferTable, db = NULL, dataNbr)
                         extensions = c('Responsive', 'Buttons'), 
                         options = list(
                             dom = 'Bfrtip',
+                            buttons = c('csv', 'excel', 'pdf'),
                             ## To choose which column to display (3th to 9th)
                             buttons = list(
                               list(extend = 'colvis', 
@@ -769,7 +772,7 @@ runMultiDeseqAnalysis <- function(omicDataList, padjUser)
       ## DESeq2 main function to DE table
       dds <- DESeqDataSetFromMatrix(countData = omicDataForDESEQ,
                                     colData = meta, 
-                                    design= ~ class) #design is class meta's col
+                                    design= ~ class) #design is class meta col
       dds <- DESeq(dds)
       res <- results(dds)
       

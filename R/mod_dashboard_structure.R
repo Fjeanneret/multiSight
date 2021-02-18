@@ -74,7 +74,7 @@ mod_dashboard_structure_ui <- function(id){
           tabItem(
             box(title = h1("Assumptions"),
                 width = 10, status = "warning",
-                "This Assumptions tab is dedicated to Newtwork inferences and 
+                "This Assumptions tab is dedicated to Network inferences and 
                 a integrated PubMed query module.",
                 "Networks are build according to 3 methods: correlation, 
                 partial correlation and mutual information (see ", 
@@ -123,7 +123,6 @@ mod_dashboard_structure_server <- function(input,
   
     obj <- obj
     ns <- session$ns
-    
     observeEvent(input$diabloNetworkStart,{
       req(length(obj$classification$diabloResult$biosignature) > 0)
       biosignature <- obj$classification$diabloResult$biosignature

@@ -379,6 +379,8 @@ runMultiOmicEnrichment<- function(input, output, session, featSource)
 #' 
 #' @noRd 
 #' 
+#' @importFrom DT datatable 
+#' 
 #' @return ui elements to display by renderUI().
 displayDESeqtables <- function(deseqTables)
 {
@@ -391,13 +393,13 @@ displayDESeqtables <- function(deseqTables)
     lapply(seqDeseqTables, function(i){
         status <- sample(statusLabels, 1)
         table <- data.frame(deseqTables[[i]])
-      
     ## Table 
     deseqTable <- datatable(table,
                             extensions = c('Responsive', 'Buttons'),
                             options = list(
+                                dom = 'BRrltpi',
                                 rownames = FALSE,
-                                buttons = list(list(extend = 'colvis'))
+                                buttons = c('csv', 'excel', 'pdf')
                               )
       )
       colToFormat <- colnames(table)
@@ -417,7 +419,7 @@ displayDESeqtables <- function(deseqTables)
           status = status,
           solidHeader = TRUE,
           
-          DT::renderDataTable({ deseqTable })       
+          DT::renderDataTable({ deseqTable }, server = FALSE)       
       )
     })
 }

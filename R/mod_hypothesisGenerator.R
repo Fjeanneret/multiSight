@@ -14,7 +14,6 @@
 mod_hypothesisGenerator_ui <- function(id){
   ns <- NS(id)
   tagList(
-      # box(title ="Diablo features", width = 12, #height = "800px",
         box(title = "Correlation", solidHeader = TRUE, width = 12,
             collapsible = TRUE, collapsed = TRUE, status = "success",
               column(width = 7,
