@@ -198,7 +198,8 @@ detectTypeEnrich <- function(databaseName)
 #' c(reactome, kegg, wikiPathways, MF, CC, BP)
 #' @param omicSignature Feature lists from each omic data block.
 #' @param organismDb Organism provided by user in Home tab.
-#' @param pvAdjust,minGSSize,maxGSSize,pvStouffer Numeric values chosen by user 
+#' @param pvAdjust pv adjust method (e.g "BH" for Benjamini-Hochberg)
+#' @param minGSSize,maxGSSize,pvStouffer Numeric values chosen by user 
 #'   in ui.
 #'
 #' @examples
@@ -239,7 +240,7 @@ detectTypeEnrich <- function(databaseName)
 runMultiEnrichment <- function(omicSignature,
                                databasesChosen, 
                                organismDb,
-                               pvAdjust = 0.05,
+                               pvAdjust = "BH",
                                minGSSize = 5,
                                maxGSSize = 800,
                                pvStouffer = 0.1)
@@ -757,8 +758,6 @@ runMultiDeseqAnalysis <- function(omicDataList, padjUser)
       
       ## add feature names
       message("DESeq2: Converting values to integers")
-      #omicDataForDESEQ <- omicDataForDESEQ + 
-      #  rnorm(length(omicDataForDESEQ), mean = 1000, sd = 50)
       omicDataForDESEQ <- apply((omicDataForDESEQ), 2, as.integer)
       rownames(omicDataForDESEQ) <- colnames(omicData)
       
