@@ -660,10 +660,6 @@ formatEnrichTable <- function(enrichTable, db = NULL)
                             "}")
                           )),
                             dom = 'Bfrtip',
-                            ## To choose which column to display or not
-                            # buttons = list(list(extend = 'colvis', 
-                                                # columns = seq(3, 10))),
-                          
                           buttons = c('csv', 'excel', 'pdf')
                         ))
     

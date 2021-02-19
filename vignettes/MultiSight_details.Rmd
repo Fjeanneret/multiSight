@@ -31,12 +31,10 @@ strong {
 # multiSight 
 
 This vignette is built to be efficient as quickly as 
-possible with multiSight.
+possible with **multiSight**.
 
 ## Version Info
-```{r, echo=FALSE, results="hide", warning=FALSE}
-suppressPackageStartupMessages({library('multiSight')})
-```
+
 <p>
 **R version**: `r R.version.string`
 <br />
@@ -47,15 +45,19 @@ suppressPackageStartupMessages({library('multiSight')})
 
 # Installation
 
-```{r, eval = FALSE}
+```{r}
 # To install this package ensure you have BiocManager installed
-# if (!requireNamespace("BiocManager", quietly = TRUE))
-    # install.packages("BiocManager")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+install.packages("BiocManager")
 
 # The following initializes usage of Bioc devel
 # BiocManager::install(version='devel')
 
 # BiocManager::install("multiSight")
+```
+
+```{r}
+suppressPackageStartupMessages(library('multiSight'))
 ```
 
 # Why to use **MultiSight** ?

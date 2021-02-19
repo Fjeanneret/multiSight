@@ -49,9 +49,7 @@ install.packages("remotes")
 remotes::install_github("Fjeanneret/multiSight")
 ```
 
-# Why to use **multiSight** ?
-
-## What is it ?
+# What is **multiSight** ?
 
 **multiSight** is a R package providing an user-friendly graphical interface to 
 analyze and explore your omic data sets in a __multi-omic__ manner by _DESEQ2_ 
