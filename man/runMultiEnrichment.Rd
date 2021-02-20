@@ -8,7 +8,7 @@ runMultiEnrichment(
   omicSignature,
   databasesChosen,
   organismDb,
-  pvAdjust = 0.05,
+  pvAdjust = "BH",
   minGSSize = 5,
   maxGSSize = 800,
   pvStouffer = 0.1
@@ -22,7 +22,9 @@ c(reactome, kegg, wikiPathways, MF, CC, BP)}
 
 \item{organismDb}{Organism provided by user in Home tab.}
 
-\item{pvAdjust, minGSSize, maxGSSize, pvStouffer}{Numeric values chosen by user 
+\item{pvAdjust}{pv adjust method (e.g "BH" for Benjamini-Hochberg)}
+
+\item{minGSSize, maxGSSize, pvStouffer}{Numeric values chosen by user 
 in ui.}
 }
 \value{

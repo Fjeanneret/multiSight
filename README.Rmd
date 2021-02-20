@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 # **multiSight** 
 
-This document is built to be efficient as quickly as 
+:dart: This document is built to be efficient as quickly as 
 possible with **multiSight**.
 
 - The goal of **multiSight** is to handle multi-omic data and network inference
@@ -65,7 +65,7 @@ with *feature selection* you can use as biosignature:
 - To build _**Network inference**_ linked to _**PubMed**_ querying to make 
 assumptions easier and data-driven.
 
-# App
+# :newspaper: App
 
 **multiSight** enables you to get better biological insights for each omic dataset 
 helping by __four analytic modules__ which content:
@@ -75,7 +75,7 @@ helping by __four analytic modules__ which content:
 - __Biological databases__ querying;
 - __Network Inference__ & __Pubmed__ querying.
 
-> Run the application
+> :point_right: Run the application
 
 ```{r}
 # run_app()
@@ -97,7 +97,7 @@ All types of omic data respecting input format is supported to build
 - Metabolomics;
 - Lipidomics;
 
-> In fact all numeric matrices.
+> :point_right: In fact all numeric matrices.
 
 ## Data inputs formats
 
@@ -125,7 +125,7 @@ You have to provide two types of data: **numeric matrices** and
 | A13E         | condB |
 |              | ...   |
 
-# Classification tab
+# :dart: Classification tab
 
 Two types of models have been implemented so far to answer different 
 questions: **Biosigner** & **Diablo**.
@@ -138,7 +138,7 @@ questions: **Biosigner** & **Diablo**.
 |-----------------------------------------------|-----------------------------------------------|
 | ![](inst/app/www/classification/classif2.png) | ![](inst/app/www/classification/classif3.png) |
 
-# Biological insights tab
+# :book: Biological insights tab
 
 **Biological Insight** tab is dedicated to give biological sense to your data. 
 
@@ -173,9 +173,9 @@ enrichment map* for **DESEQ2** and *Diablo selected features*
 |---------------------------------------------|----------------------------------------------|-----------------------------------------------|
 | ![](inst/app/www/biologicalInsight/bio2.png) | ![](inst/app/www/biologicalInsight/bio3.png) | ![](inst/app/www/biologicalInsight/bio4.png) |
 
-# Assumption tab
+# :seedling: Assumption tab
 
-> Some clicks (from 4 to number of pubmed queries)
+> :point_right: Some clicks (from 4 to number of pubmed queries)
 
 **Assumption tab** aims to help biological hypothesis making by *network 
 inference* with feature relation values (e.g correlation, partial correlation)
