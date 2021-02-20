@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 # **multiSight** 
 
-:dart: This document is built to be efficient as quickly as 
+:rocket: This document is built to be efficient as quickly as 
 possible with **multiSight**.
 
 - The goal of **multiSight** is to handle multi-omic data and network inference
@@ -106,7 +106,7 @@ You have to provide two types of data: **numeric matrices** and
 
 | Omic data 1 |        |        |        |     |
 |-------------|--------|--------|--------|-----|
-|             | SIGIRR | SIGIRR | MANSC1 |     |
+|             | SIGIRR | MAOA | MANSC1 |     |
 | AOFJ        | 0      | 150    | 1004   | ... |
 | A13E        | 34     | 0      | 0      |     |
 |             |        | ...    |        |     |
@@ -114,6 +114,15 @@ You have to provide two types of data: **numeric matrices** and
 | Omic data 2 |                 |                 |                 |     |
 |-------------|-----------------|-----------------|-----------------|-----|
 |             | ENSG00000139618 | ENSG00000226023 | ENSG00000198695 |     |
+| AOFJ        | 25              | 42              | 423             | ... |
+| A13E        | 0               | 154             | 4900            |     |
+|             |                 | ...             |                 |     |
+
+... :point_right: unlimited number of omic data sets.
+
+| Omic data n |                 |                 |                 |     |
+|-------------|-----------------|-----------------|-----------------|-----|
+|             | 4292 | 5254 | 7432 |     |
 | AOFJ        | 25              | 42              | 423             | ... |
 | A13E        | 0               | 154             | 4900            |     |
 |             |                 | ...             |                 |     |
@@ -190,3 +199,31 @@ app.
 | Network Inference                       | PubMed query                             |
 |-----------------------------------------|------------------------------------------|
 | ![](inst/app/www/networkInf/assump2.png) | ![](inst/app/www/networkInf/assump3.png) |
+
+
+# :checkered_flag: Results
+
+You could retrieve different results computed by multiSight in Home tab by:
+
+- Automatic report with all results in **HTML** and **.doc** documents.
+- **.RData** with all results obtained by all modules.
+
+Note that tables could be download in a separated way in relative tabs.
+
+> **MODELS**: Classification models you can use on future data.
+
+> **DESEQ2** Differential expression analysis tables.
+
+> **BIOSIGNATURES**: DESEQ2's tables thresholding and diablo multi-omic features 
+selection method
+
+> **Functional ENRICHMENTS**: 6 databases functional enrichment for all omic 
+data sets you provide enriched by Stouffer's pooling p-value method giving 
+a **multi-omic enrichmentt able** easily to discuss.
+
+> **NETWORKS**: network inference with all features selected from all omic 
+datasets according to DESEQ2 tables thresholding or multi-omic feature 
+selection (correlation, partial correlation, mutual information).
+
+> **BIBLIOGRAPHY** : Subset of pubMed articles relative to relations you choose 
+in network inference tab. 
