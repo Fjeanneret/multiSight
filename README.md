@@ -13,8 +13,8 @@ commit](https://img.shields.io/github/last-commit/fjeanneret/MultiSight.svg)
 
 # **multiSight**
 
-This document is built to be efficient as quickly as possible with
-**multiSight**.
+:dart: This document is built to be efficient as quickly as possible
+with **multiSight**.
 
   - The goal of **multiSight** is to handle multi-omic data and network
     inference in a easy-to-use R shiny package.
@@ -40,9 +40,7 @@ install.packages("remotes")
 remotes::install_github("Fjeanneret/multiSight")
 ```
 
-# Why to use **multiSight** ?
-
-## What is it ?
+# What is **multiSight** ?
 
 **multiSight** is a R package providing an user-friendly graphical
 interface to analyze and explore your omic data sets in a **multi-omic**
@@ -59,7 +57,7 @@ models*** with *feature selection* you can use as biosignature:
   - To build ***Network inference*** linked to ***PubMed*** querying to
     make assumptions easier and data-driven.
 
-# App
+# :newspaper: App
 
 **multiSight** enables you to get better biological insights for each
 omic dataset helping by **four analytic modules** which content:
@@ -69,7 +67,7 @@ omic dataset helping by **four analytic modules** which content:
   - **Biological databases** querying;
   - **Network Inference** & **Pubmed** querying.
 
-> Run the application
+> :point\_right: Run the application
 
 ``` r
 # run_app()
@@ -91,7 +89,7 @@ inference**.
   - Metabolomics;
   - Lipidomics;
 
-> In fact all numeric matrices.
+> :point\_right: In fact all numeric matrices.
 
 ## Data inputs formats
 
@@ -119,7 +117,7 @@ You have to provide two types of data: **numeric matrices** and
 | A13E         | condB |
 |              | …     |
 
-# Classification tab
+# :dart: Classification tab
 
 Two types of models have been implemented so far to answer different
 questions: **Biosigner** & **Diablo**.
@@ -132,7 +130,7 @@ questions: **Biosigner** & **Diablo**.
 | --------------------------------------------- | --------------------------------------------- |
 | ![](inst/app/www/classification/classif2.png) | ![](inst/app/www/classification/classif3.png) |
 
-# Biological insights tab
+# :book: Biological insights tab
 
 **Biological Insight** tab is dedicated to give biological sense to your
 data.
@@ -169,9 +167,9 @@ Two types of result visualization are given:
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | ![](inst/app/www/biologicalInsight/bio2.png) | ![](inst/app/www/biologicalInsight/bio3.png) | ![](inst/app/www/biologicalInsight/bio4.png) |
 
-# Assumption tab
+# :seedling: Assumption tab
 
-> Some clicks (from 4 to number of pubmed queries)
+> :point\_right: Some clicks (from 4 to number of pubmed queries)
 
 **Assumption tab** aims to help biological hypothesis making by *network
 inference* with feature relation values (e.g correlation, partial
