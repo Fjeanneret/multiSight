@@ -70,10 +70,10 @@ assumptions easier and data-driven.
 **multiSight** enables you to get better biological insights for each omic dataset 
 helping by __four analytic modules__ which content:
 
-- __Data input__ & __results__;
-- __Classification__ models building;
-- __Biological databases__ querying;
-- __Network Inference__ & __Pubmed__ querying.
+- :memo: __Data input__ & __results__;
+- :dart: __Classification__ models building;
+- :books: __Biological databases__ querying;
+- :seedling: __Network Inference__ & __Pubmed__ querying.
 
 > :point_right: Run the application
 
@@ -81,7 +81,7 @@ helping by __four analytic modules__ which content:
 # run_app()
 ```
 
-| Home                                 | Classification                                | Biological Insights                          | Assumption                               |
+| :memo: Home                                 | :dart: Classification                                | :books: Biological Insights                          | :seedling: Assumption                               |
 |--------------------------------------|-----------------------------------------------|----------------------------------------------|------------------------------------------|
 | ![home](inst/app/www/home/home1.png) | ![](inst/app/www/classification/classif1.png) | ![](inst/app/www/biologicalInsight/bio1.png) | ![](inst/app/www/networkInf/assump1.png) |
 
@@ -138,7 +138,7 @@ questions: **Biosigner** & **Diablo**.
 |-----------------------------------------------|-----------------------------------------------|
 | ![](inst/app/www/classification/classif2.png) | ![](inst/app/www/classification/classif3.png) |
 
-# :book: Biological insights tab
+# :books: Biological insights tab
 
 **Biological Insight** tab is dedicated to give biological sense to your data. 
 

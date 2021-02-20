@@ -62,10 +62,10 @@ models*** with *feature selection* you can use as biosignature:
 **multiSight** enables you to get better biological insights for each
 omic dataset helping by **four analytic modules** which content:
 
-  - **Data input** & **results**;
-  - **Classification** models building;
-  - **Biological databases** querying;
-  - **Network Inference** & **Pubmed** querying.
+  - :memo: **Data input** & **results**;
+  - :dart: **Classification** models building;
+  - :books: **Biological databases** querying;
+  - :seedling: **Network Inference** & **Pubmed** querying.
 
 > :point\_right: Run the application
 
@@ -73,7 +73,7 @@ omic dataset helping by **four analytic modules** which content:
 # run_app()
 ```
 
-| Home                                 | Classification                                | Biological Insights                          | Assumption                               |
+| :memo: Home                          | :dart: Classification                         | :books: Biological Insights                  | :seedling: Assumption                    |
 | ------------------------------------ | --------------------------------------------- | -------------------------------------------- | ---------------------------------------- |
 | ![home](inst/app/www/home/home1.png) | ![](inst/app/www/classification/classif1.png) | ![](inst/app/www/biologicalInsight/bio1.png) | ![](inst/app/www/networkInf/assump1.png) |
 
@@ -130,7 +130,7 @@ questions: **Biosigner** & **Diablo**.
 | --------------------------------------------- | --------------------------------------------- |
 | ![](inst/app/www/classification/classif2.png) | ![](inst/app/www/classification/classif3.png) |
 
-# :book: Biological insights tab
+# :books: Biological insights tab
 
 **Biological Insight** tab is dedicated to give biological sense to your
 data.
