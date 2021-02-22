@@ -35,12 +35,12 @@ mod_dashboard_structure_ui <- function(id){
         tabItems(
           # Home tab content
           tabItem(
-            box(title = h1("Home"),
+            box(title = h1(icon("seeding"), "Welcome to multiSight!"),
                 width = 10, status = "warning",
-                  h2("WELCOME TO multiSight!"),
                   "This Home tab is dedicated to input omic datasets and 
-                    to save results",
-                  "Every omic data as numeric matrices could be used here.",
+                    to save results.",br(),
+                  "Every omic data as numeric matrices could be used here.", 
+                  br(),
                   "Please, provide data sets as data.frame for omic data and 
                   classes vector where rows are sample's names and columns 
                   biological features (e.g. genes, proteins expressions)."
@@ -56,6 +56,7 @@ mod_dashboard_structure_ui <- function(id){
                 width = 10, status = "warning",
                 "This Classification tab is dedicated to classification models
                 performances and selected features by Biosigner and Diablo.",
+                br(),
                 "Detailed features tables are provided with means of each 
                 feature for each class and DESEQ2 information when computed."
             ),
@@ -68,7 +69,7 @@ mod_dashboard_structure_ui <- function(id){
                 width = 10, status = "warning",
                 "This Biological Insights tab is dedicated to single-omic and 
                 multi-omic functional enrichment with diablo or DESeq2 
-                selected features.\n In case of 2 or more omic datasets 
+                selected features.", br(), " In case of 2 or more omic datasets 
                 enriched, Stouffer's values and relative enrichment map for 
                 each pathways or ontology are provided to see at a glance which
                 ones are meaningful between several omics data.
@@ -82,7 +83,7 @@ mod_dashboard_structure_ui <- function(id){
             box(title = h1("Assumptions"),
                 width = 10, status = "warning",
                 "This Assumptions tab is dedicated to Network inferences and 
-                a integrated PubMed query module.",
+                a integrated PubMed query module.", br(),
                 "Networks are build according to 3 methods: correlation, 
                 partial correlation and mutual information (see ", 
                 tags$a(href="https://doi.org/10.3389/fgene.2019.00535", 
