@@ -746,7 +746,7 @@ runMultiDeseqAnalysis <- function(omicDataList, padjUser)
     }else{
         omicDataClass <- omicDataList$Y
     }
-    resList <- NULL
+    resList <- list()
     i <- 1
     while (i < length(omicDataList))
     {
@@ -784,6 +784,7 @@ runMultiDeseqAnalysis <- function(omicDataList, padjUser)
       
       i <- i+1
     }
+    View(resList)
     return(resList)
 }
       
@@ -802,10 +803,11 @@ runMultiDeseqAnalysis <- function(omicDataList, padjUser)
 builDeseqAnalysis <- function(omicDataList, input, session, output)
 {
     padjUser <- input$DEtable_padj
-    resList <- NULL
+    resList <- list()
     out <- tryCatch(
       {
           resList <- runMultiDeseqAnalysis(omicDataList, padjUser)
+          return(resList)
       },
       warning=function(w)
       {

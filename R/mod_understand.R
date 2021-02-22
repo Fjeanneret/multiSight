@@ -235,7 +235,6 @@ mod_understand_server <- function(input, output, session, startSignal){
         ## DESEQ2 differential expression analysis.
         omicData <- obj$data$wholeData # with Y
         deseqRes <- builDeseqAnalysis(omicData, input, session, output)
-        obj$enrichment$deseq <- deseqRes
         
         ## displays DESeq tables in ui
         deseqTables <- deseqRes$DEtable
@@ -252,7 +251,6 @@ mod_understand_server <- function(input, output, session, startSignal){
         
         convertedFeatures <- 
             convertToEntrezid(omicSignature, dBinputsVec, organismDb)
-        obj$enrichment$deseq$featureConverted <- convertedFeatures
         ## Displays error if features mapping returns null feature vectors for 
         # at least one omic block.
         message("Check selected features converted...")
@@ -261,6 +259,11 @@ mod_understand_server <- function(input, output, session, startSignal){
         ## DESEQ enrichment
         message("Run DESeq2's features multi-omic enrichment...")
         runMultiOmicEnrichment(input, output, session, "deseq") ## _utils.R
+        
+        obj$enrichment$deseq$featureConverted <- convertedFeatures
+        obj$enrichment$deseq$DEtable <- deseqRes$DEtable
+        View(deseqRes)
+        
     })
     
     return(input)

@@ -38,7 +38,7 @@ if (length(featDiablo) > 0 )
     while (i <= length(featDiablo))
     {
         df <- featDiablo[[i]][[1]]$data
-        df <- df %>% arrange(padj)
+        if (!is.null(df$padjdf)) df <- df %>% arrange(padj)
         df[, 2:7] <- format(df[, 2:7], digits = 3)
         caption <- paste0("Omic", i, ": Features selected by Diablo - sPLS-DA 
                           method")
@@ -82,7 +82,7 @@ if (length(featBiosigner) > 0 )
     while (i <= length(featBiosigner))
     {
         df <- featBiosigner[[i]][[1]]$data
-        df <- df %>% arrange(padj)
+        if (!is.null(df$padjdf)) df <- df %>% arrange(padj)
         df[, 2:7] <- format(df[, 2:7], digits = 3)
         caption <- paste0("Omic", i, ": Features selected by Biosigner 
         (SVM & RF) method")

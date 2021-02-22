@@ -93,14 +93,7 @@ mod_MLmodels_server <- function(input, output, session, startSignal, bioDB)
           biosignerFeatTables <- computeFeatDetails(featuresList = biosignerSig,
                                 modelMethod = "biosigner", 
                                 obj = obj) 
-          seqFeat <- seq(1, length(biosignerFeatTables))
-          # lapply(seqFeat, function(i){
-              # download_server_id <- paste0("biosignerFeats-download_ui_", i)
-              # callModule(mod_download_server, 
-              #            download_server_id, 
-              #            listFeatTables[[i]]$x$data)
           biosignerFeatTablesUI <- displayFeatDetails(biosignerFeatTables)
-          # })
           obj$classification$biosignerResult$featDetails <- biosignerFeatTables
           ## Shiny outputs
           output$biosignerFeatDetails <- renderUI({biosignerFeatTablesUI})
@@ -139,7 +132,6 @@ mod_MLmodels_server <- function(input, output, session, startSignal, bioDB)
                                              modelMethod = "diablo",
                                              obj = obj)
       obj$classification$diabloResult$featDetails <- diabloFeatTables
-      seqFeat <- seq(1, length(diabloFeatTables))
       diabloFeatTablesUI <- displayFeatDetails(diabloFeatTables)
 
       ## Shiny outputs
@@ -162,14 +154,15 @@ mod_MLmodels_server <- function(input, output, session, startSignal, bioDB)
                       "features tables updating...")
               biosignerSig <- obj$classification$biosignerResult$biosignature
               DESEQtables <- obj$enrichment$deseq$DEtable
+              View(DESEQtables)
               biosignerFeatTables <- 
                   computeFeatDetails(biosignerSig,
                                      modelMethod ="biosigner",
                                      DESeqTables = DESEQtables, 
                                      obj = obj)
+              View(biosignerFeatTables)
               obj$classification$biosignerResult$featDetails <- 
                   biosignerFeatTables
-              seqFeat <- seq(1, length(biosignerFeatTables))
               biosignerFeatTablesUI <- displayFeatDetails(biosignerFeatTables)
               output$biosignerFeatDetails <- renderUI({biosignerFeatTablesUI})
           }
@@ -185,7 +178,6 @@ mod_MLmodels_server <- function(input, output, session, startSignal, bioDB)
                                                  DESeqTables = DESEQtables,
                                                  obj = obj)
           obj$classification$diabloResult$featDetails <- diabloFeatTables
-          seqFeat <- seq(1, length(diabloFeatTables))
           diabloFeatTablesUI <- displayFeatDetails(diabloFeatTables)
           output$diabloFeatDetails <- renderUI({diabloFeatTablesUI})
       })

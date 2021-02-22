@@ -284,7 +284,6 @@ computeFeatDetails <- function(featuresList,
     wholeY <- obj$data$wholeData$Y
     
     ## For each omic signature build one table
-    # listFeatTables <- list()
     seqFeat <- seq(1, length(featuresList))
     listFeatTables <- lapply(seqFeat, function(i){
       omic <- omicNames[[i]]
@@ -295,53 +294,10 @@ computeFeatDetails <- function(featuresList,
       ## To save in obj
       objOmicName <- omicNames[i]
       table
-      # listFeatTables[[objOmicName]] <- table
     })
     names(listFeatTables) <- paste0("Omic", seqFeat)
     return(listFeatTables)
 }
-# displayFeatDetails <- function(featuresList, 
-#                                modelMethod, 
-#                                DESeqTables = NULL,
-#                                obj)
-# {   
-#     
-#     omicNames <- names(featuresList)
-#     ## load data to compute feature information
-#     wholeOmicData <- obj$data$wholeData
-#     wholeY <- obj$data$wholeData$Y
-#     ## box header color
-#     statusLabels <- c("primary", 
-#                       "success", 
-#                       "info", 
-#                       "warning", 
-#                       "danger")
-#     
-#     ## For each omic signature build one table
-#     seqFeat <- seq(1, length(featuresList))
-#     lapply(seqFeat, function(i){
-#         status <- sample(statusLabels, 1)
-#         omic <- omicNames[[i]]
-#         table <- buildFeatTable(featuresList[[i]], 
-#                                 wholeOmicData[[i]], 
-#                                 wholeY, 
-#                                 DESeqTables[[omic]])
-#         # table <- listFeatTables[[i]]
-#       ## To save in obj
-#       objName <- paste0(modelMethod, "Result")
-#       objOmicName <- omicNames[i]
-#       obj$classification[[objName]]$featDetails[[objOmicName]] <- table
-#       
-#       ## UI output
-#       box(width = 10, 
-#           title = omicNames[i], 
-#           status = status,
-#           solidHeader = TRUE,
-#           
-#           DT::renderDataTable({ table }),
-#       )
-#     })
-# }
 
 #' Models util function
 #'
