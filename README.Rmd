@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 ![license](https://img.shields.io/github/license/fjeanneret/MultiSight.svg)
 <!-- badges: end -->
 
-![multiSight hexicon](inst/app/www/multiSight_hexicon.png)
+![hexicon](inst/app/www/multiSight_hexicon.png)
 
 # **multiSight** 
 
