@@ -1,5 +1,5 @@
 Package: multiSight
-Title: Multi-'Omic' Analysis and Network Inference
+Title: Multi-'Omic' Classification, Enrichment and Network Inference analysis
 Version: 0.99.0
 Authors@R: c(person(given = 'Florian', 
                     family = 'Jeanneret', 
@@ -10,8 +10,8 @@ Authors@R: c(person(given = 'Florian',
                     family = 'Gazut',
                     email = 'stephane.gazut@cea.fr',
                     role = 'aut'))
-Description: **'MultiSight'** is a R package providing an user-friendly graphical interface to analyze your 'omic' data sets in a __'multi-omic'__ manner based Stouffer's p-value pooling and multi-block statistical methods.
-    For each 'omic' data set you furnish, it provides _**classification models**_ with *feature selection* you can use as 'biosignature':
+Description: **'multiSight'** is a R package providing an user-friendly graphical interface to analyze your 'omic' data sets in a __'multi-omic'__ manner based Stouffer's p-value pooling and multi-block statistical methods.
+    For each 'omic' data set you furnish, **multiSight** provides _**classification models**_ with *feature selection* you can use as 'biosignature':
     - To forecast phenotypes (e.g. to diagnostic tasks, histological 'subtyping')
     - To design _**Pathways**_ and _**gene ontology**_ **'enrichments'** (Over Representation Analysis)
     - To build _**Network inference**_ linked to _**'PubMed'**_ querying to make assumptions easier and data-driven.
