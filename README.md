@@ -11,9 +11,7 @@ commit](https://img.shields.io/github/last-commit/fjeanneret/MultiSight.svg)
 ![license](https://img.shields.io/github/license/fjeanneret/MultiSight.svg)
 <!-- badges: end -->
 
-![hexicon](https://github.com/Fjeanneret/multiSight/blob/master/inst/app/www/multiSight_hexicon.png)
-
-# **multiSight**
+# **multiSight** <img src="inst/app/www/multiSight_hexicon.png" align="right" alt="hexicon" />
 
 :rocket: This document is built to be efficient as quickly as possible
 with **multiSight**.
