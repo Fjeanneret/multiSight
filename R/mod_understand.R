@@ -107,9 +107,9 @@ mod_understand_ui <- function(id){
             tabBox(width = 12,
                 tabPanel("DESeq2", 
                          uiOutput(ns("uiDeseq"))),
-                tabPanel("pathways", 
+                tabPanel("Pathways", 
                          uiOutput(ns("deseq_pathways_enrichResults"))),
-                tabPanel("go",
+                tabPanel("GO",
                          uiOutput(ns("deseq_GO_enrichResults")))
             )
           ),
@@ -119,9 +119,9 @@ mod_understand_ui <- function(id){
           collapsible = TRUE,
           title = "Diablo - sPLS-DA features enrichment",
             tabBox(width = 12,
-                tabPanel("pathwaysTab", 
+                tabPanel("Pathways", 
                          uiOutput(ns("diablo_pathways_enrichResults"))),
-                tabPanel("goTab", 
+                tabPanel("GO", 
                          uiOutput(ns("diablo_GO_enrichResults")))
             )
           )
