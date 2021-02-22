@@ -14,7 +14,7 @@ app_server <- function(input, output, session ) {
         networkInference = list()
     ))
     obj <- NULL
-    obj <- myDataProcess$new()
+    obj <<- myDataProcess$new()
     
     # First level callModules
     callModule(mod_dashboard_structure_server, "dashboard_structure_ui_1")
