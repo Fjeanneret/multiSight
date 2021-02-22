@@ -37,8 +37,13 @@ mod_dashboard_structure_ui <- function(id){
           tabItem(
             box(title = h1("Home"),
                 width = 10, status = "warning",
+                  h2("WELCOME TO multiSight!"),
                   "This Home tab is dedicated to input omic datasets and 
-                    to save results"
+                    to save results",
+                  "Every omic data as numeric matrices could be used here.",
+                  "Please, provide data sets as data.frame for omic data and 
+                  classes vector where rows are sample's names and columns 
+                  biological features (e.g. genes, proteins expressions)."
             ),
             # h1("Home", align = "center"), 
             tabName = "home",
@@ -50,7 +55,9 @@ mod_dashboard_structure_ui <- function(id){
             box(title = h1("Classification"),
                 width = 10, status = "warning",
                 "This Classification tab is dedicated to classification models
-                performances and features selected."
+                performances and selected features by Biosigner and Diablo.",
+                "Detailed features tables are provided with means of each 
+                feature for each class and DESEQ2 information when computed."
             ),
             tabName = "models",
             mod_MLmodels_ui("MLmodels_ui_1")
