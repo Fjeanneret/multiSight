@@ -55,6 +55,7 @@ Imports:
     org.Mm.eg.db
 Encoding: UTF-8
 LazyData: false
+BugReports: https://github.com/Fjeanneret/multiSight/issues
 RoxygenNote: 7.1.1
 Suggests: 
     rlang,
