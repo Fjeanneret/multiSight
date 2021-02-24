@@ -98,12 +98,6 @@ test_that("buildFeatTable_DESeqValues_a",
               expect_equal(ncol(table), 7)
           })
 
-# runSVMRFmodels_Biosigner(obj)
-# assessPerformance_Biosigner(obj)
-
-# runSPLSDAmodels_Diablo(obj)
-# assessPerformance_Diablo(obj)
-
 test_that("buildFeatTable_DESeqValues_b",
           {
               feats <- getSelectedFeatures(sPLSDAmodel)
