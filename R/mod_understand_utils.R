@@ -184,63 +184,63 @@ getDbFromInput <- function(input, session, omicDataNames)
 #' @return featConverted 
 convertToEntrezid <- function(featList, fromDbList, organismDb)
 {
-  omicDataNumber <- length(featList)
-  omicDataNames <- names(featList)
-  
-  ## orgDb to convert
-  orgDb <- eval(parse(text = organismDb, keep.source=FALSE))
-  
-  ## For each omic data features
-  featConvList <- list()
-  i <- 1
-  while (i <= omicDataNumber)
-  {
-    omicName <- omicDataNames[i]
-    dbFrom <- fromDbList[[omicName]] # ui input
-    if(!is.null(dbFrom))
+    omicDataNumber <- length(featList)
+    omicDataNames <- names(featList)
+    
+    ## orgDb to convert
+    orgDb <- eval(parse(text = organismDb, keep.source=FALSE))
+    
+    ## For each omic data features
+    featConvList <- list()
+    i <- 1
+    while (i <= omicDataNumber)
     {
-      features <- featList[[i]]
-      out <- tryCatch(
-        {
-            if (length(features) == 0)
-            {
-               stop(simpleError("Empty feature list"))
-            }
-            
-            ## bitr converts features names to entrez id
-            featureConverted <- bitr(features,
-                                     fromType = dbFrom,
-                                     toType = "ENTREZID",
-                                     OrgDb = orgDb)
-            if (length(featureConverted$ENTREZID) == 0)
-            {
-                stop(simpleError("Empty converted feature list"))
-            }
-            
-            ## features converted toward enrichment
-            featConvList[[omicDataNames[i]]] <- featureConverted$ENTREZID
-        },
-        error=function(e) 
-        {
-            msg <- e$message
-            msg1 <- ": None of the features entered are valid keys for '"
-            omic <- omicDataNames[i]
-            dbFrom <- fromDbList[[omicName]]
-            message(paste0(omic, 
-                           msg1, 
-                           dbFrom,
-                           "'"))
-            featConvList[[omicDataNames[i]]] <- NULL
-          })
-    }
-    else 
-    {
-        featConvList[[omicDataNames[i]]] <- NULL
-    }
-    i <- i + 1
-  } ## End of while, for each omic data
-  
-  return(featConvList)
+      omicName <- omicDataNames[i]
+      dbFrom <- fromDbList[[omicName]] # ui input
+      if(!is.null(dbFrom))
+      {
+        features <- featList[[i]]
+        out <- tryCatch(
+          {
+              if (length(features) == 0)
+              {
+                 stop(simpleError("Empty feature list"))
+              }
+              
+              ## bitr converts features names to entrez id
+              featureConverted <- bitr(features,
+                                       fromType = dbFrom,
+                                       toType = "ENTREZID",
+                                       OrgDb = orgDb)
+              if (length(featureConverted$ENTREZID) == 0)
+              {
+                  stop(simpleError("Empty converted feature list"))
+              }
+              
+              ## features converted toward enrichment
+              featConvList[[omicDataNames[i]]] <- featureConverted$ENTREZID
+          },
+          error=function(e) 
+          {
+              msg <- e$message
+              msg1 <- ": None of the features entered are valid keys for '"
+              omic <- omicDataNames[i]
+              dbFrom <- fromDbList[[omicName]]
+              message(paste0(omic, 
+                             msg1, 
+                             dbFrom,
+                             "'"))
+              featConvList[[omicDataNames[i]]] <- NULL
+            })
+      }
+      else 
+      {
+          featConvList[[omicDataNames[i]]] <- NULL
+      }
+      i <- i + 1
+    } ## End of while, for each omic data
+    
+    return(featConvList)
 }
 
 #' Understand utils function
