@@ -10,7 +10,6 @@ app_ui <- function(request) {
         golem_add_external_resources(),
         # List the first level UI elements here 
         mod_dashboard_structure_ui("dashboard_structure_ui_1"),
-      
     )
 }
 
@@ -23,7 +22,6 @@ app_ui <- function(request) {
 #' @noRd
 golem_add_external_resources <- function()
 {
-    
     add_resource_path(
         "www", app_sys("app/www")
     )
