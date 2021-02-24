@@ -30,7 +30,7 @@ biosignerRes <- runSVMRFmodels_Biosigner(data.train)
 biosignerModels <- biosignerRes$model #list of SVM/RF models for each omic.
 biosignerFeats <- biosignerRes$biosignature #selected features for each omic.
 perfBiosigner <- assessPerformance_Biosigner(biosignerModels, data.test)
-perfBiosigner$svm$Omic1 # perf for SVM for omic1 data block.
-perfBiosigner$rf$Omic1 # perf for RF for omic1 data block.
+perfBiosigner$svm$rnaRead # perf for SVM for rnaRead data block.
+perfBiosigner$rf$rnaRead # perf for RF for rnaRead data block.
 
 }

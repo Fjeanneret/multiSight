@@ -324,6 +324,7 @@ omicdata sets*.
 require(multiSight)
 
 ## omic2 is multi-omic data of 2 data sets included in package
+data("omic2", package = "multiSight")
 deseqRes <- runMultiDeseqAnalysis(omicDataList = omic2, 
                                   padjUser = 0.05)
 ## One Differential Expression Analysis table for each omic data set
