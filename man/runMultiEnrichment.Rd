@@ -36,6 +36,7 @@ for every databases furnished. Run by utils function runMultiOmicEnrichment
 }
 \examples{
 \donttest{
+data("omic2", package = "multiSight")
 splittedData <- splitDatatoTrainTest(omic2, 0.8)
 data.train <- splittedData$data.train
 data.test <- splittedData$data.test

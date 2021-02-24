@@ -17,6 +17,7 @@ Models and features selected for each omic block in dataTrain.
 A model and selection features function from biosigner.
 }
 \examples{
+data("omic2", package = "multiSight")
 splittedData <- splitDatatoTrainTest(omic2, 0.8)
 data.train <- splittedData$data.train
 data.test <- splittedData$data.test

@@ -21,7 +21,7 @@ according to threshold values.
 Mutual Information network inference
 }
 \examples{
-data("omic2.rda")
+data("omic2", package = "multiSight")
 splittedData <- splitDatatoTrainTest(omic2, 0.8)
 data.train <- splittedData$data.train
 data.test <- splittedData$data.test

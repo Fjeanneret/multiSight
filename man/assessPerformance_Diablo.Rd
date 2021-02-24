@@ -20,6 +20,7 @@ Confusion matrix for sPLS-DA model
 A diablo models assessing function.
 }
 \examples{
+data("omic2", package = "multiSight")
 splittedData <- splitDatatoTrainTest(omic2, 0.8)
 data.train <- splittedData$data.train
 data.test <- splittedData$data.test

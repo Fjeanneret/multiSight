@@ -25,6 +25,7 @@ machine learning models. Relative mean values by label class then
 log2FoldChange and p.adj values if DESeq2 have been computed are indicated.
 }
 \examples{
+data("omic2", package = "multiSight")
 splittedData <- splitDatatoTrainTest(omic2, 0.8)
 data.train <- splittedData$data.train
 data.test <- splittedData$data.test

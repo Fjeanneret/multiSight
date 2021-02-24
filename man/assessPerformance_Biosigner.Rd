@@ -21,6 +21,7 @@ A biosigner models assessing function.
 to display by confusion matrices for SVM and RF models.
 }
 \examples{
+data("omic2", package = "multiSight")
 splittedData <- splitDatatoTrainTest(omic2, 0.8)
 data.train <- splittedData$data.train
 data.test <- splittedData$data.test

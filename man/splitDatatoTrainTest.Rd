@@ -18,7 +18,7 @@ Returns two data sets: first to train model and second to assess it.
 To split list of omic data in data train and data test subsets.
 }
 \examples{
-data("omic2.rda")
+data("omic2", package = "multiSight")
 splittedData <- splitDatatoTrainTest(omic2, 0.8)
 data.train <- splittedData$data.train
 data.test <- splittedData$data.test
