@@ -10,7 +10,8 @@
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
 #' 
-#' diabloRes <- runSPLSDA(data.train)
+#' #diabloRes <- runSPLSDA(data.train)
+#' data("diabloRes", package = "multiSight")
 #' diabloModels <- diabloRes$model #sPLS-DA model using all omics.
 #' diabloFeats <- diabloRes$biosignature #selected features for each omic.
 #' omicMatrices <- getDataSelectedFeatures(omic2, diabloFeats)
@@ -60,7 +61,8 @@ getDataSelectedFeatures <- function(matrixDataList, featureList = NULL)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
 #' 
-#' diabloRes <- runSPLSDA(data.train)
+#' #diabloRes <- runSPLSDA(data.train)
+#' data("diabloRes", package = "multiSight")
 #' diabloModels <- diabloRes$model #sPLS-DA model using all omics.
 #' diabloFeats <- diabloRes$biosignature #selected features for each omic.
 #' omicMatrices <- getDataSelectedFeatures(omic2, diabloFeats)
@@ -119,7 +121,8 @@ correlationNetworkInference <- function(concatenatedMatrix, valueThreshold)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
 #' 
-#' diabloRes <- runSPLSDA(data.train)
+#' #diabloRes <- runSPLSDA(data.train)
+#' data("diabloRes", package = "multiSight")
 #' diabloModels <- diabloRes$model #sPLS-DA model using all omics.
 #' diabloFeats <- diabloRes$biosignature #selected features for each omic.
 #' omicMatrices <- getDataSelectedFeatures(omic2, diabloFeats)
@@ -202,7 +205,8 @@ partialCorrelationNI <- function(concatenatedMatrix, valueThreshold)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
 #' 
-#' diabloRes <- runSPLSDA(data.train)
+#' #diabloRes <- runSPLSDA(data.train)
+#' data("diabloRes", package = "multiSight")
 #' diabloModels <- diabloRes$model #sPLS-DA model using all omics.
 #' diabloFeats <- diabloRes$biosignature #selected features for each omic.
 #' omicMatrices <- getDataSelectedFeatures(omic2, diabloFeats)
