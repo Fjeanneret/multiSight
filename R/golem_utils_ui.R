@@ -227,22 +227,6 @@ rep_br <- function(times = 1) {
     HTML(rep("<br/>", times = times))
 }
 
-#' Create an url
-#'
-#' @param url the URL
-#' @param text the text to display
-#'
-#' @return an a tag
-#' @noRd
-#'
-#' @examples
-#' enurl("https://www.thinkr.fr", "ThinkR")
-#' 
-#' @importFrom htmltools tags
-enurl <- function(url, text){
-    tags$a(href = url, text)
-}
-
 #' Columns wrappers
 #' 
 #' These are convenient wrappers around 
@@ -293,40 +277,3 @@ col_2 <- function(...){
 col_1 <- function(...){
     column(1, ...)
 }
-
-# UNCOMMENT AND USE 
-# 
-# usethis::use_package("markdown")
-# usethis::use_package("rmarkdown")
-#   
-# To use this part of the UI
-#   
-#' #' Include Content From a File
-#' #' 
-#' #' Load rendered RMarkdown from a file and turn into HTML.
-#' #' 
-#' #' @rdname includeRMarkdown
-#' #' @export
-#' #' 
-#' #' @importFrom rmarkdown render
-#' #' @importFrom markdown markdownToHTML
-#' #' @importFrom htmltools HTML
-#' includeRMarkdown <- function(path){
-#'   
-#'   md <- tempfile(fileext = '.md')
-#'   
-#'   on.exit(unlink(md),add = TRUE)
-#'   
-#'   rmarkdown::render(
-#'     path,
-#'     output_format = 'md_document',
-#'     output_dir = tempdir(),
-#'     output_file = md,quiet = TRUE
-#'     )
-#'   
-#'   html <- markdown::markdownToHTML(md, fragment.only = TRUE)
-#'   
-#'   Encoding(html) <- "UTF-8"
-#'   
-#'   return(HTML(html))
-#' }
