@@ -15,7 +15,7 @@ Description: **'multiSight'** is a R package providing an user-friendly graphica
     - To forecast phenotypes (e.g. to diagnostic tasks, histological 'subtyping')
     - To design _**Pathways**_ and _**gene ontology**_ **'enrichments'** (Over Representation Analysis)
     - To build _**Network inference**_ linked to _**'PubMed'**_ querying to make assumptions easier and data-driven.
-biocViews: Software, RNASeq, miRNA, Network, NetworkInference, DifferentialExpression
+biocViews: Software, RNASeq, miRNA, Network, NetworkInference, DifferentialExpression, Classification
 License: MIT + file LICENSE
 Imports: 
     config,
