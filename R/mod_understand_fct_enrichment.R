@@ -770,21 +770,17 @@ runMultiDeseqAnalysis <- function(omicDataList, padjUser)
                                     design= ~ class) #design is class meta col
       dds <- DESeq(dds)
       res <- results(dds)
-      
       ## add res in result list
       resList$DEtable[[names(omicDataList)[i]]] <- res
-      
       ## biosignature by deseq_p-adj filtering
       rowPadjFiltered <- which(res$padj <= padjUser)
       DEtable_padj <- res[rowPadjFiltered, ]
       selectedFeatures <- rownames(DEtable_padj)
-      
       ## add selected features in result list
       resList$selectedFeatures[[names(omicDataList)[i]]] <- selectedFeatures
-      
       i <- i+1
     }
-    View(resList)
+    
     return(resList)
 }
       
