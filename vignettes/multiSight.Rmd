@@ -334,8 +334,8 @@ multiOmic_biosignature <- deseqRes$selectedFeatures
 
 ## Multi-omic enrichment
 ### convert features
-dbList <- list(Omic1 = "ENSEMBL",
-               Omic2 = "ENSEMBL")
+dbList <- list(rnaRead = "ENSEMBL",
+               dnaRead = "ENSEMBL")
 convFeat <- convertToEntrezid(multiOmic_biosignature, dbList, "org.Mm.eg.db")
 
 ### ORA enrichment analysis

@@ -751,34 +751,34 @@ runMultiDeseqAnalysis <- function(omicDataList, padjUser)
     while (i < length(omicDataList))
     {
       
-      ## data
-      omicData <- omicDataList[[i]]
-      sampleNames <- rownames(omicData)
-      omicDataForDESEQ <- t(omicData) # features in rows
-      
-      ## add feature names
-      message("DESeq2: Converting values to integers")
-      omicDataForDESEQ <- apply((omicDataForDESEQ), 2, as.integer)
-      rownames(omicDataForDESEQ) <- colnames(omicData)
-      
-      ## meta design for DESEQ
-      meta <- data.frame(sample = sampleNames, class = factor(omicDataClass))
-      
-      ## DESeq2 main function to DE table
-      dds <- DESeqDataSetFromMatrix(countData = omicDataForDESEQ,
-                                    colData = meta, 
-                                    design= ~ class) #design is class meta col
-      dds <- DESeq(dds)
-      res <- results(dds)
-      ## add res in result list
-      resList$DEtable[[names(omicDataList)[i]]] <- res
-      ## biosignature by deseq_p-adj filtering
-      rowPadjFiltered <- which(res$padj <= padjUser)
-      DEtable_padj <- res[rowPadjFiltered, ]
-      selectedFeatures <- rownames(DEtable_padj)
-      ## add selected features in result list
-      resList$selectedFeatures[[names(omicDataList)[i]]] <- selectedFeatures
-      i <- i+1
+        ## data
+        omicData <- omicDataList[[i]]
+        sampleNames <- rownames(omicData)
+        omicDataForDESEQ <- t(omicData) # features in rows
+        
+        ## add feature names
+        message("DESeq2: Converting values to integers")
+        omicDataForDESEQ <- apply((omicDataForDESEQ), 2, as.integer)
+        rownames(omicDataForDESEQ) <- colnames(omicData)
+        
+        ## meta design for DESEQ
+        meta <- data.frame(sample = sampleNames, class = factor(omicDataClass))
+        
+        ## DESeq2 main function to DE table
+        dds <- DESeqDataSetFromMatrix(countData = omicDataForDESEQ,
+                                      colData = meta, 
+                                      design= ~ class) #design is class meta col
+        dds <- DESeq(dds)
+        res <- results(dds)
+        ## add res in result list
+        resList$DEtable[[names(omicDataList)[i]]] <- res
+        ## biosignature by deseq_p-adj filtering
+        rowPadjFiltered <- which(res$padj <= padjUser)
+        DEtable_padj <- res[rowPadjFiltered, ]
+        selectedFeatures <- rownames(DEtable_padj)
+        ## add selected features in result list
+        resList$selectedFeatures[[names(omicDataList)[i]]] <- selectedFeatures
+        i <- i+1
     }
     
     return(resList)
