@@ -154,13 +154,11 @@ mod_MLmodels_server <- function(input, output, session, startSignal, bioDB)
                       "features tables updating...")
               biosignerSig <- obj$classification$biosignerResult$biosignature
               DESEQtables <- obj$enrichment$deseq$DEtable
-              View(DESEQtables)
               biosignerFeatTables <- 
                   computeFeatDetails(biosignerSig,
                                      modelMethod ="biosigner",
                                      DESeqTables = DESEQtables, 
                                      obj = obj)
-              View(biosignerFeatTables)
               obj$classification$biosignerResult$featDetails <- 
                   biosignerFeatTables
               biosignerFeatTablesUI <- displayFeatDetails(biosignerFeatTables)
