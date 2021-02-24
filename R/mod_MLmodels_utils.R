@@ -316,7 +316,8 @@ computeFeatDetails <- function(featuresList,
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
 #' 
-#' diabloRes <- runSPLSDA(data.train)
+#' #diabloRes <- runSPLSDA(data.train)
+#' data("diabloRes", package = "multiSight")
 #' diabloModels <- diabloRes$model #sPLS-DA model using all omics.
 #' diabloFeats <- diabloRes$biosignature #selected features for each omic.
 #' diabloFeatTable <- buildFeatTable(diabloFeats[[1]], 
