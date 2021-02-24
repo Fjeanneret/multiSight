@@ -177,7 +177,7 @@ features by data type).
 ### Example
 
 ```{r model_biosigner, echo=TRUE, message=FALSE, warning=FALSE}
-library(multiSight)
+require(multiSight)
 
 ## omic2 is multi-omic data of 2 data sets included in package
 data("omic2", package = "multiSight")
@@ -220,7 +220,7 @@ types, you could observe 3 feature lists).
 ### Example
 
 ```{r model_diablo, message=FALSE, warning=FALSE}
-library(multiSight)
+require(multiSight)
 
 ## omic2 is multi-omic data of 2 data sets included in package
 data("omic2", package = "multiSight")
@@ -309,7 +309,7 @@ codes if your organism is supported by multiSight.
 For instance _org.Hs.eg.db_ for Human provides 26 input names you can use as 
 feature names in your data sets.
 ```{r message=FALSE}
-library(org.Mm.eg.db)
+require(org.Mm.eg.db)
 columns(org.Mm.eg.db)
 ```
 
@@ -321,7 +321,7 @@ omicdata sets*.
 
 ### Example
 ```{r multiOmicEnrichment_deseq2, message=FALSE, warning=FALSE}
-library(multiSight)
+require(multiSight)
 
 ## omic2 is multi-omic data of 2 data sets included in package
 deseqRes <- runMultiDeseqAnalysis(omicDataList = omic2, 
@@ -339,7 +339,7 @@ dbList <- list(rnaRead = "ENSEMBL",
 convFeat <- convertToEntrezid(multiOmic_biosignature, dbList, "org.Mm.eg.db")
 
 ### ORA enrichment analysis
-library(org.Mm.eg.db, warn.conflicts = FALSE)
+require(org.Mm.eg.db, warn.conflicts = FALSE)
 # database <- c("kegg", "wikiPathways", "reactome", "MF", "CC", "BP")
 database <- c("reactome")
 multiOmicRes <- runMultiEnrichment(omicSignature = convFeat, 
@@ -365,8 +365,9 @@ selected databases are enriched. You could retrieve **functional enrichment
 results** in Home tab's report and saving module.
 
 ```{r multiOmicEnrichment_diablo, message=FALSE, warning=FALSE}
-library(multiSight)
+require(multiSight)
 data("diabloRes", package = "multiSight")
+data("omic2", package = "multiSight")
 ## omic2 is multi-omic data of 2 data sets included in package
 # splittedData <- splitDatatoTrainTest(omic2, 0.8)
 # data.train <- splittedData$data.train
@@ -387,7 +388,7 @@ convFeat <- convertToEntrezid(diabloFeats,
                               "org.Mm.eg.db")
 
 ### ORA enrichment analysis for omic feature lists
-library(org.Mm.eg.db, warn.conflicts = FALSE)
+require(org.Mm.eg.db, warn.conflicts = FALSE)
 # database <- c("kegg", "wikiPathways", "reactome", "MF", "CC", "BP")
 database <- c("reactome")
 multiOmicRes <- runMultiEnrichment(omicSignature = convFeat, 
@@ -475,7 +476,7 @@ Tools:
 app.
 
 ```{r networkInference, message=FALSE, warning=FALSE}
-library(multiSight)
+require(multiSight)
 data("omic2", package = "multiSight")
 data("diabloRes", package = "multiSight")
 ## omic2 is multi-omic data of 2 data sets included in package
