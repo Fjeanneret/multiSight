@@ -6,7 +6,7 @@
 #' @param freq Split proportion of train samples
 #' 
 #' @examples
-#' data("omic2.rda")
+#' data("omic2", package = "multiSight")
 #' splittedData <- splitDatatoTrainTest(omic2, 0.8)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
@@ -311,6 +311,7 @@ computeFeatDetails <- function(featuresList,
 #' @param deTable (optional) Deseq2 results table for an omic dataset.
 #'
 #' @examples
+#' data("omic2", package = "multiSight")
 #' splittedData <- splitDatatoTrainTest(omic2, 0.8)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test

@@ -5,7 +5,7 @@
 #' @param featureList A features list for each omic type.
 #'
 #' @examples
-#' data("omic2.rda")
+#' data("omic2", package = "multiSight")
 #' splittedData <- splitDatatoTrainTest(omic2, 0.8)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
@@ -55,7 +55,7 @@ getDataSelectedFeatures <- function(matrixDataList, featureList = NULL)
 #' relevant values.
 #'
 #' @examples
-#' data("omic2", package("multiSight"))
+#' data("omic2", package = "multiSight")
 #' splittedData <- splitDatatoTrainTest(omic2, 0.8)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
@@ -114,7 +114,7 @@ correlationNetworkInference <- function(concatenatedMatrix, valueThreshold)
 #' relevant values
 #'
 #' @examples
-#' data("omic2.rda")
+#' data("omic2", package = "multiSight")
 #' splittedData <- splitDatatoTrainTest(omic2, 0.8)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
@@ -197,7 +197,7 @@ partialCorrelationNI <- function(concatenatedMatrix, valueThreshold)
 #'   values
 #'
 #' @examples
-#' data("omic2.rda")
+#' data("omic2", package = "multiSight")
 #' splittedData <- splitDatatoTrainTest(omic2, 0.8)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test

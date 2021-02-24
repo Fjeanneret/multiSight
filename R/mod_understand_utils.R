@@ -155,6 +155,7 @@ getDbFromInput <- function(input, session, omicDataNames)
 #' @examples
 #' \donttest{
 #' library(org.Mm.eg.db) # Organism's database
+#' data("omic2", package = "multiSight")
 #' splittedData <- splitDatatoTrainTest(omic2, 0.8)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test

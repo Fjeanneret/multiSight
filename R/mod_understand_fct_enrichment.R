@@ -204,6 +204,7 @@ detectTypeEnrich <- function(databaseName)
 #'
 #' @examples
 #' \donttest{
+#' data("omic2", package = "multiSight")
 #' splittedData <- splitDatatoTrainTest(omic2, 0.8)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
@@ -446,6 +447,7 @@ omicWeight <- function(enrichmentResultTables)
 #' multiOmicRes$moEnrichRes # enrichRes object for clusterProfiler plots  
 #' 
 #' \donttest{
+#' data("omic2", package = "multiSight")
 #' splittedData <- splitDatatoTrainTest(omic2, 0.8)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
@@ -731,6 +733,7 @@ formatStoufferTable <- function(stoufferTable, db = NULL, dataNbr)
 #' according to padj values in DESeq2 table.
 #' 
 #' @examples 
+#' data("omic2", package = "multiSight")
 #' deseqRes <- runMultiDeseqAnalysis(omic2, 0.05)
 #' 
 #' @export 

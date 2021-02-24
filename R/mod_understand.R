@@ -262,7 +262,6 @@ mod_understand_server <- function(input, output, session, startSignal){
         
         obj$enrichment$deseq$featureConverted <- convertedFeatures
         obj$enrichment$deseq$DEtable <- deseqRes$DEtable
-        View(deseqRes)
         
     })
     

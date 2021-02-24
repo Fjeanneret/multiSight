@@ -6,6 +6,7 @@
 #' Returned by splitDatatoTrainTest(). List of Omic blocks and Y class vector.
 #'
 #' @examples
+#' data("omic2", package = "multiSight")
 #' splittedData <- splitDatatoTrainTest(omic2, 0.8)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
@@ -63,6 +64,7 @@ runSVMRFmodels_Biosigner <- function(dataTrain)
 #' training to test model performances. Returned by splitDatatoTrainTest().
 #' 
 #' @examples
+#' data("omic2", package = "multiSight")
 #' splittedData <- splitDatatoTrainTest(omic2, 0.8)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
@@ -71,8 +73,8 @@ runSVMRFmodels_Biosigner <- function(dataTrain)
 #' biosignerModels <- biosignerRes$model #list of SVM/RF models for each omic.
 #' biosignerFeats <- biosignerRes$biosignature #selected features for each omic.
 #' perfBiosigner <- assessPerformance_Biosigner(biosignerModels, data.test)
-#' perfBiosigner$svm$Omic1 # perf for SVM for omic1 data block.
-#' perfBiosigner$rf$Omic1 # perf for RF for omic1 data block.
+#' perfBiosigner$svm$rnaRead # perf for SVM for rnaRead data block.
+#' perfBiosigner$rf$rnaRead # perf for RF for rnaRead data block.
 #' 
 #' @importFrom shiny NS tagList 
 #' @importFrom biosigner predict

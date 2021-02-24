@@ -7,6 +7,7 @@
 #' Returned by splitDatatoTrainTest().
 #'
 #' @examples
+#' data("omic2", package = "multiSight")
 #' splittedData <- splitDatatoTrainTest(omic2, 0.8)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
@@ -72,6 +73,7 @@ runSPLSDA <- function(dataTrain)
 #' training to test model performances. Returned by splitDatatoTrainTest().
 #'
 #' @examples
+#' data("omic2", package = "multiSight")
 #' splittedData <- splitDatatoTrainTest(omic2, 0.8)
 #' data.train <- splittedData$data.train
 #' data.test <- splittedData$data.test
