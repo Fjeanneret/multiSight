@@ -26,7 +26,8 @@ splittedData <- splitDatatoTrainTest(omic2, 0.8)
 data.train <- splittedData$data.train
 data.test <- splittedData$data.test
 
-biosignerRes <- runSVMRFmodels_Biosigner(data.train)
+#biosignerRes <- runSVMRFmodels_Biosigner(data.train)
+data("biosignerRes", package = "multiSight") 
 biosignerModels <- biosignerRes$model #list of SVM/RF models for each omic.
 biosignerFeats <- biosignerRes$biosignature #selected features for each omic.
 perfBiosigner <- assessPerformance_Biosigner(biosignerModels, data.test)

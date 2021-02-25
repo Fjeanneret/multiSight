@@ -23,6 +23,17 @@
 #' @source Returned by runSPLSDA() function.
 "diabloRes"
 
+#' Biosigner results 
+#'
+#' Biosigner results list:
+#' \describe{
+#'   \item{model}{SVM and RF models}
+#'   \item{biosignature}{Selected features of omic data sets}
+#' }
+#'
+#' @source Returned by runSVMRFmodels_Biosigner() function.
+"biosignerRes"
+
 #' multiSight results
 #'
 #' enrichRes objects obtained with several omic data sets.
