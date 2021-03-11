@@ -282,59 +282,57 @@ runMultiEnrichment <- function(omicSignature,
             ## for each feature vector from omic data
             while (i <= length(omicSignature)) 
             {
-            if (!is.null(omicSignature[[i]]) && 
-                length(omicSignature[[i]])>0)
-            {
-              
-              out <- tryCatch(
+                if (!is.null(omicSignature[[i]]) && 
+                    length(omicSignature[[i]])>0)
                 {
-                  ## Different arguments according enrichment type 
-                  if (typeEnrich == "pathways")
-                  {
-                      bioDbRes <- enrichFct(
-                          gene = omicSignature[[i]],
-                          organism = org,
-                          pAdjustMethod = pvAdjust,
-                          minGSSize = minGSSize,
-                          maxGSSize = maxGSSize,
-                    )
-                  }else if (typeEnrich == "go")
-                  {
-                      bioDbRes <- enrichFct(
-                          gene = omicSignature[[i]],
-                          OrgDb = organismDb,
-                          ont = db,
-                          pAdjustMethod = pvAdjust,
-                          minGSSize = minGSSize, 
-                          maxGSSize = maxGSSize,
-                          readable = TRUE
-                    )  
-                  }
-                  enrichRes <- fillEnrichGeneID(bioDbRes)
-                  dbResult$enrichObj[[paste0("enrichRes_omic", i)]] <- 
-                      enrichRes
-                  dbResult$result[[paste0("enrichTable_omic", i)]] <- 
-                      enrichRes@result
-                },
-                error=function(cond)
-                {
-                    msg <- paste0(db, 
+                    out <- tryCatch(
+                    {
+                      ## Different arguments according enrichment type 
+                      if (typeEnrich == "pathways")
+                      {
+                          bioDbRes <- enrichFct(
+                              gene = omicSignature[[i]],
+                              organism = org,
+                              pAdjustMethod = pvAdjust,
+                              minGSSize = minGSSize,
+                              maxGSSize = maxGSSize,
+                        )
+                      }else if (typeEnrich == "go")
+                      {
+                          bioDbRes <- enrichFct(
+                              gene = omicSignature[[i]],
+                              OrgDb = organismDb,
+                              ont = db,
+                              pAdjustMethod = pvAdjust,
+                              minGSSize = minGSSize, 
+                              maxGSSize = maxGSSize,
+                              readable = TRUE
+                        )  
+                      }
+                      enrichRes <- fillEnrichGeneID(bioDbRes)
+                      dbResult$enrichObj[[paste0("enrichRes_omic", i)]] <- 
+                          enrichRes
+                      dbResult$result[[paste0("enrichTable_omic", i)]] <- 
+                          enrichRes@result
+                    },
+                    error=function(cond)
+                    {
+                        msg <- paste0(db, 
                                 "seems down, or not available throught API.")
-                    
-                    errorBase <- c(errorBase, msg)
-                    multiEnrichRes$error$errorBase <- errorBase
-                    dbResult$enrichObj[[paste0("enrichRes_omic", i)]] <- 
-                        NULL
-                    dbResult$result[[paste0("enrichTable_omic", i)]] <- 
-                        NULL
-                })
-            }
-            else
-            {
-                dbResult[[paste0("enrichRes_omic", i)]] <- NULL
-            }
-                i <- i+1
-            }
+                        errorBase <- c(errorBase, msg)
+                        multiEnrichRes$error$errorBase <- errorBase
+                        dbResult$enrichObj[[paste0("enrichRes_omic", i)]] <- 
+                            NULL
+                        dbResult$result[[paste0("enrichTable_omic", i)]] <- 
+                            NULL
+                    })
+                }
+                else
+                {
+                    dbResult[[paste0("enrichRes_omic", i)]] <- NULL
+                }
+                    i <- i+1
+                }
           
             #################################################################
             ##         BUILDS Multi-Omic TABLE - Stouffer p-values         ##
@@ -348,7 +346,7 @@ runMultiEnrichment <- function(omicSignature,
           
         }else # Organism not in organismTable for pathways enrichment
         {
-            msg <- paste0("Organism not provided by ", db , " database")
+            msg <- paste0("Organism not provided by ", db ," database")
             message(msg)
             errorOrgBase <- c(errorOrgBase, msg)
             multiEnrichRes[[typeEnrich]][[db]] <- NULL
