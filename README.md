@@ -7,8 +7,8 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 ![last
-commit](https://img.shields.io/github/last-commit/fjeanneret/MultiSight.svg)
-![license](https://img.shields.io/github/license/fjeanneret/MultiSight.svg)
+commit](https://img.shields.io/github/last-commit/fjeanneret/multiSight.svg)
+![license](https://img.shields.io/github/license/fjeanneret/multiSight.svg)
 <!-- badges: end -->
 
 <img src="inst/app/www/multiSight_hexicon.png" align="right" alt="hexicon" />
@@ -42,11 +42,11 @@ install.packages("remotes")
 remotes::install_github("Fjeanneret/multiSight")
 ```
 
-# What is **multiSight** ?
+# What is **multiSight**?
 
 **multiSight** is a R package providing an user-friendly graphical
 interface to analyze and explore your omic data sets in a **multi-omic**
-manner by *DESEQ2* (see **Biological Insights tab**), machine learning
+manner by *DESeq2* (see **Biological Insights tab**), machine learning
 methods with *biosigner* and *multi-block statistical analysis* (see
 **Classification tab**) helped by *p-values pooling Stouffer’s* method.
 
@@ -67,7 +67,7 @@ omic dataset helping by **four analytic modules** which content:
   - :memo: **Data input** & **results**;
   - :dart: **Classification** models building;
   - :books: **Biological databases** querying;
-  - :seedling: **Network Inference** & **Pubmed** querying.
+  - :seedling: **Network Inference** & **PubMed** querying.
 
 > :point\_right: Run the application
 
@@ -79,7 +79,7 @@ omic dataset helping by **four analytic modules** which content:
 | ------------------------------------ | --------------------------------------------- | -------------------------------------------- | ---------------------------------------- |
 | ![home](inst/app/www/home/home1.png) | ![](inst/app/www/classification/classif1.png) | ![](inst/app/www/biologicalInsight/bio1.png) | ![](inst/app/www/networkInf/assump1.png) |
 
-# What kind of data ?
+# What kind of data?
 
 All types of omic data respecting input format is supported to build
 **classification models**, **biosignatures** selection and **network
@@ -131,11 +131,12 @@ You have to provide two types of data: **numeric matrices** and
 # :dart: Classification tab
 
 Two types of models have been implemented so far to answer different
-questions: **Biosigner** & **Diablo**.
+questions: [**biosigner**](https://doi.org/10.3389/fmolb.2016.00026) &
+[**DIABLO**](doi.org/10.1093/bioinformatics/bty1054) .
 
-  - To determine *small biosignatures* - Biosigner.
-  - To build *classification models* in a *multi-omic* way - Diablo.
-  - To select relevant biological *features* to *enrich* - Diablo.
+  - To determine *small biosignatures* - biosigner.
+  - To build *classification models* in a *multi-omic* way - DIABLO.
+  - To select relevant biological *features* to *enrich* - DIABLO.
 
 | Features selected                             | Performances                                  |
 | --------------------------------------------- | --------------------------------------------- |
@@ -146,7 +147,7 @@ questions: **Biosigner** & **Diablo**.
 **Biological Insight** tab is dedicated to give biological sense to your
 data.
 
-  - You could process ***2 analysis in 2 clicks***: *DESEQ2* and *Diablo
+  - You could process ***2 analysis in 2 clicks***: *DESeq2* and *DIABLO
     features* enrichments.
 
 ## Biological Annotation Databases
@@ -171,16 +172,16 @@ Two types of result visualization are given:
   - Classical **Enrichment table** for each omic and each database
     (e.g.  Pathways id, p-value, padjust columns).
   - And, when more than one omic enriched: *Multi-omic table* and
-    *multi-omic enrichment map* for **DESEQ2** and *Diablo selected
+    *multi-omic enrichment map* for **DESeq2** and *DIABLO selected
     features*
 
-| DESEQ2 & Diablo features                     | Enrichment tables                            | Enrichment Map                               |
+| DESeq2 & DIABLO features                     | Enrichment tables                            | Enrichment Map                               |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | ![](inst/app/www/biologicalInsight/bio2.png) | ![](inst/app/www/biologicalInsight/bio3.png) | ![](inst/app/www/biologicalInsight/bio4.png) |
 
 # :seedling: Assumption tab
 
-> :point\_right: Some clicks (from 4 to number of pubmed queries)
+> :point\_right: Some clicks (from 4 to number of PubMed queries)
 
 **Assumption tab** aims to help biological hypothesis making by *network
 inference* with feature relation values (e.g correlation, partial
@@ -189,7 +190,7 @@ correlation) and *PubMed module* linked to relation tables.
 Tools:
 
   - To compute *_network inference_* and reveal feature relationships.
-  - To get *_Pubmed articles_* based on your personalized query without
+  - To get *_PubMed articles_* based on your personalized query without
     leaving app.
 
 | Network Inference                        | PubMed query                             |
@@ -209,9 +210,9 @@ Note that tables could be download in a separated way in relative tabs.
 
 > **MODELS**: Classification models you can use on future data.
 
-> **DESEQ2** Differential expression analysis tables.
+> **DESeq2** Differential expression analysis tables.
 
-> **BIOSIGNATURES**: DESEQ2’s tables thresholding and diablo multi-omic
+> **BIOSIGNATURES**: DESeq2’s tables thresholding and DIABLO multi-omic
 > features selection method
 
 > **Functional ENRICHMENTS**: 6 databases functional enrichment for all
@@ -219,9 +220,9 @@ Note that tables could be download in a separated way in relative tabs.
 > method giving a **multi-omic enrichmentt able** easily to discuss.
 
 > **NETWORKS**: network inference with all features selected from all
-> omic datasets according to DESEQ2 tables thresholding or multi-omic
+> omic datasets according to DESeq2 tables thresholding or multi-omic
 > feature selection (correlation, partial correlation, mutual
 > information).
 
-> **BIBLIOGRAPHY** : Subset of pubMed articles relative to relations you
+> **BIBLIOGRAPHY** : Subset of PubMed articles relative to relations you
 > choose in network inference tab.
