@@ -16,7 +16,7 @@ Description: 'multiSight' is a R package providing an user-friendly graphical in
     - To design Pathways and gene ontology 'enrichments' (Over Representation Analysis)
     - To build Network inference linked to 'PubMed' querying to make assumptions easier and data-driven.
 biocViews: Software, RNASeq, miRNA, Network, NetworkInference, DifferentialExpression, Classification
-License: MIT + file LICENSE
+License: CeCILL + file LICENSE
 Imports: 
     config,
     golem,
