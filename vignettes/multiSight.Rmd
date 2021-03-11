@@ -429,7 +429,7 @@ Pathways id, p-value, padjust columns).
 
 A **multi-omic table** is built by annotation database (e.g. Reactome) with 
 all enrichment results obtained for omic data sets using Stouffer's method.
-[*Stouffer's p-value method*](https://doi.org/10.1371/journal.pone.0089297])
+[*Stouffer's p-value method*](https://doi.org/10.1371/journal.pone.0089297)
 consists in *p-values pooling* for same pathways or 
 ontology. 
 In fact, a Stouffer's value is computed for every biological 
