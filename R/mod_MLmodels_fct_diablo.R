@@ -111,6 +111,12 @@ assessPerformance_Diablo <- function(splsdaModel,
     levels(preds) <- c(levels(preds), "NA")
     preds[is.na(preds)] <- "NA"
     
+    # To manage levels order
+    levels <- levels(Ytest)
+    levels <- levels[order(levels)]
+    summaryTable <- table(preds = ordered(preds, levels),
+                          truth = ordered(Ytest, levels))
+    
     ## Performances
     confMat <- confusionMatrix(data = table((preds), Ytest))
     return(confMat)
