@@ -36,10 +36,6 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 
 #The following initializes usage of Bioc devel
 BiocManager::install("multiSight")
-
-# To get up-to-date package
-install.packages("remotes")
-remotes::install_github("Fjeanneret/multiSight")
 ```
 
 # What is **multiSight**?
@@ -208,11 +204,11 @@ by:
 
 Note that tables could be download in a separated way in relative tabs.
 
-> **MODELS**: Classification models you can use on future data.
+> **MODELS**: classification models you can use on future data.
 
-> **DESeq2** Differential expression analysis tables.
+> **DESeq2**: differential expression analysis tables.
 
-> **BIOSIGNATURES**: DESeq2’s tables thresholding and DIABLO multi-omic
+> **BIOSIGNATURES**: DESeq2 tables thresholding and DIABLO multi-omic
 > features selection method
 
 > **Functional ENRICHMENTS**: 6 databases functional enrichment for all
@@ -224,5 +220,5 @@ Note that tables could be download in a separated way in relative tabs.
 > feature selection (correlation, partial correlation, mutual
 > information).
 
-> **BIBLIOGRAPHY** : Subset of PubMed articles relative to relations you
+> **BIBLIOGRAPHY** : subset of PubMed articles relative to relations you
 > choose in network inference tab.
