@@ -227,9 +227,10 @@ detectTypeEnrich <- function(databaseName)
 #' 
 #' ## To enrich features
 #' database <- c("reactome", "MF")
-#' enrichTables <- runMultiEnrichment(databasesChosen = database,
-#'                                    omicSignature = convFeat,
-#'                                    organismDb = "org.Mm.eg.db")
+#' #runMultiEnrichment_result <- runMultiEnrichment(databasesChosen = database,
+#' #                                  omicSignature = convFeat,
+#' #                                  organismDb = "org.Mm.eg.db")
+#' data(runMultiEnrichment_result, package = "multiSight")
 #'   
 #' @importFrom dplyr filter
 #' @importFrom clusterProfiler enrichKEGG read.gmt enricher enrichGO
@@ -457,10 +458,13 @@ omicWeight <- function(enrichmentResultTables)
 #' library(org.Mm.eg.db) # Organism's database
 #' convFeat <- convertToEntrezid(diabloFeats, id_db, "org.Mm.eg.db")
 #' database <- c("reactome", "MF")
-#' enrichTables <- runMultiEnrichment(databasesChosen = database,
-#'   omicSignature = convFeat,
-#'   organismDb = "org.Mm.eg.db")
-#' multiOmicTable <- stoufferTable(enrichTables$kegg)
+#' #enrichTables <- runMultiEnrichment(databasesChosen = database,
+#' #  omicSignature = convFeat,
+#' #  organismDb = "org.Mm.eg.db")
+#' # enrichmentTables <- enrichTables$pathways$reactome$enrichObj
+#' #enrichResList # list of enrichRes objects (e.g. enrichKEGG() results)
+#' data(enrichResList, package = "multiSight")
+#' multiOmicTable <- stoufferTable(enrichResList)
 #' }
 #' 
 #' @return enrichment table results merged with Stouffer's p-value

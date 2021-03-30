@@ -36,8 +36,16 @@
 
 #' multiSight results
 #'
-#' enrichRes objects obtained with several omic data sets.
+#' enrichRes object obtained with several omic data sets.
 #'
 #' @source Returned by multiSight runMultiEnrichment() function
+#' in enrichTables$pathways$reactome$enrichObj slot
 "enrichResList"
+
+#' multiSight results
+#'
+#' multiOmicEnrichment results object obtained with several omic data sets.
+#'
+#' @source Returned by multiSight runMultiEnrichment() function
+"runMultiEnrichment_result"
 
