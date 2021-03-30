@@ -38,10 +38,13 @@ id_db <- list(omic1 = "ENSEMBL", omic2 = "ENSEMBL")
 library(org.Mm.eg.db) # Organism's database
 convFeat <- convertToEntrezid(diabloFeats, id_db, "org.Mm.eg.db")
 database <- c("reactome", "MF")
-enrichTables <- runMultiEnrichment(databasesChosen = database,
-  omicSignature = convFeat,
-  organismDb = "org.Mm.eg.db")
-multiOmicTable <- stoufferTable(enrichTables$kegg)
+#enrichTables <- runMultiEnrichment(databasesChosen = database,
+#  omicSignature = convFeat,
+#  organismDb = "org.Mm.eg.db")
+# enrichmentTables <- enrichTables$pathways$reactome$enrichObj
+#enrichResList # list of enrichRes objects (e.g. enrichKEGG() results)
+data(enrichResList, package = "multiSight")
+multiOmicTable <- stoufferTable(enrichResList)
 }
 
 }

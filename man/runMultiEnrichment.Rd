@@ -59,8 +59,9 @@ convFeat <- convertToEntrezid(featList, dbList, "org.Mm.eg.db")
 
 ## To enrich features
 database <- c("reactome", "MF")
-enrichTables <- runMultiEnrichment(databasesChosen = database,
-                                   omicSignature = convFeat,
-                                   organismDb = "org.Mm.eg.db")
+#runMultiEnrichment_result <- runMultiEnrichment(databasesChosen = database,
+#                                  omicSignature = convFeat,
+#                                  organismDb = "org.Mm.eg.db")
+data(runMultiEnrichment_result, package = "multiSight")
   
 }

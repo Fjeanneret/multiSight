@@ -9,11 +9,12 @@ An object of class \code{list} of length 2.
 }
 \source{
 Returned by multiSight runMultiEnrichment() function
+in enrichTables$pathways$reactome$enrichObj slot
 }
 \usage{
 enrichResList
 }
 \description{
-enrichRes objects obtained with several omic data sets.
+enrichRes object obtained with several omic data sets.
 }
 \keyword{datasets}
