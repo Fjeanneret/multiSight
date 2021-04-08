@@ -121,7 +121,7 @@ mat2graph <- function(matrixValue, relevantFeatureCouples, numThreshold)
 #' @return New graph with networkD3 properties.
 buildNetworkD3 <- function(graph, threshold)
 {
-    ## Retrieve omic index as last splitted par by "_"
+    ## Retrieve omic index as last split par by "_"
     nodeNames <- attr(V(graph), "names")
     nodeOmicId <- vapply(nodeNames, function(x) 
         tail(str_split(x, "_")[[1]], n=1),

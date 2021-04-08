@@ -7,9 +7,9 @@
 #' 
 #' @examples
 #' data("omic2", package = "multiSight")
-#' splittedData <- splitDatatoTrainTest(omic2, 0.8)
-#' data.train <- splittedData$data.train
-#' data.test <- splittedData$data.test
+#' splitData <- splitDatatoTrainTest(omic2, 0.8)
+#' data.train <- splitData$data.train
+#' data.test <- splitData$data.test
 #' 
 #' @export
 #' 
@@ -32,9 +32,9 @@ splitDatatoTrainTest <- function(MultiOmicData, freq = 0.8)
     data.train$Y <- MultiOmicData$Y[train_index]
     data.test$Y <- MultiOmicData$Y[-train_index]
     
-    dataSplitted <- list(data.train = data.train, data.test = data.test)
+    dataSplit <- list(data.train = data.train, data.test = data.test)
     
-    return(dataSplitted)
+    return(dataSplit)
 }
 
 
@@ -312,9 +312,9 @@ computeFeatDetails <- function(featuresList,
 #'
 #' @examples
 #' data("omic2", package = "multiSight")
-#' splittedData <- splitDatatoTrainTest(omic2, 0.8)
-#' data.train <- splittedData$data.train
-#' data.test <- splittedData$data.test
+#' splitData <- splitDatatoTrainTest(omic2, 0.8)
+#' data.train <- splitData$data.train
+#' data.test <- splitData$data.test
 #' 
 #' #diabloRes <- runSPLSDA(data.train)
 #' data("diabloRes", package = "multiSight")

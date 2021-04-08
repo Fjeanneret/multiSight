@@ -159,7 +159,7 @@ organismList <- function()
 #' @param dataName Kind of data, by default all generated data
 #' \itemize{
 #'  \item{"wholeData"}{User's data list}
-#'  \item{"dataTrain and dataTest"}{User's data splitted by 
+#'  \item{"dataTrain and dataTest"}{User's data split by 
 #'  splitDatatoTrainTest() function}
 #'  \item{"concatMatrixFeats_diabloNetwork"}{Concatenated matrix of all 
 #'  selected features by diablo sPLS-DA method}

@@ -62,9 +62,9 @@ mod_MLmodels_server <- function(input, output, session, startSignal, bioDB)
       req(length(obj$data$wholeData) > 0)
       
       ## Split data sets in train and test sets
-      dataSplitted <- splitDatatoTrainTest(obj$data$wholeData, freq = 0.8)
-      obj$data$dataTrain <- dataTrain <- dataSplitted$data.train
-      obj$data$dataTest <- dataTest <- dataSplitted$data.test
+      dataSplit <- splitDatatoTrainTest(obj$data$wholeData, freq = 0.8)
+      obj$data$dataTrain <- dataTrain <- dataSplit$data.train
+      obj$data$dataTest <- dataTest <- dataSplit$data.test
       class <- obj$data$wholeData$Y
       nclass <- length(levels(factor(class)))
       

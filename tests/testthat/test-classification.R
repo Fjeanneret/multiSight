@@ -42,8 +42,8 @@ test_that("splitDataTrainTest",
               nsample <- sum(vapply(omicdataList, 
                                     nrow, 
                                     FUN.VALUE = numeric(1)))
-              dataSplitted <- splitDatatoTrainTest(matList, freq)
-              nsample08 <- sum(vapply(dataSplitted$data.train[-3], 
+              dataSplit <- splitDatatoTrainTest(matList, freq)
+              nsample08 <- sum(vapply(dataSplit$data.train[-3], 
                                       nrow, 
                                       FUN.VALUE = numeric(1)))
               
