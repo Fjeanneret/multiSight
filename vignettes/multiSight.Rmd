@@ -2,10 +2,10 @@
 title: "multiSight quick start guide"
 author:
 - name: Florian Jeanneret 
-  affiliation: CEA Saclay
+  affiliation: Université Paris-Saclay, CEA, List, F-91120, Palaiseau, France.
   date: Sys.Date()
 - name: Stéphane Gazut 
-  affiliation: CEA Saclay
+  affiliation: Université Paris-Saclay, CEA, List, F-91120, Palaiseau, France.
   date: Sys.Date()
 output:
   BiocStyle::html_document:
@@ -30,8 +30,8 @@ strong {
 
 # multiSight 
 
-This vignette is built to be efficient as quickly as 
-possible with multiSight.
+The purpose of this vignette is to help you become productive as quickly as 
+possible with the **multiSight** package.
 
 ## Version Info
 
@@ -57,42 +57,83 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install("multiSight")
 ```
 
-# What is **multiSight**?
+# **multiSight** purpose
 
-**multiSight** is a R package providing an user-friendly graphical interface to 
-analyze and explore your omic data sets in a __multi-omic__ manner by _DESeq2_ 
-(see **Biological Insights tab**), machine learning methods with _biosigner_ 
-and _multi-block statistical analysis_ (see **Classification tab**) helped by
-_p-values pooling Stouffer's_ method.
+**multiSight** is an R package providing a graphical interface to 
+analyze and explore your omic datasets (e.g. RNAseq, RPPA) by both
+__single-omics__ and __multi-omics__ approaches.
 
-For each omic data set you furnish, it provides _**classification models**_ 
-with *feature selection* you can use as biosignature:
+_Single-omics_ means Differential Expression Analysis (DEA) is led by DESeq2
+towards Over Representation Analysis (ORA). Features with DEA p-values under 
+the 0.05 threshold, or user's value set in the *Biological Insight* tab, are 
+selected. These features are saved to carry out ORA on several databases 
+(see *Biological insights* tab section).
 
-- To forecast phenotypes (e.g. to diagnostic tasks, histological subtyping)
-- To design _**Pathways**_ and _**gene ontology**_ **enrichments**
-- To build _**Network inference**_ linked to _**PubMed**_ querying to make 
-assumptions easier and data-driven.
+_Multi-omics_ is defined by substituting the DEA part by sPLS-DA method. 
+This is a multi-block selection features method taking several omic blocks 
+into account to select features (see *sPLS-DA* section). Biological processes 
+(*BPs*) from a database (e.g. Reactome) are then enriched with these selected 
+features by ORA to reveal putative altered biological processes. 
 
-*You could use this tool with a graphical interface or only with 
-script functions.*
+Enrichment results obtained by ORAs are tables with *BP* IDs,
+descriptions and p-values. An enrichment table is provided for each omic data 
+block and for each database. 
+**multiSight** proposes easing enrichment results interpretation from 
+several omic datasets. For each *BP* shared between enrichment results 
+from a given database, the relative p-values are merged. 
+Stouffer's pooling method is used to calculate probabilities fusion 
+(see Multi-omics table section).
+For instance, if "*signaling by ERBB2*" is highlighted by ORAs of RNAseq and 
+RPPA features with p-values of 0.06 and 0.10, Stouffer's method 
+calculates a probability of 0.0224 for this pathway. 
+Thereby, multi-omics 
+information is harnessed to make decision of significance.
+
+Stouffer's p-values for *BP* beget a multi-omics table where
+*BP* IDs, description and Stouffer's p-values are provided.
+This *multi-omics* enrichment table is used to draw an *enrichment map*.
+
+*Enrichment map* is a network based on *BPs* information. 
+*BPs* are nodes while the bonds are built between
+*BPs* sharing some features (see *Multi-omics enrichment map* section).
+
+In addition, classification models are fitted to select few subsets of 
+features, using **biosigner** or **sPLS-DA methods**.
+*biosigner* provides one model by omic block and one list of features named 
+*biosignature*. 
+Nevertheless, sPLS-DA *biosignatures* are based on more features than biosigner.
+
+**Biosignatures** can be used:
+
+- To forecast phenotypes (e.g. to diagnostic tasks, histological subtyping);
+- To design _**Pathways**_ and _**gene ontology**_ **enrichments** 
+(sPLS-DA biosignatures only);
+- To build _**Network inference**_;
+- To find _**PubMed**_ references to make assumptions easier and data-driven.
+
+Moreover, numerical relationships between features selected by *sPLS-DA* or 
+*biosigner* can feed network inferences (for instance by correlation 
+or mutual information, see *Assumption tab* section).
+
+_**multiSight** package provides a graphical interface and relative functions_
+_to use in a script._
 
 ## App structure 
 
-**multiSight** enables you to get better biological insights for each omic 
-dataset 
-helping by __four analytic modules__ which content:
+**multiSight** allows to get better biological insights for each omic dataset 
+based on __four analytic modules__:
 
 - __Data input__ & __results__;
 - __Classification__ models building;
 - __Biological databases__ querying;
 - __Network Inference__ & __PubMed__ querying.
 
-*All result figures and tables could be retrieve in a automatic report.*
+*All figures and tables can be retrieved in an automatic report.*
 
-## What kind of data? 
+## Which omic data? 
 
-All types of omic data respecting input format is supported to build 
-**classification models**, **biosignatures** selection and
+All types of omic data respecting input format are supported to build 
+**classification models**, **biosignatures** and
 **network inference**.
 
 - Genomics;
@@ -101,22 +142,22 @@ All types of omic data respecting input format is supported to build
 - Metabolomics;
 - Lipidomics;
 
-*In fact all numeric matrices.*
+*This package supports all numerical matrices.*
 
 _You can take a look on data format supported in **Home** tab details._
 
 
 # Home tab
 
-This is the first tab of **multiSight** you will see.
+This is the first tab of **multiSight**.
 
-You could load your biological data and retrieve further your results with an 
-automatic HTML and .doc reports.
+In this tab, you can load your biological data and find all results in a 
+generated report (.html or .doc formats).
 
-## Data inputs formats
+## Data format
 
-You have to provide two types of data: **numeric matrices** and 
-**classes vector** as csv tables for all **same samples**.
+You should provide two types of data: **numerical matrices** and 
+**classes vector** as **csv tables** for the **same samples**.
 
 | Omic data 1 |        |        |        |     |
 |-------------|--------|--------|--------|-----|
@@ -141,107 +182,110 @@ You have to provide two types of data: **numeric matrices** and
 
 ## Organism
 
-**multiSight** will download organism database automatically according to your 
-Home choice. **19 organism** databases are available (see *Home tab*).
-*multiSight* could be used without enrichment analysis and thus without a 
-database matching with your data.
+**multiSight** downloads organism database automatically according to your 
+choice in *Home tab*. **19 organism databases** are available (see *Home tab*).
+Please note that *multiSight* can be used without enrichment analysis, and 
+thus, without a organism database matching with your data.
 
-## Automatic reports
+## Generated report
 
-Result report could be generated in *Home tab* below *data sets input module* 
-inside the **Analysis Results** block.
+Report of results can be generated in *Home tab* below *datasets input part* 
+inside the **Analysis Results** block (.html or .doc formats).
+
 
 # Classification tab
 
-*This tab is automatically launched after you start analysis in Home tab.*
+*This tab background is launched when you start analysis in Home tab. Results* 
+*are displayed after biosigner and sPLS-DA models fitting*.
 
-*No click needed, only to explore results.*
-
-This tab presents **classification models** to **predict sample classes** 
-by numeric values and based upon only a **small subset of features** 
-generated by **multiSight** models.
+This tab presents **classification models** to **predict sample classes**
+based upon only a **small subset of features** selected by **multiSight** 
+models.
 
 ## Model methods
 
 Two types of models have been implemented so far to answer different 
-questions: **biosigner** & **DIABLO**.
+questions: from **biosigner** & **mixOmics (sPLS-DA)** R packages.
 
 - To determine *small biosignatures* - biosigner.
-- To build *classification models* in a *multi-omic* way - DIABLO.
-- To select relevant biological *features* to *enrich* - DIABLO.
+- To build *classification models* by a *multi-block* approach - sPLS-DA
+- To select relevant biological *features* to *enrich* - sPLS-DA
 
 ### biosigner
 
 [**biosigner**](bioconductor.org/packages/release/bioc/html/biosigner.html)
-is a R package available in *Bioconductor* project.
+is an R package available in *Bioconductor* project.
 
-_In a single-omic_ manner **biosigner** computes **SVM** and **Random Forest** 
-models helped by feature selection method on omic data sets **one by one**. 
+_In a single-omics_ approach, **biosigner** computes **SVM** 
+and **Random Forest** models and selects features for all omic 
+datasets **one by one**. 
 
-Biological data signatures are obtained for each omic as *union of SVM and RF* 
-lists.
+Thereby, a biosignature is defined for each omic as the *union of SVM and RF* 
+variable lists.
 
-*For 3 omic datasets you get 3 models and 3 feature lists (around 5-10 
-features by data type).*
+*If there are 3 omic datasets, __biosigner__ gives 6 models and 3 feature lists
+(about 5-10 features by data type).*
 
 ### Example
 
 ```{r model_biosigner, echo=TRUE, message=FALSE, warning=FALSE}
 require(multiSight)
 
-## omic2 is multi-omic data of 2 data sets included in package
+## omic2 is a multi-omics dataset of 2 simulated omics included in package
 data("omic2", package = "multiSight")
 
-## omic2 is multi-omic data of 2 data sets included in package
-splittedData <- splitDatatoTrainTest(omic2, freq = 0.8)
-data.train <- splittedData$data.train
-data.test <- splittedData$data.test
+splitData <- splitDatatoTrainTest(omic2, freq = 0.8)
+data.train <- splitData$data.train
+data.test <- splitData$data.test
 
-## Build model and one biosignature by omic data set.
+## Build model and one biosignature by omic dataset.
 biosignerRes <- runSVMRFmodels_Biosigner(data.train)
 
 ## Results
 biosignerModels <- biosignerRes$model #list of SVM/RF models for each omic.
 biosignerFeats <- biosignerRes$biosignature #selected features for each omic.
 
-## Asses model classification performances
+## Assess model classification performances
 biosignerPerf <- assessPerformance_Biosigner(modelList = biosignerModels, 
                                              dataTest = data.test)
 print(biosignerPerf) #confusion matrices and performance metrics
 ```
 
 
-### DIABLO 
+### sPLS-DA (DIABLO)
 
-In a _multi-omic_ manner [**DIABLO**](doi.org/10.1093/bioinformatics/bty1054) 
+By a _multi-omics_ approach, 
+[**sPLS-DA (DIABLO)**](doi.org/10.1093/bioinformatics/bty1054) 
 method selects relevant features to explain biological outcome of interest. 
-This is implemented in 
+This is implemented into the
 [**mixOmics**](bioconductor.org/packages/release/bioc/html/mixOmics.html)
 R package available in *Bioconductor* project.
 
-*sPLS-DA method* builds a new space for each omic data set by linear 
+*sPLS-DA method* builds a new space for each omic dataset by linear 
 combinations of initial features giving several components. 
-In fact, around 40 features, for each omic, are selected according to
-contributions to components to enrich further.
+In fact, around 20-40 features, for each omic, are selected according to
+contributions to components. Then, these features can be used to
+enrich some biological processes from a biological database 
+(e.g. KEGG, Reactome) by ORA.
 
-You could retrieve classification **performances** for each model and 
-**selected features** by omic data type (e.g. if you have provided 3 omic 
-types, you could observe 3 feature lists).
+Classification **performances** are displayed in *classification tab* for 
+each model and **selected features** by omic data type (e.g. if you have 
+provided 3 omic types, you could observe 3 feature lists).
 
 ### Example
 
 ```{r model_DIABLO, message=FALSE, warning=FALSE}
 require(multiSight)
 
-## omic2 is multi-omic data of 2 data sets included in package
+## omic2 is a multi-omics dataset of 2 simulated omics included in package
 data("omic2", package = "multiSight")
 data("diabloRes", package = "multiSight")
 
-splittedData <- splitDatatoTrainTest(omic2, freq = 0.8)
-data.train <- splittedData$data.train
-data.test <- splittedData$data.test
+splitData <- splitDatatoTrainTest(omic2, freq = 0.8)
+data.train <- splitData$data.train
+data.test <- splitData$data.test
 
-## Build model and one biosignature by omic data set.
+## Build model and one biosignature by omic dataset.
 # diabloRes <- runSPLSDA(data.train)
 # diabloRes #internal object of package to save time
 
@@ -257,24 +301,22 @@ print(diabloPerf) #confusion matrices and performance metrics
 
 # Biological insights tab
 
-*The whole tab is ready when selected features by classification models are*
-*available.* 
+*This tab is ready to use when Classification tab features selection is over.* 
 
-*Only some clicks needed (number of omic data sets to choose database)*
+**Biological Insights** tab is dedicated to give biological sense to your data. 
 
-
-**Biological Insight** tab is dedicated to give biological sense to your data. 
-
-- You could process ___2 analysis in 2 clicks___: *DESeq2* and 
-*DIABLO features* enrichments.
+You can carry out enrichment by ORA with features selected according to 
+*DESeq2* feature probabilities under the 0.05 threshold. 
+Or, you can compute biological 
+enrichment with features selected by *sPLS-DA*.
 
 ## Biological Annotation Databases
 
-**multiSight** uses so far **several databases** to provide large panel of 
-**enrichment analysis** automatically after few clicks:
+**Several databases** are implemented in **multiSight** package to 
+provide a large panel of **enrichment analysis**:
 
-**Pathways** and **Gene Ontology** databases are implemented, helped by 
-**clusterProfiler** and **reactomePA** R Bioconductor packages.
+There are **Pathways** and **Gene Ontology** databases helped by 
+**clusterProfiler** and **reactomePA** R Bioconductor packages:
 
 - Kegg;
 - Reactome;
@@ -283,11 +325,11 @@ print(diabloPerf) #confusion matrices and performance metrics
 - Cellular Component (GO)
 - Biological Process (GO)
 
-You could retrieve biological information for **pathways** from these database 
-according to organism annotations, see table below:
+See table below to check available biological information for **pathways** from 
+these databases, according to organism annotations.
 
-**multiSight** for enrichment analysis (required only for enrichment) supports 
-**19 organism databases**:
+**multiSight** supports **19 organism databases** 
+(required only for enrichment analysis):
 
 | orgDb             | kegg | reactome  | wikipathways             |
 |-------------------|------|-----------|--------------------------|
@@ -312,39 +354,44 @@ according to organism annotations, see table below:
 | org.Xl.eg.db      | xla  | x        | x                       |
 
 **Note for enrichment**: only convertible feature names to genes could be 
-enriched according to information in organism's database (e.g. *Gene SYMBOL 
-to entrez ids*; see table below).
+enriched according to information in organism's database (e.g. *Gene SYMBOL* 
+*to entrez ids*).
 
-You can know _what feature input types are supported_ with this two lines of 
-codes if your organism is supported by multiSight.
-For instance _org.Hs.eg.db_ for Human provides 26 input names you can use as 
-feature names in your data sets.
+To know _what feature name types are supported_, copy these two lines of 
+codes with your organism database of interest.
+For instance, org.Mm.eg.db for Human provides 24 input names you can use as 
+feature names in your datasets.
 ```{r message=FALSE}
 require(org.Mm.eg.db)
 columns(org.Mm.eg.db)
 ```
+Please note that feature IDs can differ between omic blocks (e.g. one dataset 
+with gene SYMBOL, another one with ENSEMBL IDs). You can provide this 
+information to convert them for enrichment in the application.
 
-## **Single-Omic** DESeq2 differential expression analysis
+## **Single-omic** DESeq2 differential expression analysis
 
-- To compute **differential expression tables by DESeq2** analysis for *several
-omicdata sets*.
-- To **enrich selected features** according to *padjust threshold.*
+Therefore, in this *Biological insights tab* you can compute 
+**Differential Expression Analysis (DEA) by DESeq2** for several omic datasets
+Moreover, with features selected according to 
+*p-value threshold set by the user* you can enrich pathway or Gene Ontology 
+databases.
 
 ### Example
 ```{r multiOmicEnrichment_DESeq2, message=FALSE, warning=FALSE}
 require(multiSight)
 
-## omic2 is multi-omic data of 2 data sets included in package
+## omic2 is a multi-omics dataset of 2 simulated omics included in package
 data("omic2", package = "multiSight")
 deseqRes <- runMultiDeseqAnalysis(omicDataList = omic2, 
                                   padjUser = 0.05)
-## One Differential Expression Analysis table for each omic data set
+## One Differential Expression Analysis table for each omic dataset
 # View(deseqRes$DEtable) 
 ## One feature selected list for each omic according to padjust user threshold
 multiOmic_biosignature <- deseqRes$selectedFeatures
 # View(multiOmic_biosignature)
 
-## Multi-omic enrichment
+## Multi-omics enrichment
 ### convert features
 dbList <- list(rnaRead = "ENSEMBL",
                dnaRead = "ENSEMBL")
@@ -362,38 +409,35 @@ multiOmicRes <- runMultiEnrichment(omicSignature = convFeat,
                                    maxGSSize = 800, #default value, optional
                                    pvStouffer = 0.1) #default value, optional
 reacRes <- multiOmicRes$pathways$reactome
-names(reacRes$result) # classical enrichment tables, multi-omic table and EMap
+names(reacRes$result) # classical enrichment tables, multi-omics table, EMap
 ```
 
 
-## **Multi-Omic** DIABLO selected features
+## **Multi-omics** sPLS-DA selected features
 
-- To *enrich selected features* by sPLS-DA multi-block analysis. For each 
-linear component computed, for each omic data set, a subset of features is
-selected according to variable's contributions.
-
-This tab give an graphical interface where all **multi-omic features** for
-selected databases are enriched. You could retrieve **functional enrichment 
-results** in Home tab's report and saving module.
+This tab gives a graphical interface where all **multi-omics features** 
+selected by sPLS-DA method are used to enrich chosen databases. 
+You could retrieve **functional enrichment results** in Home tab's report or 
+save tables in this tab.
 
 ```{r multiOmicEnrichment_DIABLO, message=FALSE, warning=FALSE}
 require(multiSight)
 require(org.Mm.eg.db, warn.conflicts = FALSE)
-data("diabloRes", package = "multiSight")
+## omic2 is a multi-omics dataset of 2 simulated omics included in package
 data("omic2", package = "multiSight")
-## omic2 is multi-omic data of 2 data sets included in package
-# splittedData <- splitDatatoTrainTest(omic2, 0.8)
-# data.train <- splittedData$data.train
-# data.test <- splittedData$data.test
+data("diabloRes", package = "multiSight")
+# splitData <- splitDatatoTrainTest(omic2, 0.8)
+# data.train <- splitData$data.train
+# data.test <- splitData$data.test
 # 
 # diabloRes <- runSPLSDA(data.train)
 # diabloRes #internal object of package to save time
 diabloModels <- diabloRes$model #sPLS-DA model using all omics.
 diabloFeats <- diabloRes$biosignature #selected features for each omic.
 
-## Multi-omic enrichment
+## Multi-omics enrichment
 ### convert features
-names(diabloFeats) #/!\use same names for dbList and omic data sets.
+names(diabloFeats) #/!\use same names for dbList and omic datasets.
 dbList <- list(rnaRead = "ENSEMBL", #feature names origin
                dnaRead = "ENSEMBL")
 convFeat <- convertToEntrezid(diabloFeats, 
@@ -413,31 +457,32 @@ multiOmicRes <- runMultiEnrichment(omicSignature = convFeat,
 
 ## Results
 reacRes <- multiOmicRes$pathways$reactome
-names(reacRes$result) # classical enrichment tables, multi-omic table and EMap
+names(reacRes$result) # classical enrichment tables, multi-omics table and EMap
 ```
 
 ## Visualizations
 
 Two types of result visualization are given:
 
-- Classical **Enrichment table** for each omic and each database (e.g. 
-Pathways id, p-value, padjust columns).
-- And, when more than one omic enriched: *Multi-omic table* and *multi-omic*
-*enrichment map* for **DESeq2** and *DIABLO selected features*.
+- Classical **enrichment tables** for each omic and each database (with 
+pathways id, p-value, padjust column).
+- Then, when more than one omic is used for enrichment,
+a *multi-omics table* and a *multi-omics enrichment map*
+with **DEA** and *sPLS-DA selected features* are available.
 
-### Multi-Omic Table
+### Multi-omics Table
 
-A **multi-omic table** is built by annotation database (e.g. Reactome) with 
-all enrichment results obtained for omic data sets using Stouffer's method.
+A **multi-omics table** is built by annotation database (e.g. Reactome) with 
+all enrichment results obtained for omic datasets using Stouffer's method.
 [*Stouffer's p-value method*](https://doi.org/10.1371/journal.pone.0089297)
 consists in *p-values pooling* for same pathways or 
 ontology. 
 In fact, a Stouffer's value is computed for every biological 
-annotations shared by at least 2 enrichment analysis tables (NOTE: each omic 
-data enriched has one usual enrichment analysis table by selected database).
+annotations shared by at least 2 enrichment analysis results (NOTE: each omic 
+data used for enrichment has one usual enrichment table by selected database).
 
-Thereby, you could **summarize information for several data sets** and 
-enrichment results. 
+Thereby, you can **summarize information for several datasets** and 
+enrichment results with a multi-omics table, for instance:
 
 | ID            | Description                                                               | p-value:Omic1 | p-value:Omic2 | Stouffer | StoufferWeighted | geneID                             | GeneRatio | Count |
 |---------------|---------------------------------------------------------------------------|---------------|---------------|----------|------------------|------------------------------------|-----------|-------|
@@ -446,19 +491,20 @@ enrichment results.
 | R-MMU-73887   | Death Receptor Signalling                                                 | 0.056         | 0.06          | 0.013    | 0.013            | 101497/102098/106025/109934/11491/ | 2/60      | 2     |
 | R-MMU-8953854 | Metabolism of RNA                                                         | 0.533         | 0.002         | 0.024    | 0.021            | 100043813/100044627/100502825/...  | 1/60      | 1     |
 
-Each value is similar to a *enrichRes* object obtained by *clusterProfiler*, in
-fact Stouffer's results are transformed as *enrichRes** objects and could be 
+Each value is similar to an *enrichRes* object obtained by *clusterProfiler*.
+
+In fact, Stouffer's results are transformed as *enrichRes** objects and could be 
 used for usual *enrichRes* analysis and visualization functions.
 
 Note in our *cytoscape-like case* that *geneID* column refers to all genes in 
-pathways or ontology named in database annotations. In usual *enrichRes* this 
+pathways or ontology named in database annotations. In usual *enrichRes*, this 
 column presents genes enriched contributing in pathways.
 
-A graphical network is build according this table as a **Enrichment Map**.
+A graphical network is built according to this table as an **Enrichment Map**.
 
-### Multi-Omic enrichment map
+### Multi-omics enrichment map
 
-**Enrichment map** is a graph drawn to observe pathways or ontologies 
+**Enrichment map** is a graph drawn to observe pathway or ontology 
 relationships according to overlapping elements in each parts.
 
 Each pathway is a node and a bond is built between them if there have 
@@ -467,23 +513,22 @@ common genes (see *Jaccard similarity coefficient - JC's similarity* method).
 Here, enrichment map functions from *enrichPlot* package are adapted to draw 
 similar map to **cytoscape** add-on 
 [*EnrichmentMap*](doi.org/10.1371/journal.pone.0013984): 
-all genes in each pathways are used to compute similarity.
+all genes in each pathway are used to compute similarity between pathway 
+building network bonds.
 
 ![Enrichment Map from Stouffer p-values pooling method](EnrichmentMapForInstance.png)
-*Each Stouffer Enrichment Map (one for each enrichment database) could be*
-*retrieve in report automatically generated and in Home tab to be saved.*
+*Each multi-omics enrichment map (one by enrichment database) could be*
+*retrieve in a report automatically generated and in the Home tab to be saved.*
 
 # Assumption tab
 
-*Some clicks (from 4 to number of PubMed queries)*
-
 **Assumption tab** aims to help biological hypothesis making by *network 
-inference* with feature relation values (e.g correlation, partial correlation)
-and *PubMed module* linked to relation tables.
+inference* from feature relationship values (e.g correlation, 
+partial correlation) and by a *PubMed module*.
 
-Tools:
+You can find both functions:
 
-- To compute _*network inference*_ and reveal feature relationships.
+- To compute _*network inference*_ and to reveal feature relationships.
 - To get _*PubMed articles*_ based on your personalized query without leaving 
 app.
 
@@ -491,12 +536,12 @@ app.
 require(multiSight)
 data("omic2", package = "multiSight")
 data("diabloRes", package = "multiSight")
-## omic2 is multi-omic data of 2 data sets included in package
-splittedData <- splitDatatoTrainTest(omic2, 0.8)
-data.train <- splittedData$data.train
-data.test <- splittedData$data.test
+## omic2 is a multi-omics dataset of 2 simulated omics included in package
+splitData <- splitDatatoTrainTest(omic2, 0.8)
+data.train <- splitData$data.train
+data.test <- splitData$data.test
 
-## Build DIABLO models
+## Build sPLS-DA models
 # diabloRes <- runSPLSDA(data.train)
 diabloFeats <- diabloRes$biosignature #selected features for each omic.
 
