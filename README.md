@@ -15,10 +15,10 @@ commit](https://img.shields.io/github/last-commit/fjeanneret/multiSight.svg)
 
 # **multiSight**
 
-:rocket: This document is built to be efficient as quickly as possible
-with **multiSight**.
+:rocket: The purpose of this document is to help you become productive
+as quickly as possible with the **multiSight** package.
 
-  - The goal of **multiSight** is to handle multi-omic data and network
+  - The goal of **multiSight** is to handle multi-omics data and network
     inference in a easy-to-use R shiny package.
 
 > You could use this tool with a graphical interface or only with script
@@ -38,22 +38,29 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install("multiSight")
 ```
 
-# What is **multiSight**?
+# **multiSight** purpose
 
 **multiSight** is a R package providing an user-friendly graphical
-interface to analyze and explore your omic data sets in a **multi-omic**
+interface to analyze and explore your omic datasets in a **multi-omics**
 manner by *DESeq2* (see **Biological Insights tab**), machine learning
 methods with *biosigner* and *multi-block statistical analysis* (see
 **Classification tab**) helped by *p-values pooling Stouffer’s* method.
 
-For each omic data set you furnish, it provides ***classification
-models*** with *feature selection* you can use as biosignature:
+Classification models are fitted to select few subsets of features,
+using **biosigner** or **sPLS-DA methods**. *biosigner* provides one
+model by omic block and one list of features named *biosignature*.
+Nevertheless, sPLS-DA *biosignatures* are based on more features than
+*biosigner*.
 
-  - To forecast phenotypes (e.g. to diagnostic tasks, histological
-    subtyping)
+**Biosignatures** can be used:
+
+  - To forecast phenotype (e.g. to diagnostic tasks, histological
+    subtyping);
   - To design ***Pathways*** and ***gene ontology*** **enrichments**
-  - To build ***Network inference*** linked to ***PubMed*** querying to
-    make assumptions easier and data-driven.
+    (sPLS-DA biosignatures only);
+  - To build ***Network inference***;
+  - To find ***PubMed*** references to make assumptions easier and
+    data-driven.
 
 # :newspaper: App
 
@@ -68,7 +75,7 @@ omic dataset helping by **four analytic modules** which content:
 > :point\_right: Run the application
 
 ``` r
-# run_app()
+run_app()
 ```
 
 | :memo: Home                          | :dart: Classification                         | :books: Biological Insights                  | :seedling: Assumption                    |
@@ -108,7 +115,7 @@ You have to provide two types of data: **numeric matrices** and
 | A13E        | 0               | 154             | 4900            |   |
 |             |                 | …               |                 |   |
 
-… :point\_right: unlimited number of omic data sets.
+… :point\_right: unlimited number of omic datasets.
 
 | Omic data n |      |      |      |   |
 | ----------- | ---- | ---- | ---- | - |
@@ -128,10 +135,10 @@ You have to provide two types of data: **numeric matrices** and
 
 Two types of models have been implemented so far to answer different
 questions: [**biosigner**](https://doi.org/10.3389/fmolb.2016.00026) &
-[**DIABLO**](doi.org/10.1093/bioinformatics/bty1054) .
+[**sPLS-DA (DIABLO)**](doi.org/10.1093/bioinformatics/bty1054) .
 
   - To determine *small biosignatures* - biosigner.
-  - To build *classification models* in a *multi-omic* way - DIABLO.
+  - To build *classification models* in a *multi-omics* way - DIABLO.
   - To select relevant biological *features* to *enrich* - DIABLO.
 
 | Features selected                             | Performances                                  |
@@ -143,13 +150,13 @@ questions: [**biosigner**](https://doi.org/10.3389/fmolb.2016.00026) &
 **Biological Insight** tab is dedicated to give biological sense to your
 data.
 
-  - You could process ***2 analysis in 2 clicks***: *DESeq2* and *DIABLO
-    features* enrichments.
+  - You could process ***2 analysis in 2 clicks***: both *DESeq2* and
+    *DIABLO features* ORAs for functional enrichment.
 
 ## Biological Annotation Databases
 
-**multiSight** uses so far **several databases** to provide large panel
-of **enrichment analysis** automatically after few clicks:
+**multiSight** uses so far **several databases** to provide a large
+panel of **enrichment analysis**, automatically after few clicks:
 
 **Pathways** and **Gene Ontology** databases are implemented, helped by
 **clusterProfiler** and **reactomePA** R Bioconductor packages.
@@ -165,11 +172,11 @@ of **enrichment analysis** automatically after few clicks:
 
 Two types of result visualization are given:
 
-  - Classical **Enrichment table** for each omic and each database
+  - Classical **Enrichment tables** for each omic and each database
     (e.g.  Pathways id, p-value, padjust columns).
-  - And, when more than one omic enriched: *Multi-omic table* and
-    *multi-omic enrichment map* for **DESeq2** and *DIABLO selected
-    features*
+  - And, when more than one omic enriched: a *Multi-omics table* and a
+    *multi-omics enrichment map* for **DESeq2** and *DIABLO selected
+    features*.
 
 | DESeq2 & DIABLO features                     | Enrichment tables                            | Enrichment Map                               |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
@@ -180,12 +187,13 @@ Two types of result visualization are given:
 > :point\_right: Some clicks (from 4 to number of PubMed queries)
 
 **Assumption tab** aims to help biological hypothesis making by *network
-inference* with feature relation values (e.g correlation, partial
-correlation) and *PubMed module* linked to relation tables.
+inference* from feature relationship values (e.g correlation, partial
+correlation) and by a *PubMed module*.
 
-Tools:
+You can find both functions:
 
-  - To compute *_network inference_* and reveal feature relationships.
+  - To compute *_network inference_* and to reveal feature
+    relationships.
   - To get *_PubMed articles_* based on your personalized query without
     leaving app.
 
@@ -200,25 +208,26 @@ by:
 
   - Automatic report with all results in **HTML** and **.doc**
     documents.
-  - **.RData** with all results obtained by all modules.
+  - **.RData** with all results obtained by the graphical application.
 
-Note that tables could be download in a separated way in relative tabs.
+Note that tables could be downloaded in a separated way in relative
+tabs.
 
 > **MODELS**: classification models you can use on future data.
 
 > **DESeq2**: differential expression analysis tables.
 
-> **BIOSIGNATURES**: DESeq2 tables thresholding and DIABLO multi-omic
+> **BIOSIGNATURES**: DESeq2 tables thresholding and DIABLO multi-omics
 > features selection method
 
 > **Functional ENRICHMENTS**: 6 databases functional enrichment for all
-> omic data sets you provide enriched by Stouffer’s pooling p-value
-> method giving a **multi-omic enrichmentt able** easily to discuss.
+> omic datasets you provide enriched by Stouffer’s pooling p-value
+> method giving a **multi-omics enrichmentt able** easily to discuss.
 
-> **NETWORKS**: network inference with all features selected from all
-> omic datasets according to DESeq2 tables thresholding or multi-omic
-> feature selection (correlation, partial correlation, mutual
-> information).
+> **NETWORKS**: network inference analysis with all features selected
+> from all omic datasets according to DESeq2 tables thresholding or
+> multi-omics feature selection (correlation, partial correlation,
+> mutual information).
 
-> **BIBLIOGRAPHY** : subset of PubMed articles relative to relations you
-> choose in network inference tab.
+> **BIBLIOGRAPHY** : a subset of PubMed articles relative to relations
+> you choose in network inference tab.
