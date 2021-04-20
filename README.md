@@ -8,7 +8,7 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 ![last
 commit](https://img.shields.io/github/last-commit/fjeanneret/multiSight.svg)
-![license](https://img.shields.io/github/license/fjeanneret/multiSight.svg)
+<!-- ![license](https://img.shields.io/github/license/fjeanneret/multiSight.svg) -->
 <!-- badges: end -->
 
 <img src="inst/app/www/multiSight_hexicon.png" align="right" alt="hexicon" />
@@ -54,7 +54,7 @@ Nevertheless, sPLS-DA *biosignatures* are based on more features than
 
 **Biosignatures** can be used:
 
-  - To forecast phenotype (e.g. to diagnostic tasks, histological
+  - To forecast phenotype (e.g. to diagnostic tasks, histological
     subtyping);
   - To design ***Pathways*** and ***gene ontology*** **enrichments**
     (sPLS-DA biosignatures only);
