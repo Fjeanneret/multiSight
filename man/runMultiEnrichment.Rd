@@ -37,9 +37,9 @@ for every databases furnished. Run by utils function runMultiOmicEnrichment
 \examples{
 \donttest{
 data("omic2", package = "multiSight")
-splittedData <- splitDatatoTrainTest(omic2, 0.8)
-data.train <- splittedData$data.train
-data.test <- splittedData$data.test
+splitData <- splitDatatoTrainTest(omic2, 0.8)
+data.train <- splitData$data.train
+data.test <- splitData$data.test
 
 diabloRes <- runSPLSDA(data.train)
 diabloModels <- diabloRes$model #sPLS-DA model using all omics.

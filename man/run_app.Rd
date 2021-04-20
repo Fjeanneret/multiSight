@@ -4,10 +4,7 @@
 \alias{run_app}
 \title{Run the Shiny Application}
 \usage{
-run_app(...)
-}
-\arguments{
-\item{...}{A series of options to be used inside the app.}
+run_app()
 }
 \value{
 Launches RShiny app

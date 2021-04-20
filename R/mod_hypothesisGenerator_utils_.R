@@ -6,21 +6,21 @@
 #'
 #' @noRd
 #'
-#' @importFrom corrplot corrplot
+# #' @importFrom corrplot corrplot
 #' @importFrom grDevices colorRampPalette
 multiMatrixCorr <- function(corr.matrix)
 {
     ## PLOT
     col <- colorRampPalette(c("#1d5c9d", "#ffffff", "#bd0023"))(200)
-    
-    corrPlot <- corrplot(corr.matrix, type="upper",
-                         method="color",
-                         tl.pos="y",
-                         tl.col="grey",
-                         is.corr=FALSE,
-                         col=col,
-                         hclust.method="centroid",
-                         diag=FALSE)
+    corrPlot <- NULL
+    # corrPlot <- corrplot(corr.matrix, type="upper",
+    #                      method="color",
+    #                      tl.pos="y",
+    #                      tl.col="grey",
+    #                      is.corr=FALSE,
+    #                      col=col,
+    #                      hclust.method="centroid",
+    #                      diag=FALSE)
     return(corrPlot)
 }
 
@@ -112,7 +112,7 @@ mat2graph <- function(matrixValue, relevantFeatureCouples, numThreshold)
 #' @param threshold numeric threshold to display relevant edges
 #' 
 #' @importFrom stringr str_split
-#' @importFrom ggsci pal_npg
+# #' @importFrom ggsci pal_npg
 #' @importFrom igraph vertex_attr
 #' @importFrom utils tail
 #' 
@@ -149,11 +149,11 @@ buildNetworkD3 <- function(graph, threshold)
                              opacity = 1,
                              legend = TRUE)
     # colourScale = col)
-    newGraph <- 
-        htmlwidgets::prependContent(newGraph, 
-                                    htmltools::tags$i(
-                                        paste0("Threshold value: ", 
-                                                             threshold))) 
+    newGraph <- newGraph
+        # htmlwidgets::prependContent(newGraph, 
+        #                             htmltools::tags$i(
+        #                                 paste0("Threshold value: ", 
+                                                             # threshold))) 
     
     return(newGraph)
 }
@@ -230,7 +230,7 @@ mergePubmedQuery <- function(input, output, session)
 #' 
 #' @importFrom shiny eventReactive
 #' @importFrom networkD3 renderForceNetwork
-#' @importFrom htmlwidgets onRender
+# #' @importFrom htmlwidgets onRender
 buildNetworkInference <- function(input, 
                                   output, 
                                   session, 
@@ -258,13 +258,13 @@ buildNetworkInference <- function(input,
         
         ## Output UI
         plotID <- paste0(method, "Plot") ####
-        output[[plotID]] <- 
-            renderPlot(multiMatrixCorr(network$num.matrix))
+        # output[[plotID]] <- 
+            # renderPlot(multiMatrixCorr(network$num.matrix))
         networkID <- paste0(method, "Network") ####
-        output[[networkID]] <- renderForceNetwork(
-            onRender(network$graph, 
-                     "function(el,x) 
-                         { d3.selectAll('.node').on('mouseover', null); }"))
+        output[[networkID]] <- renderForceNetwork(network$graph)
+            # onRender(network$graph, 
+            #          "function(el,x) 
+            #              { d3.selectAll('.node').on('mouseover', null); }"))
         ## Correlation table
         relationTable <- (network$flattenTable)
         relationTable

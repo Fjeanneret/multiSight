@@ -19,39 +19,32 @@ biocViews: Software, RNASeq, miRNA, Network, NetworkInference, DifferentialExpre
 License: CeCILL + file LICENSE
 Imports: 
     config,
-    golem,
-    shiny,
-    DT,
-    htmltools,
-    shinydashboard,
     R6,
-    biosigner,
-    caret,
-    mixOmics,
-    ppcor,
-    corrplot,
-    clusterProfiler,
-    rWikiPathways,
+    shiny,
+    shinydashboard,
+    DT,
+    dplyr,
+    tidyr,
     stringr,
     anyLib,
-    ReactomePA,
-    dplyr,
-    igraph,
-    infotheo,
-    metap,
-    tidyr,
-    easyPubMed,
-    ggsci,
-    ggplot2,
-    networkD3,
-    htmlwidgets,
-    DESeq2,
-    enrichplot,
+    caret,
+    biosigner,
+    mixOmics,
     stats,
+    DESeq2,
+    clusterProfiler,
+    rWikiPathways,
+    ReactomePA,
+    enrichplot,
+    ppcor,
+    metap,
+    infotheo,
+    igraph,
+    networkD3,
+    easyPubMed,
     utils,
+    htmltools,
     grDevices,
-    purrr,
-    rmarkdown,
     org.Mm.eg.db
 Encoding: UTF-8
 LazyData: false
@@ -59,7 +52,7 @@ BugReports: https://github.com/Fjeanneret/multiSight/issues
 RoxygenNote: 7.1.1
 Suggests: 
     rlang,
-    markdown,
+    rmarkdown,
     attempt,
     processx,
     testthat,
@@ -67,4 +60,4 @@ Suggests:
     BiocStyle
 VignetteBuilder: knitr
 Depends: 
-    R (>= 4.1)
+    R (>= 4.0.3)

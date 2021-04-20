@@ -20,9 +20,9 @@ Select only data values from diablo features selected.
 }
 \examples{
 data("omic2", package = "multiSight")
-splittedData <- splitDatatoTrainTest(omic2, 0.8)
-data.train <- splittedData$data.train
-data.test <- splittedData$data.test
+splitData <- splitDatatoTrainTest(omic2, 0.8)
+data.train <- splitData$data.train
+data.test <- splitData$data.test
 
 #diabloRes <- runSPLSDA(data.train)
 data("diabloRes", package = "multiSight")

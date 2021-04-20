@@ -18,9 +18,9 @@ A model and selection features function from biosigner.
 }
 \examples{
 data("omic2", package = "multiSight")
-splittedData <- splitDatatoTrainTest(omic2, 0.8)
-data.train <- splittedData$data.train
-data.test <- splittedData$data.test
+splitData <- splitDatatoTrainTest(omic2, 0.8)
+data.train <- splitData$data.train
+data.test <- splitData$data.test
 
 #biosignerRes <- runSVMRFmodels_Biosigner(data.train)
 data("biosignerRes", package = "multiSight") 

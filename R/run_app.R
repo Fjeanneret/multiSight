@@ -1,20 +1,13 @@
 #' Run the Shiny Application
 #'
-#' @param ... A series of options to be used inside the app.
-#'
-#' @export
-#' @importFrom shiny shinyApp
-#' @importFrom golem with_golem_options
+#' @importFrom shiny shinyApp runApp
 #' 
+#' @export
 #' @return Launches RShiny app
-run_app <- function(
-  ...
-) {
-  with_golem_options(
+run_app <- function() {
     app = shinyApp(
       ui = app_ui, 
       server = app_server
-    ), 
-    golem_opts = list(...)
-  )
+    )
+    runApp(app)
 }

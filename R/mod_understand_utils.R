@@ -65,8 +65,8 @@ termsimJC <- function(enrichmentTable, geneSets)
 #' @param pvStouffer Stouffer's value informed by user input.
 #'
 #' @importFrom enrichplot emapplot
-#' @importFrom ggsci scale_color_gsea 
-#' @importFrom ggplot2 ggtitle ggplot annotate theme_void
+# #' @importFrom ggsci scale_color_gsea 
+# #' @importFrom ggplot2 ggtitle ggplot annotate theme_void
 #' 
 #' @noRd
 #' 
@@ -91,18 +91,19 @@ emFromStouffer <- function(enrichmentStouffer, pvStouffer)
         emplot <- emapplot(enrichmentStouffer,
                          layout="kk", 
                          min_edge = 0.2,
-                         cex_label_category = 0.75) + 
-        scale_color_gsea(reverse = TRUE) +
-        ggtitle(plotTitle)
+                         cex_label_category = 0.75)
+        # scale_color_gsea(reverse = TRUE) +
+        # ggtitle(plotTitle)
   }
   else 
   {
     text = paste0("\n   No one or only one Stouffer weighted's 
                   value\n less or equal to your threshold: ", 
                   pvStouffer)
-    emplot <- ggplot() + 
-      annotate("text", x = 4, y = 25, size=5, label = text) + 
-      theme_void()
+    # emplot <- ggplot() + 
+      # annotate("text", x = 4, y = 25, size=5, label = text) + 
+      # theme_void()
+    emplot <- plot(1)
     
   }
   return(emplot)

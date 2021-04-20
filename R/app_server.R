@@ -24,4 +24,5 @@ app_server <- function(input, output, session ) {
     callModule(mod_MLmodels_server, "MLmodels_ui_1", startSignal, bioDB)
     # callModule(mod_hypothesisGenerator_server, "hypothesisGenerator_ui_1", 
     # obj)
+    session$onSessionEnded(stopApp)
 }

@@ -37,7 +37,6 @@ zeroVarRmv <- function(omicData, omicID)
 #' 
 #' @noRd
 #' 
-#' @importFrom purrr map
 checkSampleOverlap <- function(listOmic)
 {
     out <- tryCatch(
@@ -52,7 +51,7 @@ checkSampleOverlap <- function(listOmic)
             You could retrieve expected format in vignette."
             stop(simpleError(msg))
           }
-          matListOverlap <- map(listOmic, function(x) x[ID, ])
+          matListOverlap <- lapply(listOmic, function(x) x[ID, ])
           message("NOTE: ", 
                   sampleOverlap, 
                   " samples in common between all blocks.")
