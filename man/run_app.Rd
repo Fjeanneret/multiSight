@@ -6,6 +6,9 @@
 \usage{
 run_app(...)
 }
+\arguments{
+\item{...}{A series of options to be used inside the app.}
+}
 \value{
 Launches RShiny app
 }
