@@ -24,7 +24,6 @@ Imports:
     shinydashboard,
     DT,
     dplyr,
-    tidyr,
     stringr,
     anyLib,
     caret,

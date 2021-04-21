@@ -371,7 +371,6 @@ runMultiEnrichment <- function(omicSignature,
 #' @importFrom clusterProfiler read.gmt enricher
 #' @importFrom rWikiPathways downloadPathwayArchive
 #' @importFrom dplyr select 
-#' @importFrom tidyr separate 
 #' 
 #' @return enrichResult object with wikiPAthways database used.
 enrichWP <- function(gene,
@@ -381,10 +380,21 @@ enrichWP <- function(gene,
                      maxGSSize)
 {
     ## WPgmtFile according to organism 
-    wpgmtfile <- downloadPathwayArchive(organism=organism, format = "gmt")
+    wpgmtfile <- downloadPathwayArchive(organism="Homo sapiens", format = "gmt")
     wp2gene <- clusterProfiler::read.gmt(wpgmtfile)
-    wp2gene <- wp2gene %>% 
-        tidyr::separate(.data$term, c("name","version","wpid","org"), "%")
+    
+    ## Separate by %
+    colNames <- c("name","version","wpid","org")
+    wp2geneDF <- data.frame()
+    df <- vapply(wp2gene$term, function(row) {
+      splitRow <- str_split(row, "%")
+      unlist(splitRow)
+    }, FUN.VALUE = colNames)
+    gmtDesc <- t(data.frame(df))
+    wp2gene <- data.frame(cbind(gmtDesc, wp2gene$gene))
+    colnames(wp2gene) <- c(colNames, "gene")
+    ##
+    
     wpid2gene <- wp2gene %>% dplyr::select(.data$wpid, gene) #TERM2GENE
     wpid2name <- wp2gene %>% dplyr::select(.data$wpid, .data$name) #TERM2NAME
     
