@@ -1,6 +1,6 @@
 Package: multiSight
 Title: Multi-'Omic' Classification, Enrichment and Network Inference analysis
-Version: 0.99.35
+Version: 0.99.36
 Authors@R: c(person(given = 'Florian', 
                     family = 'Jeanneret', 
                     email = 'florian.jeanneret@cea.fr', 
@@ -59,4 +59,4 @@ Suggests:
     BiocStyle
 VignetteBuilder: knitr
 Depends: 
-    R (>= 4.0.3)
+    R (>= 4.1)
