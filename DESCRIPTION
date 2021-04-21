@@ -1,5 +1,5 @@
 Package: multiSight
-Title: Multi-'Omic' Classification, Enrichment and Network Inference analysis
+Title: Multi-'Omics' Classification, Enrichment and Network Inference analysis
 Version: 0.99.38
 Authors@R: c(person(given = 'Florian', 
                     family = 'Jeanneret', 
@@ -15,9 +15,10 @@ Description: 'multiSight' is a R package providing an user-friendly graphical in
     - To forecast phenotypes (e.g. to diagnostic tasks, histological 'subtyping')
     - To design Pathways and gene ontology 'enrichments' (Over Representation Analysis)
     - To build Network inference linked to 'PubMed' querying to make assumptions easier and data-driven.
-biocViews: Software, RNASeq, miRNA, Network, NetworkInference, DifferentialExpression, Classification
+biocViews: Software, RNASeq, miRNA, Network, NetworkInference, DifferentialExpression, Classification, Pathways, GeneSetEnrichment
 License: CeCILL + file LICENSE
 Imports: 
+    golem,
     config,
     R6,
     shiny,
