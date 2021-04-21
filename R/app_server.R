@@ -1,7 +1,7 @@
 #' The application server-side
 #' 
 #' @param input,output,session Internal parameters for {shiny}. 
-#' @importFrom shiny callModule  
+#' @importFrom shiny callModule stopApp
 #' @importFrom R6 R6Class 
 #' @import org.Mm.eg.db
 #' @noRd
