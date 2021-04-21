@@ -143,7 +143,7 @@ You have to provide two types of data: **numeric matrices** and
 
 Two types of models have been implemented so far to answer different 
 questions: [**biosigner**](https://doi.org/10.3389/fmolb.2016.00026) & 
-[**sPLS-DA (DIABLO)**](doi.org/10.1093/bioinformatics/bty1054) .
+[**sPLS-DA (DIABLO)**](https://doi.org/10.1093/bioinformatics/bty1054) .
 
 - To determine *small biosignatures* - biosigner.
 - To build *classification models* in a *multi-omics* way - DIABLO.
