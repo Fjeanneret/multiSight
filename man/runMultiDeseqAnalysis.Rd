@@ -23,7 +23,7 @@ Runs DESEQ2 analysis on all omic data blocks.
 data("omic2", package = "multiSight")
 #deseqRes <- runMultiDeseqAnalysis(omic2, 0.05)
 data("deseqRes", package = "multiSight")
-print(deseqRes$$DEtable$rnaRead)
+print(deseqRes$DEtable$rnaRead)
 
 
 }
