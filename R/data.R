@@ -49,3 +49,10 @@
 #' @source Returned by multiSight runMultiEnrichment() function
 "runMultiEnrichment_result"
 
+#' multiSight results
+#'
+#' DESeq2 results object obtained with several omic data sets.
+#'
+#' @source Returned by multiSight runMultiDeseqAnalysis() function
+"deseqRes"
+

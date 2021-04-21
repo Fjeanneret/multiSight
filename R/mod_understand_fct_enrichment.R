@@ -746,7 +746,10 @@ formatStoufferTable <- function(stoufferTable, db = NULL, dataNbr)
 #' 
 #' @examples 
 #' data("omic2", package = "multiSight")
-#' deseqRes <- runMultiDeseqAnalysis(omic2, 0.05)
+#' #deseqRes <- runMultiDeseqAnalysis(omic2, 0.05)
+#' data("deseqRes", package = "multiSight")
+#' print(deseqRes$$DEtable$rnaRead)
+#' 
 #' 
 #' @export 
 #' 
