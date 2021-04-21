@@ -1,6 +1,6 @@
 Package: multiSight
 Title: Multi-'Omic' Classification, Enrichment and Network Inference analysis
-Version: 0.99.36
+Version: 0.99.37
 Authors@R: c(person(given = 'Florian', 
                     family = 'Jeanneret', 
                     email = 'florian.jeanneret@cea.fr', 
@@ -44,14 +44,15 @@ Imports:
     utils,
     htmltools,
     grDevices,
-    org.Mm.eg.db
+    org.Mm.eg.db,
+    rmarkdown
 Encoding: UTF-8
 LazyData: false
 BugReports: https://github.com/Fjeanneret/multiSight/issues
 RoxygenNote: 7.1.1
 Suggests: 
     rlang,
-    rmarkdown,
+    markdown,
     attempt,
     processx,
     testthat,
