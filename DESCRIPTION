@@ -1,6 +1,6 @@
 Package: multiSight
 Title: Multi-'Omics' Classification, Enrichment and Network Inference analysis
-Version: 0.99.45
+Version: 0.99.46
 Authors@R: c(person(given = 'Florian', 
                     family = 'Jeanneret', 
                     email = 'florian.jeanneret@cea.fr', 
@@ -27,6 +27,7 @@ Imports:
     dplyr,
     stringr,
     anyLib,
+    stats,
     caret,
     biosigner,
     mixOmics,
