@@ -30,7 +30,6 @@ Imports:
     caret,
     biosigner,
     mixOmics,
-    stats,
     DESeq2,
     clusterProfiler,
     rWikiPathways,
@@ -45,13 +44,13 @@ Imports:
     utils,
     htmltools,
     grDevices,
-    org.Mm.eg.db,
     rmarkdown
 Encoding: UTF-8
 LazyData: false
 BugReports: https://github.com/Fjeanneret/multiSight/issues
 RoxygenNote: 7.1.1
 Suggests: 
+    org.Mm.eg.db,
     rlang,
     markdown,
     attempt,
