@@ -362,8 +362,11 @@ codes with your organism database of interest.
 For instance, org.Mm.eg.db for Human provides 24 input names you can use as 
 feature names in your datasets.
 ```{r message=FALSE}
-require(org.Mm.eg.db)
-columns(org.Mm.eg.db)
+if (requireNamespace("org.Mm.eg.db", quietly = TRUE))
+{
+  library(org.Mm.eg.db)
+  columns(org.Mm.eg.db)
+}
 ```
 Please note that feature IDs can differ between omic blocks (e.g. one dataset 
 with gene SYMBOL, another one with ENSEMBL IDs). You can provide this 
@@ -399,19 +402,21 @@ dbList <- list(rnaRead = "ENSEMBL",
 convFeat <- convertToEntrezid(multiOmic_biosignature, dbList, "org.Mm.eg.db")
 
 ### ORA enrichment analysis
-require(org.Mm.eg.db, warn.conflicts = FALSE)
-# database <- c("kegg", "wikiPathways", "reactome", "MF", "CC", "BP")
-database <- c("reactome")
-data("enrichResList", package = "multiSight")
-# enrichResList <- runMultiEnrichment(omicSignature = convFeat, 
-#                                    databasesChosen = database, 
-#                                    organismDb = "org.Mm.eg.db", 
-#                                    pvAdjust = "BH", #default value, optional
-#                                    minGSSize = 5, #default value, optional
-#                                    maxGSSize = 800, #default value, optional
-#                                    pvStouffer = 0.1) #default value, optional
-reacRes <- enrichResList$pathways$reactome
-names(reacRes$result) # classical enrichment tables, multi-omics table, EMap
+if (requireNamespace("org.Mm.eg.db", quietly = TRUE))
+{
+    # database <- c("kegg", "wikiPathways", "reactome", "MF", "CC", "BP")
+    database <- c("reactome")
+    data("enrichResList", package = "multiSight")
+    # enrichResList <- runMultiEnrichment(omicSignature = convFeat, 
+    #                                    databasesChosen = database, 
+    #                                    organismDb = "org.Mm.eg.db", 
+    #                                    pvAdjust = "BH", #default value
+    #                                    minGSSize = 5, #default value
+    #                                    maxGSSize = 800, #default value
+    #                                    pvStouffer = 0.1) #default value
+    reacRes <- enrichResList$pathways$reactome
+    names(reacRes$result) # classical enrichment tables, multi-omics and EMap
+}
 ```
 
 
@@ -424,7 +429,6 @@ save tables in this tab.
 
 ```{r multiOmicEnrichment_DIABLO, message=FALSE, warning=FALSE}
 require(multiSight)
-require(org.Mm.eg.db, warn.conflicts = FALSE)
 ## omic2 is a multi-omics dataset of 2 simulated omics included in package
 data("omic2", package = "multiSight")
 data("diabloRes", package = "multiSight")
@@ -442,24 +446,28 @@ diabloFeats <- diabloRes$biosignature #selected features for each omic.
 names(diabloFeats) #/!\use same names for dbList and omic datasets.
 dbList <- list(rnaRead = "ENSEMBL", #feature names origin
                dnaRead = "ENSEMBL")
-convFeat <- convertToEntrezid(diabloFeats, 
-                              dbList, 
-                              "org.Mm.eg.db")
 
-### ORA enrichment analysis for omic feature lists
-# database <- c("kegg", "wikiPathways", "reactome", "MF", "CC", "BP")
-database <- c("reactome")
-multiOmicRes <- runMultiEnrichment(omicSignature = convFeat, 
-                                   databasesChosen = database, 
-                                   organismDb = "org.Mm.eg.db",
-                                   pvAdjust = "BH", #default value, optional
-                                   minGSSize = 5, #default value, optional
-                                   maxGSSize = 800, #default value, optional
-                                   pvStouffer = 0.1) #default value, optional
-
-## Results
-reacRes <- multiOmicRes$pathways$reactome
-names(reacRes$result) # classical enrichment tables, multi-omics table and EMap
+if (requireNamespace("org.Mm.eg.db", quietly = TRUE))
+{
+    convFeat <- convertToEntrezid(diabloFeats, 
+                                  dbList, 
+                                  "org.Mm.eg.db")
+    
+    ### ORA enrichment analysis for omic feature lists
+    # database <- c("kegg", "wikiPathways", "reactome", "MF", "CC", "BP")
+    database <- c("reactome")
+    multiOmicRes <- runMultiEnrichment(omicSignature = convFeat, 
+                                       databasesChosen = database, 
+                                       organismDb = "org.Mm.eg.db",
+                                       pvAdjust = "BH", #default value
+                                       minGSSize = 5, #default value
+                                       maxGSSize = 800, #default value
+                                       pvStouffer = 0.1) #default value
+    
+    ## Results
+    reacRes <- multiOmicRes$pathways$reactome
+    names(reacRes$result) # classical enrichment tables, multi-omics and EMap
+}
 ```
 
 ## Visualizations

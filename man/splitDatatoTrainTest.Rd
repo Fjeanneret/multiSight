@@ -12,7 +12,7 @@ splitDatatoTrainTest(MultiOmicData, freq = 0.8)
 \item{freq}{Split proportion of train samples}
 }
 \value{
-Returns two data sets: first to train model and second to assess it.
+Return two data sets: first to train model and second to assess it.
 }
 \description{
 To split list of omic data in data train and data test subsets.

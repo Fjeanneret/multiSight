@@ -155,29 +155,34 @@ getDbFromInput <- function(input, session, omicDataNames)
 #'
 #' @examples
 #' \donttest{
-#' library(org.Mm.eg.db) # Organism's database
-#' data("omic2", package = "multiSight")
-#' splitData <- splitDatatoTrainTest(omic2, 0.8)
-#' data.train <- splitData$data.train
-#' data.test <- splitData$data.test
 #' 
-#' diabloRes <- runSPLSDA(data.train)
-#' diabloModels <- diabloRes$model #sPLS-DA model using all omics.
-#' diabloFeats <- diabloRes$biosignature #selected features for each omic.
-#' id_db <- list(omic1 = "ENSEMBL", omic2 = "ENSEMBL")
-#' convFeat <- convertToEntrezid(diabloFeats, id_db, "org.Mm.eg.db")
-#' }
+#' if (requireNamespace("org.Mm.eg.db", quietly = TRUE)) 
+#' {
+#'     library(org.Mm.eg.db, warn.conflicts = FALSE)
+#'     data("omic2", package = "multiSight")
+#'     splitData <- splitDatatoTrainTest(omic2, 0.8)
+#'     data.train <- splitData$data.train
+#'     data.test <- splitData$data.test
 #' 
-#' featList <- list(Omic1 = c("ENSMUSG00000039621", 
+#'     diabloRes <- runSPLSDA(data.train)
+#'     diabloModels <- diabloRes$model #sPLS-DA model using all omics.
+#'     diabloFeats <- diabloRes$biosignature #selected features for each omic.
+#'     id_db <- list(omic1 = "ENSEMBL", omic2 = "ENSEMBL")
+#'     convFeat <- convertToEntrezid(diabloFeats, id_db, "org.Mm.eg.db")
+#' 
+#' 
+#'     featList <- list(Omic1 = c("ENSMUSG00000039621", 
 #'                            "ENSMUSG00000038733", 
 #'                            "ENSMUSG00000062031"), 
-#'                  Omic2 = c("ENSMUSG00000031170", 
+#'                       Omic2 = c("ENSMUSG00000031170", 
 #'                            "ENSMUSG00000077495", 
 #'                            "ENSMUSG00000042992"))
-#' dbList <- list(Omic1 = "ENSEMBL",
-#'                  Omic2 = "ENSEMBL")
+#'     dbList <- list(Omic1 = "ENSEMBL",
+#'                      Omic2 = "ENSEMBL")
 #' 
-#' convFeat <- convertToEntrezid(featList, dbList, "org.Mm.eg.db")
+#'     convFeat <- convertToEntrezid(featList, dbList, "org.Mm.eg.db")
+#' }
+#' }
 #' 
 #' @importFrom clusterProfiler bitr
 #' 

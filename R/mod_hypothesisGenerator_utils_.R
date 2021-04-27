@@ -1,29 +1,3 @@
-#' Create multi-omic correlation matrix and relative plot.
-#'
-#' @param corr.matrix A correlation matrix or relative
-#'
-#' @return The correlation matrix of all omic selected features.
-#'
-#' @noRd
-#'
-# #' @importFrom corrplot corrplot
-#' @importFrom grDevices colorRampPalette
-multiMatrixCorr <- function(corr.matrix)
-{
-    ## PLOT
-    col <- colorRampPalette(c("#1d5c9d", "#ffffff", "#bd0023"))(200)
-    corrPlot <- NULL
-    # corrPlot <- corrplot(corr.matrix, type="upper",
-    #                      method="color",
-    #                      tl.pos="y",
-    #                      tl.col="grey",
-    #                      is.corr=FALSE,
-    #                      col=col,
-    #                      hclust.method="centroid",
-    #                      diag=FALSE)
-    return(corrPlot)
-}
-
 #' From matrix relation values to relation as rows in dataframe. 
 #'
 #' @param relationMatrix A relation matrix between features 
@@ -259,7 +233,6 @@ buildNetworkInference <- function(input,
         ## Output UI
         plotID <- paste0(method, "Plot") ####
         # output[[plotID]] <- 
-            # renderPlot(multiMatrixCorr(network$num.matrix))
         networkID <- paste0(method, "Network") ####
         output[[networkID]] <- renderForceNetwork(network$graph)
             # onRender(network$graph, 

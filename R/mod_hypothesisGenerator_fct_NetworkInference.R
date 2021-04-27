@@ -73,7 +73,6 @@ getDataSelectedFeatures <- function(matrixDataList, featureList = NULL)
 #'
 #' 
 #' @import igraph
-#' @importFrom stats cor na.exclude
 #' @importFrom stringr str_split
 #' @importFrom dplyr filter
 #' 

@@ -214,23 +214,26 @@ detectTypeEnrich <- function(databaseName)
 #' diabloFeats <- diabloRes$biosignature #selected features for each omic.
 #' id_db <- list(omic1 = "ENSEMBL", omic2 = "ENSEMBL")
 #' }
-#' library(org.Mm.eg.db, warn.conflicts = FALSE) #Organism's database
-#' featList <- list(Omic1 = c("ENSMUSG00000039621", 
+#' if (requireNamespace("org.Mm.eg.db", quietly = TRUE)) 
+#' {
+#'     library(org.Mm.eg.db, warn.conflicts = FALSE) #Organism's database
+#'     featList <- list(Omic1 = c("ENSMUSG00000039621", 
 #'                            "ENSMUSG00000038733", 
 #'                            "ENSMUSG00000062031"), 
-#'                  Omic2 = c("ENSMUSG00000031170", 
+#'                      Omic2 = c("ENSMUSG00000031170", 
 #'                            "ENSMUSG00000077495", 
 #'                            "ENSMUSG00000042992"))
-#' dbList <- list(Omic1 = "ENSEMBL",
+#'     dbList <- list(Omic1 = "ENSEMBL",
 #'                  Omic2 = "ENSEMBL")
-#' convFeat <- convertToEntrezid(featList, dbList, "org.Mm.eg.db")
+#'     convFeat <- convertToEntrezid(featList, dbList, "org.Mm.eg.db")
 #' 
-#' ## To enrich features
-#' database <- c("reactome", "MF")
-#' #runMultiEnrichment_result <- runMultiEnrichment(databasesChosen = database,
-#' #                                  omicSignature = convFeat,
-#' #                                  organismDb = "org.Mm.eg.db")
-#' data(runMultiEnrichment_result, package = "multiSight")
+#'     ## To enrich features
+#'     database <- c("reactome", "MF")
+#'     #runMultiEnrichment_result <- runMultiEnrichment(databasesChosen = database,
+#'     #                                  omicSignature = convFeat,
+#'     #                                  organismDb = "org.Mm.eg.db")
+#'     data(runMultiEnrichment_result, package = "multiSight")
+#' }
 #'   
 #' @importFrom dplyr filter
 #' @importFrom clusterProfiler enrichKEGG read.gmt enricher enrichGO
@@ -465,16 +468,19 @@ omicWeight <- function(enrichmentResultTables)
 #' diabloModels <- diabloRes$model #sPLS-DA model using all omics.
 #' diabloFeats <- diabloRes$biosignature #selected features for each omic.
 #' id_db <- list(omic1 = "ENSEMBL", omic2 = "ENSEMBL")
-#' library(org.Mm.eg.db) # Organism's database
-#' convFeat <- convertToEntrezid(diabloFeats, id_db, "org.Mm.eg.db")
-#' database <- c("reactome", "MF")
-#' #enrichTables <- runMultiEnrichment(databasesChosen = database,
-#' #  omicSignature = convFeat,
-#' #  organismDb = "org.Mm.eg.db")
-#' # enrichmentTables <- enrichTables$pathways$reactome$enrichObj
-#' #enrichResList # list of enrichRes objects (e.g. enrichKEGG() results)
-#' data(enrichResList, package = "multiSight")
-#' multiOmicTable <- stoufferTable(enrichResList)
+#' if (requireNamespace("org.Mm.eg.db", quietly = TRUE)) 
+#' {
+#'     library(org.Mm.eg.db, warn.conflicts = FALSE)#' 
+#'     convFeat <- convertToEntrezid(diabloFeats, id_db, "org.Mm.eg.db")
+#'     database <- c("reactome", "MF")
+#'     #enrichTables <- runMultiEnrichment(databasesChosen = database,
+#'     #  omicSignature = convFeat,
+#'     #  organismDb = "org.Mm.eg.db")
+#'     # enrichmentTables <- enrichTables$pathways$reactome$enrichObj
+#'     #enrichResList # list of enrichRes objects (e.g. enrichKEGG() results)
+#'     data(enrichResList, package = "multiSight")
+#'     multiOmicTable <- stoufferTable(enrichResList)
+#' }
 #' }
 #' 
 #' @return enrichment table results merged with Stouffer's p-value

@@ -35,16 +35,19 @@ diabloRes <- runSPLSDA(data.train)
 diabloModels <- diabloRes$model #sPLS-DA model using all omics.
 diabloFeats <- diabloRes$biosignature #selected features for each omic.
 id_db <- list(omic1 = "ENSEMBL", omic2 = "ENSEMBL")
-library(org.Mm.eg.db) # Organism's database
-convFeat <- convertToEntrezid(diabloFeats, id_db, "org.Mm.eg.db")
-database <- c("reactome", "MF")
-#enrichTables <- runMultiEnrichment(databasesChosen = database,
-#  omicSignature = convFeat,
-#  organismDb = "org.Mm.eg.db")
-# enrichmentTables <- enrichTables$pathways$reactome$enrichObj
-#enrichResList # list of enrichRes objects (e.g. enrichKEGG() results)
-data(enrichResList, package = "multiSight")
-multiOmicTable <- stoufferTable(enrichResList)
+if (requireNamespace("org.Mm.eg.db", quietly = TRUE)) 
+{
+    library(org.Mm.eg.db, warn.conflicts = FALSE)#' 
+    convFeat <- convertToEntrezid(diabloFeats, id_db, "org.Mm.eg.db")
+    database <- c("reactome", "MF")
+    #enrichTables <- runMultiEnrichment(databasesChosen = database,
+    #  omicSignature = convFeat,
+    #  organismDb = "org.Mm.eg.db")
+    # enrichmentTables <- enrichTables$pathways$reactome$enrichObj
+    #enrichResList # list of enrichRes objects (e.g. enrichKEGG() results)
+    data(enrichResList, package = "multiSight")
+    multiOmicTable <- stoufferTable(enrichResList)
+}
 }
 
 }

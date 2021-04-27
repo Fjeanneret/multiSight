@@ -13,7 +13,7 @@
 #' 
 #' @export
 #' 
-#' @return Returns two data sets: first to train model and second to assess it.
+#' @return Return two data sets: first to train model and second to assess it.
 splitDatatoTrainTest <- function(MultiOmicData, freq = 0.8)
 {
     ## Random splitting indexes

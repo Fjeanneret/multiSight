@@ -46,22 +46,25 @@ diabloModels <- diabloRes$model #sPLS-DA model using all omics.
 diabloFeats <- diabloRes$biosignature #selected features for each omic.
 id_db <- list(omic1 = "ENSEMBL", omic2 = "ENSEMBL")
 }
-library(org.Mm.eg.db, warn.conflicts = FALSE) #Organism's database
-featList <- list(Omic1 = c("ENSMUSG00000039621", 
+if (requireNamespace("org.Mm.eg.db", quietly = TRUE)) 
+{
+    library(org.Mm.eg.db, warn.conflicts = FALSE) #Organism's database
+    featList <- list(Omic1 = c("ENSMUSG00000039621", 
                            "ENSMUSG00000038733", 
                            "ENSMUSG00000062031"), 
-                 Omic2 = c("ENSMUSG00000031170", 
+                     Omic2 = c("ENSMUSG00000031170", 
                            "ENSMUSG00000077495", 
                            "ENSMUSG00000042992"))
-dbList <- list(Omic1 = "ENSEMBL",
+    dbList <- list(Omic1 = "ENSEMBL",
                  Omic2 = "ENSEMBL")
-convFeat <- convertToEntrezid(featList, dbList, "org.Mm.eg.db")
+    convFeat <- convertToEntrezid(featList, dbList, "org.Mm.eg.db")
 
-## To enrich features
-database <- c("reactome", "MF")
-#runMultiEnrichment_result <- runMultiEnrichment(databasesChosen = database,
-#                                  omicSignature = convFeat,
-#                                  organismDb = "org.Mm.eg.db")
-data(runMultiEnrichment_result, package = "multiSight")
+    ## To enrich features
+    database <- c("reactome", "MF")
+    #runMultiEnrichment_result <- runMultiEnrichment(databasesChosen = database,
+    #                                  omicSignature = convFeat,
+    #                                  organismDb = "org.Mm.eg.db")
+    data(runMultiEnrichment_result, package = "multiSight")
+}
   
 }
