@@ -108,7 +108,7 @@ assessPerformance_Diablo <- function(splsdaModel,
     ## Anticipating predictions as NA by sPLS-DA model.
     preds <- factor(predict.diablo$MajorityVote$centroids.dist[, ncomp])
     levels(Ytest) <- c(levels(Ytest), "NA")
-    levels(preds) <- c(levels(preds), "NA")
+    levels(preds) <- c(levels(Ytest), "NA")
     preds[is.na(preds)] <- "NA"
     
     # To manage levels order
@@ -116,7 +116,6 @@ assessPerformance_Diablo <- function(splsdaModel,
     levels <- levels[order(levels)]
     summaryTable <- table(preds = ordered(preds, levels),
                           truth = ordered(Ytest, levels))
-    
     ## Performances
     confMat <- confusionMatrix(data = table((preds), Ytest))
     return(confMat)

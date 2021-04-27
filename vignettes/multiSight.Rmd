@@ -281,7 +281,7 @@ require(multiSight)
 data("omic2", package = "multiSight")
 data("diabloRes", package = "multiSight")
 
-splitData <- splitDatatoTrainTest(omic2, freq = 0.8)
+splitData <- splitDatatoTrainTest(omic2, freq = 0.9)
 data.train <- splitData$data.train
 data.test <- splitData$data.test
 
@@ -297,6 +297,10 @@ diabloFeats <- diabloRes$biosignature #selected features for each omic.
 diabloPerf <- assessPerformance_Diablo(splsdaModel = diabloModels, 
                                           dataTest = data.test)
 print(diabloPerf) #confusion matrices and performance metrics
+```
+
+
+```{r model_DIABLO, message=FALSE, warning=FALSE}
 ```
 
 # Biological insights tab
