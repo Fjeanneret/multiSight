@@ -51,6 +51,7 @@ splitDatatoTrainTest <- function(MultiOmicData, freq = 0.8)
 #' between omic data sets.
 #'
 #' @importFrom mixOmics pls 
+#' @importFrom stats cor
 buildCovarianceDesign <- function(MultiOmicData)
 {
   

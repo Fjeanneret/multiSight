@@ -75,6 +75,7 @@ getDataSelectedFeatures <- function(matrixDataList, featureList = NULL)
 #' @import igraph
 #' @importFrom stringr str_split
 #' @importFrom dplyr filter
+#' @importFrom stats cor
 #' 
 #' @export
 correlationNetworkInference <- function(concatenatedMatrix, valueThreshold)

@@ -232,7 +232,6 @@ detectTypeEnrich <- function(databaseName)
 #'     #runMultiEnrichment_result <- runMultiEnrichment(databasesChosen = database,
 #'     #                                  omicSignature = convFeat,
 #'     #                                  organismDb = "org.Mm.eg.db")
-#'     data(runMultiEnrichment_result, package = "multiSight")
 #' }
 #'   
 #' @importFrom dplyr filter
@@ -489,6 +488,7 @@ omicWeight <- function(enrichmentResultTables)
 #'
 #' @importFrom dplyr select arrange rename matches mutate coalesce
 #' @importFrom metap sumz
+#' @importFrom stats na.exclude
 #'
 #' @export
 stoufferTable <- function(enrichmentResult)

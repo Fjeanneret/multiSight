@@ -64,7 +64,6 @@ if (requireNamespace("org.Mm.eg.db", quietly = TRUE))
     #runMultiEnrichment_result <- runMultiEnrichment(databasesChosen = database,
     #                                  omicSignature = convFeat,
     #                                  organismDb = "org.Mm.eg.db")
-    data(runMultiEnrichment_result, package = "multiSight")
 }
   
 }
