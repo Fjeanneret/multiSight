@@ -3,6 +3,7 @@
 #' @param input,output,session Internal parameters for {shiny}. 
 #' @importFrom shiny callModule stopApp
 #' @importFrom R6 R6Class 
+#' @import S4Vectors
 #' @noRd
 app_server <- function(input, output, session ) {
     myDataProcess <- R6Class("MyDataProcess", list(

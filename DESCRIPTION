@@ -18,6 +18,7 @@ Description: 'multiSight' is a R package providing an user-friendly graphical in
 biocViews: Software, RNASeq, miRNA, Network, NetworkInference, DifferentialExpression, Classification, Pathways, GeneSetEnrichment
 License: CeCILL + file LICENSE
 Imports: 
+    S4Vectors,
     golem,
     config,
     R6,
@@ -44,7 +45,6 @@ Imports:
     easyPubMed,
     utils,
     htmltools,
-    grDevices,
     rmarkdown
 Encoding: UTF-8
 LazyData: false
