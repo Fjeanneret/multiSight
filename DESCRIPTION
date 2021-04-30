@@ -1,6 +1,6 @@
 Package: multiSight
 Title: Multi-'Omics' Classification, Enrichment and Network Inference analysis
-Version: 0.99.50
+Version: 0.99.51
 Authors@R: c(person(given = 'Florian', 
                     family = 'Jeanneret', 
                     email = 'florian.jeanneret@cea.fr', 
@@ -18,7 +18,6 @@ Description: 'multiSight' is a R package providing an user-friendly graphical in
 biocViews: Software, RNASeq, miRNA, Network, NetworkInference, DifferentialExpression, Classification, Pathways, GeneSetEnrichment
 License: CeCILL + file LICENSE
 Imports: 
-    S4Vectors,
     golem,
     config,
     R6,
