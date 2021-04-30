@@ -44,6 +44,7 @@ Imports:
     easyPubMed,
     utils,
     htmltools,
+    grDevices,
     rmarkdown
 Encoding: UTF-8
 LazyData: false
