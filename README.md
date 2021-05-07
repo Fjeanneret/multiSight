@@ -40,7 +40,7 @@ BiocManager::install("multiSight")
 
 # **multiSight** purpose
 
-**multiSight** is a R package providing an user-friendly graphical
+**multiSight** is an R package providing an user-friendly graphical
 interface to analyze and explore your omic datasets in a **multi-omics**
 manner by *DESeq2* (see **Biological Insights tab**), machine learning
 methods with *biosigner* and *multi-block statistical analysis* (see
@@ -54,9 +54,8 @@ Nevertheless, sPLS-DA *biosignatures* are based on more features than
 
 **Biosignatures** can be used:
 
-  - To forecast phenotype (e.g. to diagnostic tasks, histological
-    subtyping);
-  - To design ***Pathways*** and ***gene ontology*** **enrichments**
+  - To forecast phenotype (e.g. for diagnostic, histological subtyping);
+  - To design ***Pathway*** and ***gene ontology*** **enrichment**
     (sPLS-DA biosignatures only);
   - To build ***Network inference***;
   - To find ***PubMed*** references to make assumptions easier and
@@ -101,35 +100,39 @@ inference**.
 You have to provide two types of data: **numeric matrices** and
 **classes vector** as csv tables for all **same samples**.
 
-| Omic data 1 |        |      |        |   |
-| ----------- | ------ | ---- | ------ | - |
-|             | SIGIRR | MAOA | MANSC1 |   |
-| AOFJ        | 0      | 150  | 1004   | … |
-| A13E        | 34     | 0    | 0      |   |
-|             |        | …    |        |   |
+### Omic data 1
 
-| Omic data 2 |                 |                 |                 |   |
-| ----------- | --------------- | --------------- | --------------- | - |
-|             | ENSG00000139618 | ENSG00000226023 | ENSG00000198695 |   |
-| AOFJ        | 25              | 42              | 423             | … |
-| A13E        | 0               | 154             | 4900            |   |
-|             |                 | …               |                 |   |
+|      | SIGIRR | MAOA | MANSC1 |   |
+| ---- | ------ | ---- | ------ | - |
+| AOFJ | 0      | 150  | 1004   | … |
+| A13E | 34     | 0    | 0      |   |
+|      |        | …    |        |   |
+
+### Omic data 2
+
+|      | ENSG00000139618 | ENSG00000226023 | ENSG00000198695 |   |
+| ---- | --------------- | --------------- | --------------- | - |
+| AOFJ | 25              | 42              | 423             | … |
+| A13E | 0               | 154             | 4900            |   |
+|      |                 | …               |                 |   |
 
 … :point\_right: unlimited number of omic datasets.
 
-| Omic data n |      |      |      |   |
-| ----------- | ---- | ---- | ---- | - |
-|             | 4292 | 5254 | 7432 |   |
-| AOFJ        | 25   | 42   | 423  | … |
-| A13E        | 0    | 154  | 4900 |   |
-|             |      | …    |      |   |
+### Omic data n
 
-| Omic classes |       |
-| ------------ | ----- |
-|              | Y     |
-| AOFJ         | condA |
-| A13E         | condB |
-|              | …     |
+|      | 4292 | 5254 | 7432 |   |
+| ---- | ---- | ---- | ---- | - |
+| AOFJ | 25   | 42   | 423  | … |
+| A13E | 0    | 154  | 4900 |   |
+|      |      | …    |      |   |
+
+### Omic classes
+
+|      | Y     |
+| ---- | ----- |
+| AOFJ | condA |
+| A13E | condB |
+|      | …     |
 
 # :dart: Classification tab
 

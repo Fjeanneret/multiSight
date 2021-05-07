@@ -49,7 +49,7 @@ BiocManager::install("multiSight")
 
 # **multiSight** purpose
 
-**multiSight** is a R package providing an user-friendly graphical interface to 
+**multiSight** is an R package providing an user-friendly graphical interface to 
 analyze and explore your omic datasets in a __multi-omics__ manner by _DESeq2_ 
 (see **Biological Insights tab**), machine learning methods with _biosigner_ 
 and _multi-block statistical analysis_ (see **Classification tab**) helped by
@@ -64,8 +64,8 @@ Nevertheless, sPLS-DA *biosignatures* are based on more features than
 
 **Biosignatures** can be used:
 
-- To forecast phenotype (e.g. to diagnostic tasks, histological subtyping);
-- To design _**Pathways**_ and _**gene ontology**_ **enrichments** 
+- To forecast phenotype (e.g. for diagnostic, histological subtyping);
+- To design _**Pathway**_ and _**gene ontology**_ **enrichment** 
 (sPLS-DA biosignatures only);
 - To build _**Network inference**_;
 - To find _**PubMed**_ references to make assumptions easier and data-driven.
@@ -109,32 +109,32 @@ All types of omic data respecting input format is supported to build
 You have to provide two types of data: **numeric matrices** and 
 **classes vector** as csv tables for all **same samples**.
 
-| Omic data 1 |        |        |        |     |
-|-------------|--------|--------|--------|-----|
+###  Omic data 1
 |             | SIGIRR | MAOA | MANSC1 |     |
+|-------------|--------|--------|--------|-----|
 | AOFJ        | 0      | 150    | 1004   | ... |
 | A13E        | 34     | 0      | 0      |     |
 |             |        | ...    |        |     |
 
-| Omic data 2 |                 |                 |                 |     |
-|-------------|-----------------|-----------------|-----------------|-----|
+### Omic data 2
 |             | ENSG00000139618 | ENSG00000226023 | ENSG00000198695 |     |
+|-------------|-----------------|-----------------|-----------------|-----|
 | AOFJ        | 25              | 42              | 423             | ... |
 | A13E        | 0               | 154             | 4900            |     |
 |             |                 | ...             |                 |     |
 
 ... :point_right: unlimited number of omic datasets.
 
-| Omic data n |                 |                 |                 |     |
-|-------------|-----------------|-----------------|-----------------|-----|
+### Omic data n
 |             | 4292 | 5254 | 7432 |     |
+|-------------|-----------------|-----------------|-----------------|-----|
 | AOFJ        | 25              | 42              | 423             | ... |
 | A13E        | 0               | 154             | 4900            |     |
 |             |                 | ...             |                 |     |
 
-| Omic classes |       |
-|--------------|-------|
+### Omic classes       
 |              | Y     |
+|--------------|-------|
 | AOFJ         | condA |
 | A13E         | condB |
 |              | ...   |
