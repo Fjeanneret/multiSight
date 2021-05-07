@@ -5,7 +5,7 @@
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+experimental](https://img.shields.io/badge/lifecycle-stable-ff69b4.svg)](https://www.tidyverse.org/lifecycle/#stable)
 ![last
 commit](https://img.shields.io/github/last-commit/fjeanneret/multiSight.svg)
 <!-- ![license](https://img.shields.io/github/license/fjeanneret/multiSight.svg) -->
