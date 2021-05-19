@@ -1,6 +1,6 @@
 Package: multiSight
 Title: Multi-omics Classification, Functional Enrichment and Network Inference analysis
-Version: 0.99.54
+Version: 1.0.0
 Authors@R: c(person(given = 'Florian', 
                     family = 'Jeanneret', 
                     email = 'florian.jeanneret@cea.fr', 
