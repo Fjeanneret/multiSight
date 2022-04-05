@@ -29,7 +29,7 @@ data.test <- splitData$data.test
 data("diabloRes", package = "multiSight")
 diabloModels <- diabloRes$model #sPLS-DA model using all omics.
 diabloFeats <- diabloRes$biosignature #selected features for each omic.
-perfDiablo <- assessPerformance_Diablo(diabloModels, data.test)
-perfDiablo$Omic1 # sPLS-DA's perf for omic1 data block.
+#perfDiablo <- assessPerformance_Diablo(diabloModels, data.test)
+#perfDiablo$Omic1 # sPLS-DA's perf for omic1 data block.
 
 }

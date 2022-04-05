@@ -9,8 +9,8 @@ convertToEntrezid(featList, fromDbList, organismDb)
 \arguments{
 \item{featList}{Feature lists from each omic data block.}
 
-\item{fromDbList}{Database names vector. One by omic block (e.g. for 2 omics 
-list(omic1 = "SYMBOL", omic2 = "ENSEMBL")). Returned by getDbFromInput() 
+\item{fromDbList}{Database names vector. One by omic block (e.g. for 2 omics
+list(omic1 = "SYMBOL", omic2 = "ENSEMBL")). Returned by getDbFromInput()
 for app.}
 
 \item{organismDb}{Organism database to convert features.}
@@ -24,7 +24,7 @@ To convert features to entrezid to enrich.
 \examples{
 \donttest{
 
-if (requireNamespace("org.Mm.eg.db", quietly = TRUE)) 
+if (requireNamespace("org.Mm.eg.db", quietly = TRUE))
 {
     library(org.Mm.eg.db, warn.conflicts = FALSE)
     data("omic2", package = "multiSight")
@@ -39,11 +39,11 @@ if (requireNamespace("org.Mm.eg.db", quietly = TRUE))
     convFeat <- convertToEntrezid(diabloFeats, id_db, "org.Mm.eg.db")
 
 
-    featList <- list(Omic1 = c("ENSMUSG00000039621", 
-                           "ENSMUSG00000038733", 
-                           "ENSMUSG00000062031"), 
-                      Omic2 = c("ENSMUSG00000031170", 
-                           "ENSMUSG00000077495", 
+    featList <- list(Omic1 = c("ENSMUSG00000039621",
+                           "ENSMUSG00000038733",
+                           "ENSMUSG00000062031"),
+                      Omic2 = c("ENSMUSG00000031170",
+                           "ENSMUSG00000077495",
                            "ENSMUSG00000042992"))
     dbList <- list(Omic1 = "ENSEMBL",
                      Omic2 = "ENSEMBL")
